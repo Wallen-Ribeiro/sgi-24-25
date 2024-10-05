@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
+import { Cake } from './models/Cake.js'
 
 /**
  *  This class contains the contents of out application
@@ -77,7 +78,9 @@ class MyContents  {
         this.planeMesh = new THREE.Mesh( plane, this.planeMaterial );
         this.planeMesh.rotation.x = -Math.PI / 2;
         this.planeMesh.position.y = -0;
-        this.app.scene.add( this.planeMesh );
+        //this.app.scene.add( this.planeMesh );
+
+        this.app.scene.add( new Cake());
     }
     
     /**
@@ -127,7 +130,7 @@ class MyContents  {
         if (this.boxEnabled !== this.lastBoxEnabled) {
             this.lastBoxEnabled = this.boxEnabled
             if (this.boxEnabled) {
-                this.app.scene.add(this.boxMesh)
+                //this.app.scene.add(this.boxMesh)
             }
             else {
                 this.app.scene.remove(this.boxMesh)
