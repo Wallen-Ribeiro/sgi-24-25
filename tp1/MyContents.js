@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
 import { Cake } from './models/Cake.js'
+import { CakeSlice } from './models/CakeSlice.js';
+import { Plate } from './models/Plate.js';
 
 /**
  *  This class contains the contents of out application
@@ -80,7 +82,7 @@ class MyContents  {
         this.planeMesh.position.y = -0;
         //this.app.scene.add( this.planeMesh );
 
-        this.app.scene.add( new Cake());
+        this.buildCakeAndPlate();
     }
     
     /**
@@ -152,6 +154,20 @@ class MyContents  {
         this.boxMesh.position.y = this.boxDisplacement.y
         this.boxMesh.position.z = this.boxDisplacement.z
         
+    }
+
+    buildCakeAndPlate() {
+        const cake = new Cake(1, 0.6, 6);
+        const cakeSlice = new CakeSlice(1, 0.6, 6);
+        const plate = new Plate(1);
+        const cakePlateGroup = new THREE.Group();
+        cakePlateGroup.add(cakeSlice); cakePlateGroup.add(plate);
+
+        cakeSlice.position.set(0.2, 0.4, -0.5);
+        cakePlateGroup.position.set(-1, 0, 2);
+
+        this.app.scene.add(cake);
+        this.app.scene.add(cakePlateGroup);
     }
 
 }
