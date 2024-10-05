@@ -1,10 +1,11 @@
 # SGI 2024/2025
 
-## Group T0xG0y
-| Name             | Number    | E-Mail             |
-| ---------------- | --------- | ------------------ |
-| John Doe         | 201901010 | ...                |
-| Jane Doe         | 201901011 | ...                |
+## Group T06G01
+
+| Name                        | Number    | E-Mail            |
+| --------------------------- | --------- | ----------------- |
+| Pedro Filipe Pinho Oliveira | 202108669 | up202108669@up.pt |
+| Wallen Marcos Ribeiro       | 202109260 | up202109260@up.pt |
 
 ----
 
