@@ -4,7 +4,7 @@ import { Cake } from './models/Cake.js'
 import { CakeSlice } from './models/CakeSlice.js';
 import { Plate } from './models/Plate.js';
 import { Table } from './models/Table.js';
-
+import { Candle } from './models/Candle.js';
 /**
  *  This class contains the contents of out application
  */
@@ -158,23 +158,36 @@ class MyContents  {
         
     }
 
+    buildCandle(){
+        
+    }
+
     buildCakeAndPlate() {
         const cake = new Cake(1, 0.6, 6);
         const cakeSlice = new CakeSlice(1, 0.6, 6);
         const plate = new Plate(1);
         const cakePlateGroup = new THREE.Group();
+        const candle = new Candle();
+
         cakePlateGroup.add(cakeSlice); cakePlateGroup.add(plate);
 
         cakeSlice.position.set(0.2, 0.4, -0.5);
         cakePlateGroup.position.set(-1, 0, 2);
+        candle.scale.set(0.5, 0.5, 0.5);
+
+        cake.position.set(1, 0, 0);
+        candle.position.set(1, 0.45, 0.);
+        
 
         this.app.scene.add(cake);
         this.app.scene.add(cakePlateGroup);
+        this.app.scene.add(candle);
     }
 
     buildTable() {
         const table = new Table();
-        table.position.set(3, 3, 3);
+        table.position.set(0, -0.5, 0);
+        table.scale.set(1.5, 1.5, 1.5);
         this.app.scene.add(table);
     }
 
