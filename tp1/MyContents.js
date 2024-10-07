@@ -3,6 +3,7 @@ import { MyAxis } from './MyAxis.js';
 import { Cake } from './models/Cake.js'
 import { CakeSlice } from './models/CakeSlice.js';
 import { Plate } from './models/Plate.js';
+import { Table } from './models/Table.js';
 
 /**
  *  This class contains the contents of out application
@@ -83,6 +84,7 @@ class MyContents  {
         //this.app.scene.add( this.planeMesh );
 
         this.buildCakeAndPlate();
+        this.buildTable();
     }
     
     /**
@@ -168,6 +170,12 @@ class MyContents  {
 
         this.app.scene.add(cake);
         this.app.scene.add(cakePlateGroup);
+    }
+
+    buildTable() {
+        const table = new Table();
+        table.position.set(3, 3, 3);
+        this.app.scene.add(table);
     }
 
 }
