@@ -25,14 +25,17 @@ class CakeSlice extends THREE.Object3D {
         });
 
         const cake = new THREE.Mesh(cylinderGeometry, cakeMaterial);
+        cake.position.y = height / 2;
 
         const plane1 = new THREE.Mesh(planeGeometry, cakeMaterial);
         plane1.rotateY(Math.PI / 2);
+        plane1.position.y = height / 2;
         plane1.position.z = radius / 2;
 
         const plane2 = new THREE.Mesh(planeGeometry, cakeMaterial);
         plane2.rotateY(-Math.PI / 2 + thetaStart);
         plane2.position.x = Math.sin(thetaStart) * radius / 2;
+        plane2.position.y = height / 2;
         plane2.position.z = Math.cos(thetaStart) * radius / 2;
 
         this.add(cake);

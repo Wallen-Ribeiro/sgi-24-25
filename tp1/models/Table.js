@@ -20,6 +20,7 @@ class Table extends THREE.Object3D {
         this.baseWidth = 4;
         this.baseHeight = 0.5;
         this.color = 0x8B4513;
+        this.height = this.legSize + this.baseHeight;
 
         this.createBase();
         this.createLegs();
@@ -32,6 +33,7 @@ class Table extends THREE.Object3D {
         const box = new THREE.BoxGeometry(this.baseWidth, this.baseHeight, this.baseWidth);
         const material = new THREE.MeshPhongMaterial({ color: this.color,  specular: "#0x000000", emissive: "#0x8B4513", shininess: 100});
         const base = new THREE.Mesh(box, material);
+        base.position.y = this.legSize + this.baseHeight / 2;
         this.add(base);
     }
 
@@ -41,7 +43,7 @@ class Table extends THREE.Object3D {
     createLegs() {
         const halfWidth = this.baseWidth / 2;
         const legOffset = halfWidth - this.legRadius; 
-        const legHeightOffset = -(this.baseHeight / 2 + this.legSize / 2); 
+        const legHeightOffset = this.legSize / 2; 
         
         const legPositions = [
             [legOffset, legHeightOffset, legOffset],  // Front right leg

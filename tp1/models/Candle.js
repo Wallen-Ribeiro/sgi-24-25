@@ -16,7 +16,7 @@ class Candle extends THREE.Object3D {
         super();
         this.type = 'Group';
         this.candleHeight = 0.7;
-        this.stemHeight = 0.2;
+        this.stemHeight = 0.05;
         this.candleRadius = 0.15;
         this.stemRadius = 0.01;
         this.candleColor = 0xFFFFFF;
@@ -39,8 +39,8 @@ class Candle extends THREE.Object3D {
         const candle = new THREE.Mesh(cilinder, candleMaterial);
         const stem = new THREE.Mesh(cilinder2, stemMaterial);
 
-        candle.position.y = 0;
-        stem.position.y = this.candleHeight/2;
+        candle.position.y = this.candleHeight / 2;
+        stem.position.y = this.candleHeight + this.stemHeight / 2;
 
         this.add(candle);
         this.add(stem);
@@ -50,10 +50,11 @@ class Candle extends THREE.Object3D {
      * Create legs for the Candle legs
      */
     createFlame() {
-        const cone = new THREE.ConeGeometry(0.08, 0.2, 32);
+        const flameHeight = 0.2;
+        const cone = new THREE.ConeGeometry(0.08, flameHeight, 32);
         const flameMaterial = new THREE.MeshBasicMaterial({color: this.flameColor});
         const flame = new THREE.Mesh(cone, flameMaterial);
-        flame.position.y = this.candleHeight/2 + this.stemHeight;
+        flame.position.y = this.candleHeight + this.stemHeight  + flameHeight / 2;
         this.add(flame);
     }
 

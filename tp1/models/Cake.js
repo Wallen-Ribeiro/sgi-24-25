@@ -15,6 +15,7 @@ class Cake extends THREE.Object3D {
     constructor(radius, height, slices) {
         super();
 
+        this.height = height;
         const thetaLength = 2 * Math.PI * (slices - 1) / slices;
 
         const cylinderGeometry = new THREE.CylinderGeometry(radius, radius, height, 32, 1, false, 0, thetaLength);
@@ -25,14 +26,17 @@ class Cake extends THREE.Object3D {
         });
 
         const cake = new THREE.Mesh(cylinderGeometry, cakeMaterial);
+        cake.position.y = height / 2;
 
         const plane1 = new THREE.Mesh(planeGeometry, cakeMaterial);
         plane1.rotateY(-Math.PI / 2);
         plane1.position.z = radius / 2;
+        plane1.position.y = height / 2;
 
         const plane2 = new THREE.Mesh(planeGeometry, cakeMaterial);
         plane2.rotateY(Math.PI / 2 + thetaLength);
         plane2.position.x = Math.sin(thetaLength) * radius / 2;
+        plane2.position.y = height / 2;
         plane2.position.z = Math.cos(thetaLength) * radius / 2;
 
         this.add(cake);

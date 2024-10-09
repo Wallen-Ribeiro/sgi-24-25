@@ -5,6 +5,7 @@ import { CakeSlice } from './models/CakeSlice.js';
 import { Plate } from './models/Plate.js';
 import { Table } from './models/Table.js';
 import { Candle } from './models/Candle.js';
+import { Room } from './models/Room.js';
 /**
  *  This class contains the contents of out application
  */
@@ -61,7 +62,7 @@ class MyContents  {
 
         // add a point light on top of the model
         const pointLight = new THREE.PointLight( 0xffffff, 500, 0 );
-        pointLight.position.set( 0, 20, 0 );
+        pointLight.position.set( 0, 9, 0 );
         this.app.scene.add( pointLight );
 
         // add a point light helper for the previous point light
@@ -83,8 +84,9 @@ class MyContents  {
         this.planeMesh.position.y = -0;
         //this.app.scene.add( this.planeMesh );
 
-        this.buildCakeAndPlate();
+        this.buildRoom();
         this.buildTable();
+        this.buildCakeAndPlate();
     }
     
     /**
@@ -163,32 +165,34 @@ class MyContents  {
     }
 
     buildCakeAndPlate() {
-        const cake = new Cake(1, 0.6, 6);
-        const cakeSlice = new CakeSlice(1, 0.6, 6);
-        const plate = new Plate(1);
-        const cakePlateGroup = new THREE.Group();
-        const candle = new Candle();
+        this.cake = new Cake(0.6, 0.3, 6);
+        this.cakeSlice = new CakeSlice(0.6, 0.3, 6);
+        this.plate = new Plate(0.6);
+        this.candle = new Candle();
 
-        cakePlateGroup.add(cakeSlice); cakePlateGroup.add(plate);
 
-        cakeSlice.position.set(0.2, 0.4, -0.5);
-        cakePlateGroup.position.set(-1, 0, 2);
-        candle.scale.set(0.5, 0.5, 0.5);
+        this.plate.add(this.cakeSlice);
+        this.cakeSlice.position.set(0.2, this.plate.height, -0.3);
+        this.plate.position.set(-1, this.table.height, 1);
 
-        cake.position.set(1, 0, 0);
-        candle.position.set(1, 0.45, 0.);
-        
+        this.cake.add(this.candle);
+        this.candle.scale.set(0.3, 0.3, 0.3);
+        this.candle.position.set(0, this.cake.height)
+        this.cake.position.set(1, this.table.height, 0);
 
-        this.app.scene.add(cake);
-        this.app.scene.add(cakePlateGroup);
-        this.app.scene.add(candle);
+        this.app.scene.add(this.cake);
+        this.app.scene.add(this.plate);
     }
 
     buildTable() {
-        const table = new Table();
-        table.position.set(0, -0.5, 0);
-        table.scale.set(1.5, 1.5, 1.5);
-        this.app.scene.add(table);
+        this.table = new Table();
+        this.app.scene.add(this.table);
+    }
+
+    buildRoom() {
+        const room = new Room();
+
+        this.app.scene.add(room);
     }
 
 }
