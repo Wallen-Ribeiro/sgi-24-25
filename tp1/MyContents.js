@@ -22,9 +22,9 @@ class MyContents  {
         this.boxDisplacement = new THREE.Vector3(0,2,0)
 
         // plane related attributes
-        this.diffusePlaneColor = "#00ffff"
-        this.specularPlaneColor = "#777777"
-        this.planeShininess = 30
+        this.diffusePlaneColor = "rgb(128,128,128)"
+        this.specularPlaneColor = "rgb(0,0,0)"
+        this.planeShininess = 0
         this.planeMaterial = new THREE.MeshPhongMaterial({ color: this.diffusePlaneColor, 
             specular: this.specularPlaneColor, emissive: "#000000", shininess: this.planeShininess })
     }
@@ -56,7 +56,7 @@ class MyContents  {
         }
 
         // add a point light on top of the model
-        const pointLight = new THREE.PointLight( 0xffffff, 500, 0 );
+        const pointLight = new THREE.PointLight(0xffffff, 5, 0, 0);
         pointLight.position.set( 0, 20, 0 );
         this.app.scene.add( pointLight );
 
@@ -66,7 +66,7 @@ class MyContents  {
         this.app.scene.add( pointLightHelper );
 
         // add an ambient light
-        const ambientLight = new THREE.AmbientLight( 0x555555 );
+        const ambientLight = new THREE.AmbientLight( 0x6f6f6f );
         this.app.scene.add( ambientLight );
 
         this.buildBox()
