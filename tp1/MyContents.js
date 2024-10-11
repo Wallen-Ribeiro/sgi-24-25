@@ -27,6 +27,18 @@ class MyContents  {
         this.planeShininess = 30
         this.planeMaterial = new THREE.MeshPhongMaterial({ color: this.diffusePlaneColor, 
             specular: this.specularPlaneColor, emissive: "#000000", shininess: this.planeShininess })
+            
+        // spot light related attributes
+        this.spotLightColor = "#ffffff"
+        this.spotLightIntensity = 15
+        this.spotLightDistance = 8
+        this.spotLightAngle = 40
+        this.spotLightPenumbra = 0
+        this.spotLightDecay = 0
+        this.spotLightX = 2
+        this.spotLightY = 5
+        this.spotLightTargetX = 1
+        this.spotLightTargetY = 0
     }
 
     /**
@@ -56,17 +68,33 @@ class MyContents  {
         }
 
         // add a point light on top of the model
-        const pointLight = new THREE.PointLight( 0xffffff, 500, 0 );
-        pointLight.position.set( 0, 20, 0 );
-        this.app.scene.add( pointLight );
+        // const pointLight = new THREE.PointLight( 0xffffff, 500, 0 );
+        // pointLight.position.set( 0, 20, 0 );
+        // this.app.scene.add( pointLight );
 
         // add a point light helper for the previous point light
-        const sphereSize = 0.5;
-        const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
-        this.app.scene.add( pointLightHelper );
+        // const sphereSize = 0.5;
+        // const pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+        // this.app.scene.add( pointLightHelper );
+
+        // const light2 = new THREE.DirectionalLight(0xffffff, 2);
+        // light2.position.set(5, 10, 2);
+        // light2.target.position.set(1, 0, 1);
+        // this.app.scene.add(light2);
+        // const handler = new THREE.DirectionalLightHelper(light2, 5);
+        // this.app.scene.add(handler);
+
+        this.spotLight = new THREE.SpotLight(this.spotLightColor, this.spotLightIntensity, this.spotLightDistance,
+             this.spotLightAngle * Math.PI / 180, this.spotLightPenumbra, this.spotLightDecay);
+        this.spotLight.position.set(this.spotLightX, this.spotLightY, 1);
+        this.spotLight.target.position.set(this.spotLightTargetX, this.spotLightTargetY, 1);
+        this.app.scene.add(this.spotLight);
+        this.handler2 = new THREE.SpotLightHelper(this.spotLight);
+        this.app.scene.add(this.handler2);
+
 
         // add an ambient light
-        const ambientLight = new THREE.AmbientLight( 0x555555 );
+        const ambientLight = new THREE.AmbientLight( 0x555555, 4 );
         this.app.scene.add( ambientLight );
 
         this.buildBox()
@@ -104,6 +132,65 @@ class MyContents  {
         this.planeShininess = value
         this.planeMaterial.shininess = this.planeShininess
     }
+
+    updateSpotLightColor(value) {
+        this.spotLightColor = value
+        this.spotLight.color.set(this.spotLightColor)
+    }
+
+    updateSpotLightIntensity(value) {
+        this.spotLightIntensity = value
+        this.spotLight.intensity = this.spotLightIntensity
+    }
+
+    updateSpotLightDistance(value) {
+        this.spotLightDistance = value
+        this.spotLight.distance = this.spotLightDistance
+        this.handler2.update()
+    }
+
+    updateSpotLightAngle(value) {
+        this.spotLightAngle = value
+        this.spotLight.angle = this.spotLightAngle * Math.PI / 180
+        this.handler2.update()
+    }
+
+    updateSpotLightPenumbra(value) {
+        this.spotLightPenumbra = value
+        this.spotLight.penumbra = this.spotLightPenumbra
+        this.handler2.update()
+    }
+
+    updateSpotLightDecay(value) {
+        this.spotLightDecay = value
+        this.spotLight.decay = this.spotLightDecay
+        this.handler2.update()
+    }
+
+    updateSpotLightX(value) {
+        this.spotLightX = value
+        this.spotLight.position.x = this.spotLightX
+        this.handler2.update()
+    }
+
+    updateSpotLightY(value) {
+        this.spotLightY = value
+        this.spotLight.position.y = this.spotLightY
+        this.handler2.update()
+    }
+
+    updateSpotLightTargetX(value) {
+        this.spotLightTargetX = value
+        this.spotLight.target.position.x = this.spotLightTargetX
+        this.handler2.update()
+    }
+
+    updateSpotLightTargetY(value) {
+        this.spotLightTargetY = value
+        this.spotLight.target.position.y = this.spotLightTargetY
+        this.handler2.update()
+    }
+
     
     /**
      * rebuilds the box mesh if required
