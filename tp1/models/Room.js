@@ -9,13 +9,17 @@ class Room extends THREE.Object3D {
     /**
      * 
      */
-    constructor() {
+    constructor(width, length, heigth) {
         super();
 
-        const width = 10;
-        const height = 10;
+        this.width = width;
+        this.length = length;
+        this.heigth = heigth;
         
-        const planeGeometry = new THREE.PlaneGeometry(width, height);
+        const floorGeometry = new THREE.PlaneGeometry(this.width, this.length);
+        const wallGeometry1 = new THREE.PlaneGeometry(this.width, this.heigth);
+        const wallGeometry2 = new THREE.PlaneGeometry(this.length, this.heigth);
+
         const floorMaterial = new THREE.MeshPhongMaterial({
             color: "#2b1808", specular: "#777777", emissive: "#000000", shininess: 0 
         });
@@ -26,25 +30,25 @@ class Room extends THREE.Object3D {
             color: "#00ffff", specular: "#777777", emissive: "#000000", shininess: 30 
         });
 
-        const floor = new THREE.Mesh(planeGeometry, floorMaterial);
-        const ceiling = new THREE.Mesh(planeGeometry, ceilingMaterial);
-        const wall1 = new THREE.Mesh(planeGeometry, wallMaterial);
-        const wall2 = new THREE.Mesh(planeGeometry, wallMaterial);
-        const wall3 = new THREE.Mesh(planeGeometry, wallMaterial);
-        const wall4 = new THREE.Mesh(planeGeometry, wallMaterial);
+        const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+        const ceiling = new THREE.Mesh(floorGeometry, ceilingMaterial);
+        const wall1 = new THREE.Mesh(wallGeometry1, wallMaterial);
+        const wall2 = new THREE.Mesh(wallGeometry2, wallMaterial);
+        const wall3 = new THREE.Mesh(wallGeometry1, wallMaterial);
+        const wall4 = new THREE.Mesh(wallGeometry2, wallMaterial);
 
         floor.rotateX(-Math.PI / 2);
 
         ceiling.rotateX(Math.PI / 2);
-        ceiling.position.set(0, height, 0);
+        ceiling.position.set(0, this.heigth, 0);
 
-        wall1.position.set(0, height/2, -width/2);
+        wall1.position.set(0, this.heigth/2, -this.length/2);
         wall2.rotateY(Math.PI / 2);
-        wall2.position.set(-width/2, height/2, 0);
+        wall2.position.set(-this.width/2, this.heigth/2, 0);
         wall3.rotateY(Math.PI);
-        wall3.position.set(0, height/2, width/2);
+        wall3.position.set(0, this.heigth/2, this.length/2);
         wall4.rotateY(3 * Math.PI / 2);
-        wall4.position.set(width/2, height/2, 0);
+        wall4.position.set(this.width/2, this.heigth/2, 0);
 
         this.add(floor);
         this.add(ceiling);
