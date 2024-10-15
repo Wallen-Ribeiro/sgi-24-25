@@ -213,7 +213,7 @@ class MyContents {
 
     buildWindow() {
         const window = new Window();
-        window.position.set(-4.8, 6, 0);
+        window.position.set(-4.8, 5, 0);
         window.rotation.y = Math.PI/2;
         this.app.scene.add(window);
     }
