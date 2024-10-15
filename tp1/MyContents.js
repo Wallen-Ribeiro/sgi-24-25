@@ -6,6 +6,7 @@ import { Plate } from './models/Plate.js';
 import { Table } from './models/Table.js';
 import { Candle } from './models/Candle.js';
 import { Room } from './models/Room.js';
+import { Window } from './models/Window.js';
 /**
  *  This class contains the contents of out application
  */
@@ -62,7 +63,7 @@ class MyContents  {
 
         // add a point light on top of the model
         const pointLight = new THREE.PointLight( 0xffffff, 500, 0 );
-        pointLight.position.set( 0, 9, 0 );
+        pointLight.position.set( 0, 12, 0 );
         this.app.scene.add( pointLight );
 
         // add a point light helper for the previous point light
@@ -87,6 +88,7 @@ class MyContents  {
         this.buildRoom();
         this.buildTable();
         this.buildCakeAndPlate();
+        this.buildWindow();
     }
     
     /**
@@ -193,6 +195,13 @@ class MyContents  {
         const room = new Room();
 
         this.app.scene.add(room);
+    }
+
+    buildWindow() {
+        const window = new Window();
+        window.position.set(-4.8, 6, 0);
+        window.rotation.y = Math.PI/2;
+        this.app.scene.add(window);
     }
 
 }
