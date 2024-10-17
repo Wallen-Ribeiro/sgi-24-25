@@ -212,10 +212,10 @@ class MyContents {
     }
 
     buildWindow() {
-        const window = new Window();
-        window.position.set(-4.8, 5, 0);
-        window.rotation.y = Math.PI/2;
-        this.app.scene.add(window);
+        this.window = new Window();
+        this.window.position.set(-this.room.length / 2 + this.window.depth * 2, 5, 0);
+        this.window.rotation.y = Math.PI / 2;
+        this.app.scene.add(this.window);
     }
 
 
