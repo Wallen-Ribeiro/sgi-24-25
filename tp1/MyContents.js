@@ -85,7 +85,7 @@ class MyContents {
 
         const spotLight = new THREE.SpotLight(0xffff00);
         spotLight.position.set(0, 5, 1);
-        spotLight.target.position.set(0, 2, 0);
+        spotLight.target.position.set(1, 2, 0);
         spotLight.angle = Math.PI/ 10;
         spotLight.decay = 2;
         spotLight.intensity = 3;
@@ -107,10 +107,10 @@ class MyContents {
 
         this.buildRoom();
         this.buildTable();
-        //this.buildCakeAndPlate();
-        //this.buildWindow();
-        //this.buildPaintings();
-        this.buildLamp();
+        this.buildCakeAndPlate();
+        this.buildWindow();
+        this.buildPaintings();
+        //this.buildLamp();
     }
 
     /**
