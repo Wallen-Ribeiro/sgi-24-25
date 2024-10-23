@@ -7,9 +7,9 @@ import * as THREE from 'three';
 class Painting extends THREE.Object3D {
 
     /**
-      * 
-      */
-    constructor() {
+     *
+    */
+    constructor(texture) {
         super();
 
         const rimColor = 0x8B4513;
@@ -19,7 +19,7 @@ class Painting extends THREE.Object3D {
         this.thickness = 0.2;
         this.depth = 0.05;
 
-        const planeTexture = new THREE.TextureLoader().load('textures/remi.jpg');
+        const planeTexture = texture;
         const rim1Geometry = new THREE.BoxGeometry(this.width, this.thickness, this.depth);
         const rim2Geometry = new THREE.BoxGeometry(this.thickness, this.heigth, this.depth);
         const planeGeometry = new THREE.PlaneGeometry(this.width - 2 * this.thickness, this.heigth - 2 * this.thickness);

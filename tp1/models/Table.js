@@ -19,8 +19,11 @@ class Table extends THREE.Object3D {
         this.legRadius = 0.2;
         this.baseWidth = 4;
         this.baseHeight = 0.5;
+        this.baseLength = 8;
         this.color = 0x8B4513;
+        this.color = 0x8a5e3e;
         this.height = this.legSize + this.baseHeight;
+        this.tableTopTexture = new THREE.TextureLoader().load('textures/table_top.jpg');
 
         this.createBase();
         this.createLegs();
@@ -30,8 +33,8 @@ class Table extends THREE.Object3D {
      * Create a box geometry for the base
      */
     createBase() {
-        const box = new THREE.BoxGeometry(this.baseWidth, this.baseHeight, this.baseWidth);
-        const material = new THREE.MeshPhongMaterial({ color: this.color,  specular: "#0x000000", emissive: "#0x8B4513", shininess: 100});
+        const box = new THREE.BoxGeometry(this.baseWidth, this.baseHeight, this.baseLength);
+        const material = new THREE.MeshPhongMaterial({ specular: "#0x000000", emissive: "#0x8B4513", shininess: 100, map: this.tableTopTexture });
         const base = new THREE.Mesh(box, material);
         base.position.y = this.legSize + this.baseHeight / 2;
         this.add(base);
@@ -42,21 +45,23 @@ class Table extends THREE.Object3D {
      */
     createLegs() {
         const halfWidth = this.baseWidth / 2;
-        const legOffset = halfWidth - this.legRadius; 
-        const legHeightOffset = this.legSize / 2; 
-        
+        const halfLength = this.baseLength / 2;
+        const legOffsetW = halfWidth - this.legRadius;
+        const legOffsetL = halfLength - this.legRadius;
+        const legHeightOffset = this.legSize / 2;
+
         const legPositions = [
-            [legOffset, legHeightOffset, legOffset],  // Front right leg
-            [-legOffset, legHeightOffset, legOffset], // Front left leg
-            [legOffset, legHeightOffset, -legOffset], // Back right leg
-            [-legOffset, legHeightOffset, -legOffset] // Back left leg
+            [legOffsetW, legHeightOffset, legOffsetL],  // Front right leg
+            [-legOffsetW, legHeightOffset, legOffsetL], // Front left leg
+            [legOffsetW, legHeightOffset, -legOffsetL], // Back right leg
+            [-legOffsetW, legHeightOffset, -legOffsetL] // Back left leg
         ];
-    
+
         legPositions.forEach(position => {
             this.createLeg(position);
         });
     }
-    
+
 
     /**
      * Create a leg with the given position
@@ -64,7 +69,7 @@ class Table extends THREE.Object3D {
      */
     createLeg(position) {
         const cylinder = new THREE.CylinderGeometry(this.legRadius, this.legRadius, this.legSize, 32);
-        const legMaterial = new THREE.MeshPhongMaterial({ color: this.color, specular: "#0x000000", emissive: "#0x8B4513", shininess: 100});
+        const legMaterial = new THREE.MeshPhongMaterial({ color: this.color, specular: "#0x000000", emissive: "#0x8B4513", shininess: 100 });
         const leg = new THREE.Mesh(cylinder, legMaterial);
         leg.position.set(...position);
         this.add(leg);

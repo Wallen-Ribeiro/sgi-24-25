@@ -36,6 +36,17 @@ class MyContents {
             color: this.diffusePlaneColor,
             specular: this.specularPlaneColor, emissive: "#000000", shininess: this.planeShininess
         })
+
+        // point light related attributes
+        this.pointLightPosition = new THREE.Vector3(0, 9, 0)
+        this.pointLightColor = "#ffffff"
+        this.pointLightIntensity = 50
+
+        // table attributes
+        this.tableDisplacement = new THREE.Vector3(0, 0, 0);
+
+        // cake attributes
+        this.cakeDisplacement = new THREE.Vector3(1, 0, 0);
     }
 
     /**
@@ -67,14 +78,14 @@ class MyContents {
         }
 
         // add a point light on top of the model
-        const pointLight = new THREE.PointLight(0xffffff, 50, 0);
-        pointLight.position.set(0, 9, 0);
-        this.app.scene.add(pointLight);
+        this.pointLight = new THREE.PointLight(this.pointLightColor, 50, 0);
+        this.pointLight.position.set(0, 9, 0);
+        this.app.scene.add(this.pointLight);
 
         // add a point light helper for the previous point light
         const sphereSize = 0.5;
-        const pointLightHelper = new THREE.PointLightHelper(pointLight, sphereSize);
-        this.app.scene.add(pointLightHelper);
+        this.pointLightHelper = new THREE.PointLightHelper(this.pointLight, sphereSize);
+        this.app.scene.add(this.pointLightHelper);
 
         // add an ambient light
         const ambientLight = new THREE.AmbientLight(0x555555);
@@ -152,6 +163,17 @@ class MyContents {
         }
     }
 
+    updatePointLightIntensity(value) {
+        this.pointLightIntensity = value;
+        this.pointLight.intensity = this.pointLightIntensity;
+    }
+
+    updatePointLightColor(value) {
+        this.pointLightColor = value;
+        this.pointLight.color.set(this.pointLightColor);
+    }
+
+
     /**
      * updates the contents
      * this method is called from the render method of the app
@@ -159,17 +181,20 @@ class MyContents {
      */
     update() {
         // check if box mesh needs to be updated
-        this.updateBoxIfRequired()
+        //this.updateBoxIfRequired()
 
         // sets the box mesh position based on the displacement vector
         this.boxMesh.position.x = this.boxDisplacement.x
         this.boxMesh.position.y = this.boxDisplacement.y
         this.boxMesh.position.z = this.boxDisplacement.z
 
-    }
+        this.pointLight.position.set(...this.pointLightPosition);
+        this.pointLightHelper.update();
 
-    buildCandle() {
+        this.table.position.set(...this.tableDisplacement);
 
+        this.cake.position.setX(this.cakeDisplacement.x);
+        this.cake.position.setZ(this.cakeDisplacement.z);
     }
 
     buildCakeAndPlate() {
@@ -188,8 +213,8 @@ class MyContents {
         this.candle.position.set(0, this.cake.height)
         this.cake.position.set(1, this.table.height, 0);
 
-        this.app.scene.add(this.cake);
-        this.app.scene.add(this.plate);
+        this.table.add(this.cake);
+        this.table.add(this.plate);
     }
 
     buildTable() {
@@ -198,22 +223,25 @@ class MyContents {
     }
 
     buildRoom() {
-        this.room = new Room(10, 10, 10);
+        this.room = new Room(15, 15, 10);
 
         this.app.scene.add(this.room);
     }
 
     buildPaintings() {
-        this.painting1 = new Painting();
+        this.painting1 = new Painting(new THREE.TextureLoader().load('textures/remi.jpg'));
+        this.painting2 = new Painting(new THREE.TextureLoader().load('textures/gusteau.webp'));
 
-        this.painting1.position.set(0, 5, -this.room.width / 2);
+        this.painting1.position.set(-2, 5, -this.room.length / 2);
+        this.painting2.position.set(2, 5, -this.room.length / 2);
 
         this.room.add(this.painting1);
+        this.room.add(this.painting2);
     }
 
     buildWindow() {
         this.window = new Window();
-        this.window.position.set(-this.room.length / 2 + this.window.depth * 2, 5, 0);
+        this.window.position.set(-this.room.width / 2 + this.window.depth * 2, 5, 0);
         this.window.rotation.y = Math.PI / 2;
         this.app.scene.add(this.window);
     }
