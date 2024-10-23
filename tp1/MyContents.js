@@ -8,6 +8,8 @@ import { Candle } from './models/Candle.js';
 import { Room } from './models/Room.js';
 import { Window } from './models/Window.js';
 import { Painting } from './models/Painting.js';
+import { Lamp } from './models/Lamp.js';
+
 /**
  *  This class contains the contents of out application
  */
@@ -91,6 +93,19 @@ class MyContents {
         const ambientLight = new THREE.AmbientLight(0x555555);
         this.app.scene.add(ambientLight);
 
+
+        const spotLight = new THREE.SpotLight(0xffff00);
+        spotLight.position.set(0, 5, 1);
+        spotLight.target.position.set(1, 2, 0);
+        spotLight.angle = Math.PI/ 10;
+        spotLight.decay = 2;
+        spotLight.intensity = 3;
+        this.app.scene.add(spotLight);
+
+        const spotLightHelper = new THREE.SpotLightHelper(spotLight);
+
+        //this.app.scene.add(spotLightHelper);
+
         this.buildBox()
 
         // Create a Plane Mesh with basic material
@@ -106,6 +121,7 @@ class MyContents {
         this.buildCakeAndPlate();
         this.buildWindow();
         this.buildPaintings();
+        //this.buildLamp();
     }
 
     /**
@@ -246,7 +262,11 @@ class MyContents {
         this.app.scene.add(this.window);
     }
 
-
+    buildLamp() {
+        this.lamp = new Lamp();
+        this.lamp.position.set(0, this.table.height + this.lamp.height, 0);
+        this.app.scene.add(this.lamp);
+    }   
 }
 
 export { MyContents };
