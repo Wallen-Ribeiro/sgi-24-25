@@ -9,6 +9,7 @@ import { Room } from './models/Room.js';
 import { Window } from './models/Window.js';
 import { Painting } from './models/Painting.js';
 import { Lamp } from './models/Lamp.js';
+import { BeetleFrame } from './models/BeetleFrame.js';
 
 /**
  *  This class contains the contents of out application
@@ -97,7 +98,7 @@ class MyContents {
         const spotLight = new THREE.SpotLight(0xffff00);
         spotLight.position.set(0, 5, 1);
         spotLight.target.position.set(1, 2, 0);
-        spotLight.angle = Math.PI/ 10;
+        spotLight.angle = Math.PI / 10;
         spotLight.decay = 2;
         spotLight.intensity = 3;
         this.app.scene.add(spotLight);
@@ -122,6 +123,7 @@ class MyContents {
         this.buildWindow();
         this.buildPaintings();
         //this.buildLamp();
+        this.buildBeetleFrame();
     }
 
     /**
@@ -266,7 +268,14 @@ class MyContents {
         this.lamp = new Lamp();
         this.lamp.position.set(0, this.table.height + this.lamp.height, 0);
         this.app.scene.add(this.lamp);
-    }   
+    }
+
+    buildBeetleFrame() {
+        this.beetleFrame = new BeetleFrame();
+        this.beetleFrame.rotateY(-Math.PI / 2);
+        this.beetleFrame.position.set(this.room.width / 2, 5, 0);
+        this.app.scene.add(this.beetleFrame);
+    }
 }
 
 export { MyContents };
