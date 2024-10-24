@@ -10,6 +10,7 @@ import { Window } from './models/Window.js';
 import { Painting } from './models/Painting.js';
 import { Lamp } from './models/Lamp.js';
 import { BeetleFrame } from './models/BeetleFrame.js';
+import { Spring } from './models/Spring.js'
 
 /**
  *  This class contains the contents of out application
@@ -124,6 +125,7 @@ class MyContents {
         this.buildPaintings();
         //this.buildLamp();
         this.buildBeetleFrame();
+        this.buildSpring();
     }
 
     /**
@@ -274,7 +276,15 @@ class MyContents {
         this.beetleFrame = new BeetleFrame();
         this.beetleFrame.rotateY(-Math.PI / 2);
         this.beetleFrame.position.set(this.room.width / 2, 5, 0);
-        this.app.scene.add(this.beetleFrame);
+        this.room.add(this.beetleFrame);
+    }
+
+    buildSpring() {
+        this.spring = new Spring();
+
+        this.spring.rotateX(-Math.PI / 2);
+        this.spring.position.set(-1, this.table.height + this.spring.outerRadius, -2);
+        this.table.add(this.spring);
     }
 }
 
