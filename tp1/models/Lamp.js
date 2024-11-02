@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { LampHead } from './LampHead.js';
 
 /**
  * This class contains a 3D Lamp representation
@@ -16,32 +17,67 @@ class Lamp extends THREE.Object3D {
         super();
         this.type = 'Group';
 
-        this.height = 0.01;
-        this.radius = 0.5;
+        this.baseRadius = 2;
+        this.baseHeight = 0.4;
 
-
-        this.candleHeight = 0.7;
-        this.stemHeight = 0.05;
-        this.candleRadius = 0.15;
-        this.stemRadius = 0.01;
-        this.candleColor = 0xFFFFFF;
-        this.stemColor = 0x000000;
-        this.flameColor = 0xFF4500;
-
-        this.createLamp();
+        this.lampColor = 0xFFFFFF;
+        this.createBaseLamp();
 
     }
 
     /**
      * Create a cilinder geometry for the candle
      */
-    createLamp() {
-        const cilinder = new THREE.CylinderGeometry(this.radius - 0.1, this.radius, this.candleHeight, 32);
-        const cilinder2 = new THREE.CylinderGeometry(this.radius - 0.1, this.radius, this.candleHeight, 32);
-        const lampMaterial = new THREE.MeshPhongMaterial({color: this.candleColor});
-        const lamp = new THREE.Mesh(cilinder, lampMaterial);
-        this.add(lamp);
+    createBaseLamp() {
+        const cilinder = new THREE.CylinderGeometry(this.baseRadius - 0.2, this.baseRadius, this.baseHeight, 32);
+        const cilinder2 = new THREE.CylinderGeometry(0.7, 0.7, 1, 32); 
+
+        const box1 = new THREE.BoxGeometry(0.5, 2, 0.5);
+        const box2 = new THREE.BoxGeometry(0.5, 4, 0.5);
+
+
+        const lampMaterial = new THREE.MeshPhongMaterial({color: this.lampColor});
+        const base = new THREE.Mesh(cilinder, lampMaterial);
+        const struct1 = new THREE.Mesh(cilinder2, lampMaterial); 
+        const struct2 = new THREE.Mesh(box1, lampMaterial);
+        const struct3 = new THREE.Mesh(box1, lampMaterial);
+        const struct4 = new THREE.Mesh(box1, lampMaterial);
+        const struct5 = new THREE.Mesh(box2, lampMaterial);
+
+
+        struct1.position.y = this.baseHeight / 2;
+        struct2.position.y = this.baseHeight + 1.1;
+        struct3.position.y = this.baseHeight + 1.1;
+        struct4.position.y = this.baseHeight + 2.2;
+        struct5.position.y = this.baseHeight + 2.9;
+
+        struct2.position.x -= 0.6;  
+        struct3.position.x += 0.5;
+        struct4.position.x += 0.5;
+        struct5.position.x += 0.1;
+
+
+        struct2.rotateZ(Math.PI / 4);
+        struct3.rotateZ(-Math.PI / 4);
+        struct4.rotateZ(Math.PI / 4)
+        struct5.rotateZ(-Math.PI / 4)
+
+        this.add(base);
+        this.add(struct1);
+        this.add(struct2);
+        this.add(struct3);
+        this.add(struct4);
+        this.add(struct5);
+
+
+        const lampHead = new LampHead();
+        lampHead.scale.set(0.8, 0.8, 0.8);
+        lampHead.position.y = this.baseHeight + 4.5;
+        lampHead.position.x = 1.5;
+        lampHead.rotateZ( -Math.PI/1.5 );
+        this.add(lampHead);
     }
+
 
 }
 

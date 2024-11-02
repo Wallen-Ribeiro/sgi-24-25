@@ -69,7 +69,12 @@ class Table extends THREE.Object3D {
      */
     createLeg(position) {
         const cylinder = new THREE.CylinderGeometry(this.legRadius, this.legRadius, this.legSize, 32);
-        const legMaterial = new THREE.MeshPhongMaterial({ color: this.color, specular: "#0x000000", emissive: "#0x8B4513", shininess: 100 });
+        const legMaterial = new THREE.MeshPhongMaterial({
+            color: this.color,
+            specular: 0xFFFFFF, 
+            emissive: 0x5C4033, 
+            shininess: 200 
+        });
         const leg = new THREE.Mesh(cylinder, legMaterial);
         leg.position.set(...position);
         this.add(leg);

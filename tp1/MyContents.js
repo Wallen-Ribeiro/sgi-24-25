@@ -9,8 +9,10 @@ import { Room } from './models/Room.js';
 import { Window } from './models/Window.js';
 import { Painting } from './models/Painting.js';
 import { Lamp } from './models/Lamp.js';
+import { Jar } from './models/Jar.js';
 import { BeetleFrame } from './models/BeetleFrame.js';
 import { Spring } from './models/Spring.js'
+import { Flower } from './models/Flower.js';
 import { Newspaper } from './models/Newspaper.js';
 
 /**
@@ -96,19 +98,6 @@ class MyContents {
         const ambientLight = new THREE.AmbientLight(0x555555);
         this.app.scene.add(ambientLight);
 
-
-        const spotLight = new THREE.SpotLight(0xffff00);
-        spotLight.position.set(0, 5, 1);
-        spotLight.target.position.set(1, 2, 0);
-        spotLight.angle = Math.PI / 10;
-        spotLight.decay = 2;
-        spotLight.intensity = 3;
-        this.app.scene.add(spotLight);
-
-        const spotLightHelper = new THREE.SpotLightHelper(spotLight);
-
-        //this.app.scene.add(spotLightHelper);
-
         this.buildBox()
 
         // Create a Plane Mesh with basic material
@@ -123,10 +112,11 @@ class MyContents {
         this.buildTable();
         this.buildCakeAndPlate();
         this.buildWindow();
-        this.buildPaintings();
-        //this.buildLamp();
+        this.buildPaintings(); 
+        this.buildLamp();
         this.buildBeetleFrame();
-        this.buildSpring();
+        this.buildSpring(); 
+        this.buildVaseWithFLower();
         this.buildNewspaper();
     }
 
@@ -216,7 +206,10 @@ class MyContents {
         this.table.position.set(...this.tableDisplacement);
 
         this.cake.position.setX(this.cakeDisplacement.x);
-        this.cake.position.setZ(this.cakeDisplacement.z);
+        this.cake.position.setZ(this.cakeDisplacement.z); 
+
+        this.pointLight.position.set(...this.pointLightPosition);
+        this.pointLightHelper.update();
     }
 
     buildCakeAndPlate() {
@@ -237,6 +230,7 @@ class MyContents {
 
         this.table.add(this.cake);
         this.table.add(this.plate);
+        this.table.add(this.lamp)
     }
 
     buildTable() {
@@ -270,9 +264,26 @@ class MyContents {
 
     buildLamp() {
         this.lamp = new Lamp();
-        this.lamp.position.set(0, this.table.height + this.lamp.height, 0);
-        this.app.scene.add(this.lamp);
+        this.lamp.scale.set(0.3, 0.3, 0.3);
+    
+        this.lamp.position.set(-0.5, 2.5, -1.5);
+        this.lamp.rotateY(-Math.PI / 4);
+    
+        this.spotLight = new THREE.SpotLight(0xffff00);
+        this.spotLight.position.set(this.lamp.position.x + 3, this.lamp.position.y + 2.5, this.lamp.position.z + 1.5);  // Position relative to the lamp's origin
+        this.spotLight.target.position.set(7, 0, 0);
+        this.spotLight.angle = Math.PI / 10;
+        this.spotLight.decay = 2;
+        this.spotLight.intensity = 3;
+        this.lamp.add(this.spotLight);
+        this.lamp.add(this.spotLight.target);  
+        this.spotLightHelper = new THREE.SpotLightHelper(this.spotLight);
+        this.app.scene.add(this.spotLightHelper); 
+    
+        this.table.add(this.lamp);
     }
+    
+    
 
     buildBeetleFrame() {
         this.beetleFrame = new BeetleFrame();
@@ -287,6 +298,16 @@ class MyContents {
         this.spring.rotateX(-Math.PI / 2);
         this.spring.position.set(-1, this.table.height + this.spring.outerRadius, -2);
         this.table.add(this.spring);
+    }
+
+    buildVaseWithFLower(){
+        this.jar = new Jar();
+        this.flower = new Flower();
+        this.app.scene.add(this.flower);
+        this.jar.scale.set(0.3, 0.3, 0.3);
+        this.flower.position.set(-this.room.length/3, 0, this.room.length/3);
+        this.jar.position.set(-this.room.length/3, 0, this.room.length/3);
+        this.app.scene.add(this.jar);
     }
 
     buildNewspaper() {
