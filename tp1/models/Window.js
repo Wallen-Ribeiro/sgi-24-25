@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { build } from './curves/NURBSBuilder.js';
+import { CurtainFabric } from './CurtainFabric.js';
 
 /**
  * This class contains a 3D Window
@@ -22,9 +24,44 @@ class Window extends THREE.Object3D {
         this.depth = 0.05;
 
 
-        this.createFrame();
-        this.createGlass();
-        this.createOutside();
+        this.createWindow();
+        this.createCurtains();
+    }
+
+
+    createCurtains() {
+      const hanger = new THREE.Mesh(new THREE.BoxGeometry(this.width*2, 0.2, 0.5),
+      new THREE.MeshPhongMaterial({ color: 0x8B4513 }));
+      const sphere = new THREE.Mesh(new THREE.SphereGeometry(0.25, 32, 32), new THREE.MeshPhongMaterial({ color: 0x8B4513 }));
+      const sphere2 = new THREE.Mesh(new THREE.SphereGeometry(0.25, 32, 32), new THREE.MeshPhongMaterial({ color: 0x8B4513 }));
+
+      sphere.position.set(this.width, 0, 0);
+      sphere.scale.set(0.5, 1, 1);
+      sphere2.position.set(-this.width, 0, 0);
+      sphere2.scale.set(0.5, 1, 1);
+      hanger.add(sphere);
+      hanger.add(sphere2);
+      hanger.position.set(0, 2, 0);
+      this.add(hanger);
+
+      const curtain = new CurtainFabric();
+      const curtain2 = new CurtainFabric();
+
+      curtain.position.set(-this.width + 0.5, -this.heigth - 0.8 , 0.2);
+      curtain2.position.set(this.width - 1, -this.heigth - 0.8 , 0.2);
+
+      curtain.scale.set(0.8, 2, 1);
+      curtain2.scale.set(0.5, 2, 1);
+
+      this.add(curtain);
+      this.add(curtain2);
+    }
+
+
+    createWindow() {
+      this.createFrame();
+      this.createGlass();
+      this.createOutside();
     }
 
     createFrame() {
@@ -54,7 +91,7 @@ class Window extends THREE.Object3D {
     createGlass() {
       const glassShininess = 500;
       const glassGeometry = new THREE.BoxGeometry(this.width - 0.2, this.heigth - 0.2, this.depth);
-      const glassMaterial = new THREE.MeshPhongMaterial({ color: this.glassColor, transparent: true, opacity: 0.3, shininess: glassShininess, specular: this.glassColor, emissive: this.glassColor });
+      const glassMaterial = new THREE.MeshPhongMaterial({ color: this.glassColor, transparent: true, opacity: 0.1, shininess: glassShininess, specular: this.glassColor, emissive: this.glassColor });
       const glass = new THREE.Mesh(glassGeometry, glassMaterial);
       this.add(glass);
     }
