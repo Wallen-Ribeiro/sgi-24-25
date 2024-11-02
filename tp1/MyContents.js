@@ -11,6 +11,7 @@ import { Painting } from './models/Painting.js';
 import { Lamp } from './models/Lamp.js';
 import { BeetleFrame } from './models/BeetleFrame.js';
 import { Spring } from './models/Spring.js'
+import { Newspaper } from './models/Newspaper.js';
 
 /**
  *  This class contains the contents of out application
@@ -47,7 +48,7 @@ class MyContents {
         this.pointLightIntensity = 50
 
         // table attributes
-        this.tableDisplacement = new THREE.Vector3(0, 0, 0);
+        this.tableDisplacement = new THREE.Vector3(-2.5, 0, 0);
 
         // cake attributes
         this.cakeDisplacement = new THREE.Vector3(1, 0, 0);
@@ -126,6 +127,7 @@ class MyContents {
         //this.buildLamp();
         this.buildBeetleFrame();
         this.buildSpring();
+        this.buildNewspaper();
     }
 
     /**
@@ -285,6 +287,13 @@ class MyContents {
         this.spring.rotateX(-Math.PI / 2);
         this.spring.position.set(-1, this.table.height + this.spring.outerRadius, -2);
         this.table.add(this.spring);
+    }
+
+    buildNewspaper() {
+        this.newspaper = new Newspaper();
+        this.newspaper.position.set(0, this.table.height + 0.05, -3);
+
+        this.table.add(this.newspaper);
     }
 }
 
