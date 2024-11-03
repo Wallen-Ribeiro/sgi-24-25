@@ -7,7 +7,12 @@ import * as THREE from 'three';
 class Room extends THREE.Object3D {
 
     /**
+     *  Constructor for the Room class
+     * Initializes the room with default properties.
      * 
+     * @property {number} width - The width of the room.
+     * @property {number} length - The length of the room.
+     * @property {number} heigth - The height of the room.
      */
     constructor(width, length, heigth) {
         super();

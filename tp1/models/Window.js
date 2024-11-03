@@ -9,6 +9,16 @@ import { CurtainFabric } from './CurtainFabric.js';
 class Window extends THREE.Object3D {
 
     /**
+      * Constructor for the Window class
+      * Initializes the window with default properties.
+      * 
+      * @property {string} rimColor - The color of the window rim.
+      * @property {string} glassColor - The color of the window glass.
+      * @property {number} width - The width of the window.
+      * @property {number} height - The height of the window.
+      * @property {number} thickness - The thickness of the window.
+      * @property {number} depth - The depth of the window.
+      * @property {string} type - The type of the object.
       * 
       */
     constructor() {

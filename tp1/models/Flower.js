@@ -3,9 +3,19 @@ import { build } from './curves/NURBSBuilder.js';
 
 class Flower extends THREE.Object3D {
     /**
+     *  Constructor for the Flower class
+     *  Initializes the flower with default properties.
      * 
-     * @param {Object} options An object to configure the flower
-     * @param {number} options.curveIntensity The intensity of the stem curve
+     * @property {number} stemColor - The color of the stem.
+     * @property {number} stemRadius - The radius of the stem.
+     * @property {number} stemHeight - The height of the stem.
+     * @property {number} petalColor - The color of the petals.
+     * @property {number} headRadius - The radius of the head.
+     * @property {number} receptacleColor - The color of the receptacle.
+     * @property {number} petalRadius - The radius of the petals.
+     * @property {number} numPetals - The number of petals.
+     * @property {number} curveIntensity - The intensity of the curve.
+     * 
      */
     constructor(numPetals, curveIntensity, petalColor) {
         super();

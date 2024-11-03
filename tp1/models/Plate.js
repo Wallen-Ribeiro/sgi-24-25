@@ -6,8 +6,10 @@ import * as THREE from 'three';
 class Plate extends THREE.Object3D {
 
     /**
-     * 
+     *  Constructor for the Plate class
+     * Initializes the plate with default properties.
      * @param {float} radius Radius of plate
+     * @property {number} height - The height of the plate.
      */
     constructor(radius) {
         super();

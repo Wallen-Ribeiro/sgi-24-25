@@ -8,8 +8,16 @@ import { SpringCurve } from './curves/SpringCurve.js';
 class Spring extends THREE.Object3D {
 
     /**
-     *
-    */
+     *  Constructor for the Spring class
+     * Initializes the spring with default properties.
+     * 
+     * @property {number} radius - The radius of the spring.
+     * @property {number} height - The height of the spring.
+     * @property {number} spins - The number of spins in the spring.
+     * @property {number} tubeRadius - The radius of the tube.
+     * @property {number} outerRadius - The outer radius of the spring.
+     */
+
     constructor() {
         super();
 

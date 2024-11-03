@@ -8,14 +8,20 @@ import { ParametricGeometry } from 'three/addons/geometries/ParametricGeometry.j
 class Newspaper extends THREE.Object3D {
 
     /**
-     *
+     * Constructor for the Newspaper class
+     * Initializes the newspaper with default properties.
+     * 
+     * @property {number} radius - The radius of the spring.
+     * @property {number} height - The height of the spring.
+     * @property {number} tubeRadius - The radius of the tube.
+     * @property {number} outerRadius - The outer radius of the spring
+     * 
     */
     constructor() {
         super();
 
         this.radius = 0.1;
         this.height = 0.3;
-        this.spins = 5;
         this.tubeRadius = 0.02;
         this.outerRadius = this.radius + this.tubeRadius;
 

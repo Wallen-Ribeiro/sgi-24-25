@@ -9,7 +9,14 @@ import { CurtainFabric } from './CurtainFabric.js';
 class Door extends THREE.Object3D {
 
     /**
-      * 
+      *  Constructor for the Door class
+      * Initializes the door with default properties.
+      *     
+      * @property {number} width - The width of the door.
+      * @property {number} height - The height of the door.
+      * @property {number} thickness - The thickness of the door.
+      * @property {number} depth - The depth of the door.
+      * @property {string} type - The type of the object.
       */
     constructor() {
         super();

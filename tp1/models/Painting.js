@@ -7,7 +7,15 @@ import * as THREE from 'three';
 class Painting extends THREE.Object3D {
 
     /**
-     *
+     * Constructor of the class Painting
+     * Initializes the painting with default properties.
+     * 
+     * @property {string} rimColor - The color of the painting rim.
+     * @property {number} width - The width of the painting.
+     * @property {number} height - The height of the painting.
+     * @property {number} thickness - The thickness of the painting.
+     * @property {number} depth - The depth of the painting.
+     * @property {string} type - The type of the object.
     */
     constructor(texture) {
         super();

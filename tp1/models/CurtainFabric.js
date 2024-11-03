@@ -5,6 +5,17 @@ import { build } from './curves/NURBSBuilder.js';
  */
 class CurtainFabric extends THREE.Object3D {
 
+    /**
+     *  Constructor for the CurtainFabric class
+     * Initializes the curtain with default properties.
+     * 
+     * @property {number} samplesU - The number of samples in the U direction.
+     * @property {number} samplesV - The number of samples in the V direction.
+     * @property {THREE.Material} material - The material of the curtain.
+     * @property {Array} meshes - The meshes of the curtain.
+     * @property {string} type - The type of the object.
+     */
+
     constructor() {
         super();
         this.type = 'Group';
