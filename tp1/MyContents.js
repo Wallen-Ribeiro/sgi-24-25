@@ -252,6 +252,7 @@ loader.load(
         this.candle.scale.set(0.3, 0.3, 0.3);
         this.candle.position.set(0, this.cake.height)
         this.cake.position.set(1, this.table.height, 0);
+        this.cake.rotateY(-Math.PI / 4);
 
         this.table.add(this.cake);
         this.table.add(this.plate);
@@ -301,10 +302,11 @@ loader.load(
         this.spotLight.angle = Math.PI / 6;
         this.spotLight.decay = 2;
         this.spotLight.intensity = 3;
-        this.spotLight.castShadow = true; // Enable shadow casting for the spotlight
+        this.spotLight.castShadow = true;
+        this.spotLight.shadow.mapSize.width = 4096;
+        this.spotLight.shadow.mapSize.height = 4096;
         this.spotLight.shadow.camera.near = 0.5;
-        this.spotLight.shadow.camera.far = 50;
-        this.spotLight.shadow.camera.fov = 30;
+
         this.lamp.add(this.spotLight);
         this.lamp.add(this.spotLight.target);  
         this.spotLightHelper = new THREE.SpotLightHelper(this.spotLight);

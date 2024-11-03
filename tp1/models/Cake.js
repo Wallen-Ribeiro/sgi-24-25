@@ -29,14 +29,20 @@ class Cake extends THREE.Object3D {
         });
 
         const cake = new THREE.Mesh(cylinderGeometry, cakeMaterial);
+        cake.castShadow = true;
+        cake.receiveShadow = true;
         cake.position.y = height / 2;
 
         const plane1 = new THREE.Mesh(planeGeometry, cakeMaterial);
+        cake.castShadow = true;
+        cake.receiveShadow = true;
         plane1.rotateY(-Math.PI / 2);
         plane1.position.z = radius / 2;
         plane1.position.y = height / 2;
 
         const plane2 = new THREE.Mesh(planeGeometry, cakeMaterial);
+        cake.castShadow = true;
+        cake.receiveShadow = true;
         plane2.rotateY(Math.PI / 2 + thetaLength);
         plane2.position.x = Math.sin(thetaLength) * radius / 2;
         plane2.position.y = height / 2;
