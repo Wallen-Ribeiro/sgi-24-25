@@ -92,7 +92,7 @@ class MyContents  {
 
         light1.shadow.camera.near = 0.5;
 
-        light1.shadow.camera.far = 100;
+        light1.shadow.camera.far = 27;
 
         light1.shadow.camera.left = -15;
 
