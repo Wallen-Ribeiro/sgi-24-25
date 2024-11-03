@@ -88,7 +88,7 @@ class MyContents {
         // add a point light helper for the previous point light
         const sphereSize = 0.5;
         this.pointLightHelper = new THREE.PointLightHelper(this.pointLight, sphereSize);
-        this.app.scene.add(this.pointLightHelper);
+        //this.app.scene.add(this.pointLightHelper);
 
         // add an ambient light
         const ambientLight = new THREE.AmbientLight(0x555555);
