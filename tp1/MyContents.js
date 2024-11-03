@@ -40,7 +40,7 @@ class MyContents  {
 
                     emissive: "#000000", shininess: this.shininessFloor })
 
-        this.mapSize = 4096
+        this.mapSize = 1024
 
         this.nbrPolyg = 10
 

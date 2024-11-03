@@ -38,7 +38,7 @@ class MyGuiInterface {
 
         // Folder for Volume properties
         const volumeFolder = this.datgui.addFolder('Volume');
-        volumeFolder.add(this.contents, 'nbrPolyg', 1, 50, 1).name("Polygons").onChange(() => this.contents.rebuildVolume());
+        volumeFolder.add(this.contents, 'nbrPolyg', 1, 1000, 1).name("Polygons").onChange(() => this.contents.rebuildVolume());
         volumeFolder.add(this.contents, 'volumeDimX', 1, 20).name("Volume Dim X").onChange(() => this.contents.rebuildVolume());
         volumeFolder.add(this.contents, 'volumeDimY', 1, 20).name("Volume Dim Y").onChange(() => this.contents.rebuildVolume());
         volumeFolder.add(this.contents, 'volumeDimZ', 1, 20).name("Volume Dim Z").onChange(() => this.contents.rebuildVolume());

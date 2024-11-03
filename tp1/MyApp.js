@@ -51,6 +51,10 @@ class MyApp  {
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setClearColor("#000000");
 
+        // Set shadow map type
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.BasicShadowMap; // Replace with desired shadow map type
+
         // Configure renderer size
         this.renderer.setSize( window.innerWidth, window.innerHeight );
 
