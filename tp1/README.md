@@ -26,7 +26,7 @@ This project was built upon the basic structure that was given to us by the teac
 
 - ***Inside Perspective:*** focuses on the interior of the scene, with a closer, lower-angle view.
 
-- *** Table***: Positioned near a tabletop level, offering a low vantage point within the scene, for better view of the objects in the table.
+- ***Table***: Positioned near a tabletop level, offering a low vantage point within the scene, for better view of the objects in the table.
 
 #### Orthographic Camera Views:
 
@@ -104,5 +104,5 @@ Mentioning the required tasks:
 ----
 ## Issues/Problems
 
-- The quality of Skydome Texture, due to difficulties in adapting the image to perfectly fit the sphere while maitaining its resotuion.
+- The quality of Skydome Texture, due to difficulties in adapting the image to perfectly fit the sphere while maitaining its resolution.
 
