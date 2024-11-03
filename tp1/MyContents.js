@@ -16,6 +16,7 @@ import { Spring } from './models/Spring.js'
 import { Flower } from './models/Flower.js';
 import { Newspaper } from './models/Newspaper.js';
 import { Door } from './models/Door.js';
+import { Shelf } from './models/Shelf.js';
 
 /**
  *  This class contains the contents of out application
@@ -121,6 +122,7 @@ class MyContents {
         this.buildVaseWithFLower();
         this.buildNewspaper();
         this.buildDoor();
+        this.buildShelf();
 
         const loader = new GLTFLoader(); 
 loader.load(
@@ -353,6 +355,13 @@ loader.load(
         this.door = new Door();
         this.door.position.set(0, this.room.heigth/2 - 1 , this.room.length/2 - 0.1);
         this.room.add(this.door);
+    }
+
+    buildShelf() {
+        this.shelf = new Shelf();
+        this.shelf.rotateY(-Math.PI / 2);
+        this.shelf.position.set(this.room.width / 2 - this.shelf.depth / 2, 0, -this.room.length / 2 + this.shelf.width / 2);
+        this.app.scene.add(this.shelf);
     }
 }
 
