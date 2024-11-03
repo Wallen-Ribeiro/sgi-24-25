@@ -48,7 +48,7 @@ class LampHead extends THREE.Object3D {
         this.add(cilinderMesh);
 
         const lamp = new THREE.SphereGeometry(0.8, 32, 32);
-        const lampMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00, side: THREE.DoubleSide } );
+        const lampMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00, pecular: "#ffffff", emissive: "#FFFF00", shininess: 10 } );
         const lampMesh = new THREE.Mesh( lamp, lampMaterial );
         lampMesh.position.setY(1);
         this.add(lampMesh);

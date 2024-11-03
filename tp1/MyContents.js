@@ -15,7 +15,7 @@ import { BeetleFrame } from './models/BeetleFrame.js';
 import { Spring } from './models/Spring.js'
 import { Flower } from './models/Flower.js';
 import { Newspaper } from './models/Newspaper.js';
-
+import { Door } from './models/Door.js';
 
 /**
  *  This class contains the contents of out application
@@ -120,6 +120,7 @@ class MyContents {
         this.buildSpring(); 
         this.buildVaseWithFLower();
         this.buildNewspaper();
+        this.buildDoor();
 
         const loader = new GLTFLoader(); 
 loader.load(
@@ -310,7 +311,7 @@ loader.load(
         this.lamp.add(this.spotLight);
         this.lamp.add(this.spotLight.target);  
         this.spotLightHelper = new THREE.SpotLightHelper(this.spotLight);
-        this.app.scene.add(this.spotLightHelper); 
+        //this.app.scene.add(this.spotLightHelper); 
     
         this.table.add(this.lamp);
     }
@@ -345,8 +346,13 @@ loader.load(
     buildNewspaper() {
         this.newspaper = new Newspaper();
         this.newspaper.position.set(0, this.table.height + 0.05, -3);
-
         this.table.add(this.newspaper);
+    }
+
+    buildDoor() {
+        this.door = new Door();
+        this.door.position.set(0, this.room.heigth/2 - 1 , this.room.length/2 - 0.1);
+        this.room.add(this.door);
     }
 }
 
