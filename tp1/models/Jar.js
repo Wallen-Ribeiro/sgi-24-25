@@ -2,6 +2,19 @@ import * as THREE from 'three';
 import { build } from './curves/NURBSBuilder.js';
 
 class Jar extends THREE.Group {
+
+    /**
+     *  Constructor for the Jar class
+     * Initializes the jar with default properties.
+     * 
+     * @property {number} samplesU - The number of samples in the U direction.
+     * @property {number} samplesV - The number of samples in the V direction.
+     * @property {THREE.Material} material - The material of the jar.
+     * @property {Array} meshes - The meshes of the jar.
+     * @property {string} type - The type of the object.
+     * 
+     */
+    
     constructor() {
         super();
         this.type = 'Group';

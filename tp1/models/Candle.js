@@ -5,12 +5,16 @@ import * as THREE from 'three';
  */
 class Candle extends THREE.Object3D {
     /**
+     * Constructor of the class Candle
+     * Initializes the candle with default properties.
      * 
-     * @param {legSize} legSize the size of each leg
-     * @param {legRadius} legRadius the radius of each leg
-     * @param {baseWidth} baseWidth the width of the base
-     * @param {baseHeight} baseHeight the height of the base
-     * @param {color} color the color of the Candle
+     * @param {number} candleHeight - The height of the candle.
+     * @param {number} stemHeight - The height of the stem.
+     * @param {number} candleRadius - The radius of the candle.
+     * @param {number} stemRadius - The radius of the stem.
+     * @param {number} candleColor - The color of the candle.
+     * @param {number} stemColor - The color of the stem.
+     * @param {number} flameColor - The color of the flame.
      */
     constructor() {
         super();

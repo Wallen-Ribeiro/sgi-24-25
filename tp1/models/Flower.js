@@ -3,22 +3,32 @@ import { build } from './curves/NURBSBuilder.js';
 
 class Flower extends THREE.Object3D {
     /**
+     *  Constructor for the Flower class
+     *  Initializes the flower with default properties.
      * 
-     * @param {Object} options An object to configure the flower
-     * @param {number} options.curveIntensity The intensity of the stem curve
+     * @property {number} stemColor - The color of the stem.
+     * @property {number} stemRadius - The radius of the stem.
+     * @property {number} stemHeight - The height of the stem.
+     * @property {number} petalColor - The color of the petals.
+     * @property {number} headRadius - The radius of the head.
+     * @property {number} receptacleColor - The color of the receptacle.
+     * @property {number} petalRadius - The radius of the petals.
+     * @property {number} numPetals - The number of petals.
+     * @property {number} curveIntensity - The intensity of the curve.
+     * 
      */
-    constructor(numPetals, curveIntensity, petalColor) {
+    constructor(numPetals, curveIntensity, petalColor, height) {
         super();
         this.type = 'Group';
         this.stemColor = 0x00FF22;
         this.stemRadius = 0.05; 
-        this.stemHeight = 2.5;
-        this.petalColor = 0xFF00FF;
+        this.stemHeight = height || 1; // Default stem height if not provided
+        this.petalColor = petalColor || 0xFF4500; // Default petal color if not provided
         this.headRadius = 0.35;
         this.receptacleColor = 0x8B4513;
         this.petalRadius = 0.15;
-        this.numPetals = 8;
-        this.curveIntensity = 0 || 0.35; // Default curve intensity if not provided
+        this.numPetals = numPetals || 6; // Default number of petals if not provided
+        this.curveIntensity = curveIntensity || 0.35; // Default curve intensity if not provided
 
         this.createStem();
         this.createHead();

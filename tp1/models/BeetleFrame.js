@@ -7,12 +7,17 @@ import * as THREE from 'three';
 class BeetleFrame extends THREE.Object3D {
 
     /**
-     *
-    */
+     * Constructor of the class BeetleFrame
+     * Initializes the beetle frame with default properties.
+     * 
+     * @property {string} rimColor - The color of the frame rim.
+     * @property {number} width - The width of the frame.
+     * @property {number} height - The height of the frame.
+     * @property {number} thickness - The thickness of the frame.
+     * @property {number} depth - The depth of the frame.
+     */
     constructor() {
         super();
-
-
         this.rimColor = "#8B4513";
         this.width = 4;
         this.heigth = 3;

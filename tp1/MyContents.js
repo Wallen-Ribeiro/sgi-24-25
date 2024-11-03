@@ -24,8 +24,26 @@ import { Shelf } from './models/Shelf.js';
 class MyContents {
 
     /**
-       constructs the object
-       @param {MyApp} app The application object
+     * Constructor for the MyContents class
+     * @param {MyApp} app - The application object
+     * @property {MyApp} app - The application object
+     * @property {MyAxis} axis - The axis object
+     * @property {THREE.Mesh} boxMesh - The box mesh
+     * @property {number} boxMeshSize - The size of the box mesh
+     * @property {boolean} boxEnabled - The box enabled flag
+     * @property {boolean} lastBoxEnabled - The last box enabled flag
+     * @property {THREE.Vector3} boxDisplacement - The displacement of the box
+     * @property {string} diffusePlaneColor - The diffuse color of the plane
+     * @property {string} specularPlaneColor - The specular color of the plane
+     * @property {number} planeShininess - The shininess of the plane
+     * @property {THREE.MeshPhongMaterial} planeMaterial - The material of the plane
+     * @property {THREE.Vector3} pointLightPosition - The position of the point light
+     * @property {string} pointLightColor - The color of the point light
+     * @property {number} pointLightIntensity - The intensity of the point light
+     * @property {THREE.PointLight} pointLight - The point light object
+     * @property {THREE.PointLightHelper} pointLightHelper - The point light helper object
+     * @property {THREE.Object3D} table - The table object
+     * @property {THREE.Object3D} cake - The cake object
     */
     constructor(app) {
         this.app = app
@@ -337,11 +355,11 @@ loader.load(
 
     buildVaseWithFLower(){
         this.jar = new Jar();
-        this.flower = new Flower(8, 0.35, 0xFF20FF);
+        this.flower = new Flower(8, 0.35, 0xFF20FF, 3);
         this.app.scene.add(this.flower);
-        this.jar.scale.set(0.3, 0.3, 0.3);
+        this.jar.scale.set(0.3, 0.4, 0.3);
         this.flower.position.set(-this.room.length/3, 0, this.room.length/3);
-        this.jar.position.set(-this.room.length/3, 0, this.room.length/3);
+        this.jar.position.set(-this.room.length/3 - 0.1, 0, this.room.length/3 + 0.1);
         this.app.scene.add(this.jar);
     }
 

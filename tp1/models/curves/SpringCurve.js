@@ -2,6 +2,17 @@ import * as THREE from 'three';
 
 class SpringCurve extends THREE.Curve {
 
+    /**
+     * Constructor for the SpringCurve class
+     * Initializes the spring curve with default properties.
+     * 
+     * @param {number} radius - The radius of the spring.
+     * @param {number} height - The height of the spring.
+     * @param {number} spins - The number of spins in the spring.
+     * @param {number} scale - The scale of the spring.
+     * 
+     */
+
     constructor(radius = 1, height = 0.5, spins = 5, scale = 1) {
         super();
         this.scale = scale;
