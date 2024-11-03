@@ -74,6 +74,9 @@ class MyGuiInterface {
         const cakeFolder = this.datgui.addFolder('Cake');
         cakeFolder.add(this.contents.cakeDisplacement, 'x', -2, 2).name("x displacement")
         cakeFolder.add(this.contents.cakeDisplacement, 'z', -2, 2).name("z displacement")
+    
+        const shelfFolder = this.datgui.addFolder('Shelf');
+        shelfFolder.add(this.contents.shelfDisplacement, 'z', -5, 5).name("z displacement")
     }
 }
 
