@@ -18,6 +18,7 @@ import { Newspaper } from './models/Newspaper.js';
 import { Door } from './models/Door.js';
 import { Shelf } from './models/Shelf.js';
 import { SkyDome } from './models/SkyDome.js';
+import { CerealBox } from './models/CerealBox.js';
 
 /**
  *  This class contains the contents of out application
@@ -149,6 +150,7 @@ class MyContents {
         this.buildShelf();
         this.buildSkyDome();
         this.buildSmallVaseWithFlower();
+        this.buildCerealBox();
 
         const loader = new GLTFLoader(); 
         loader.load(
@@ -408,6 +410,14 @@ class MyContents {
         this.skyDome = new SkyDome('textures/paris_dome.jpg', 150);
         this.skyDome.rotateY(Math.PI);
         this.app.scene.add(this.skyDome);
+    }
+
+    buildCerealBox() {
+        this.cerealBox = new CerealBox(1, 0.5, 1.5);
+        this.cerealBox.rotateY(Math.PI / 6);
+        this.cerealBox.rotateX(Math.PI / 2);
+        this.cerealBox.position.set(-1, (this.shelf.height - this.shelf.thickness) / 2 + this.cerealBox.length / 2 + 0.001, 0);
+        this.shelf.add(this.cerealBox);
     }
 }
 
