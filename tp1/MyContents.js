@@ -197,7 +197,6 @@ class MyContents {
 
         this.table.add(this.cake);
         this.table.add(this.plate);
-        this.table.add(this.lamp)
     }
 
     buildTable() {
