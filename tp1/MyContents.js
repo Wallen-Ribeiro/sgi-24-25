@@ -124,15 +124,15 @@ class MyContents  {
 
         light2.shadow.camera.near = 0.5;
 
-        light2.shadow.camera.far = 100;
+        light2.shadow.camera.far = 27;
 
-        //this.app.scene.add( light2 );
+        this.app.scene.add( light2 );
 
         // creates a helper for the light
 
         const helper2 = new THREE.PointLightHelper( light2, 1 );
 
-        //this.app.scene.add( helper2 );
+        this.app.scene.add( helper2 );
 
         // creates the floating box
 
