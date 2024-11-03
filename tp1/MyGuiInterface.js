@@ -3,60 +3,67 @@ import { MyApp } from './MyApp.js';
 import { MyContents } from './MyContents.js';
 
 /**
-    This class customizes the gui interface for the app
-*/
-class MyGuiInterface  {
+ * This class customizes the GUI interface for the app.
+ */
+class MyGuiInterface {
 
     /**
      * 
      * @param {MyApp} app The application object 
      */
     constructor(app) {
-        this.app = app
-        this.datgui =  new GUI();
-        this.contents = null
+        this.app = app;
+        this.datgui = new GUI();
+        this.contents = null;
     }
 
     /**
      * Set the contents object
-     * @param {MyContents} contents the contents objects 
+     * @param {MyContents} contents The contents object 
      */
     setContents(contents) {
-        this.contents = contents
+        this.contents = contents;
     }
 
     /**
-     * Initialize the gui interface
+     * Initialize the GUI interface
      */
     init() {
-        // add a folder to the gui interface for the box
-        const boxFolder = this.datgui.addFolder( 'Box' );
-        // note that we are using a property from the contents object 
-        boxFolder.add(this.contents, 'boxMeshSize', 0, 10).name("size").onChange( () => { this.contents.rebuildBox() } );
-        boxFolder.add(this.contents, 'boxEnabled', true).name("enabled");
-        boxFolder.add(this.contents.boxDisplacement, 'x', -5, 5)
-        boxFolder.add(this.contents.boxDisplacement, 'y', -5, 5)
-        boxFolder.add(this.contents.boxDisplacement, 'z', -5, 5)
-        boxFolder.open()
-        
-        const data = {  
-            'diffuse color': this.contents.diffusePlaneColor,
-            'specular color': this.contents.specularPlaneColor,
-        };
+        // Folder for Floor properties
+        const floorFolder = this.datgui.addFolder('Floor');
+        floorFolder.addColor(this.contents, 'diffuseFloorColor').name("Diffuse Color").onChange(value => this.contents.floorMaterial.color.set(value));
+        floorFolder.addColor(this.contents, 'specularFloorColor').name("Specular Color").onChange(value => this.contents.floorMaterial.specular.set(value));
+        floorFolder.add(this.contents, 'shininessFloor', 0, 100).name("Shininess").onChange(value => this.contents.floorMaterial.shininess = value);
+        floorFolder.open();
 
-        // adds a folder to the gui interface for the plane
-        const planeFolder = this.datgui.addFolder( 'Plane' );
-        planeFolder.addColor( data, 'diffuse color' ).onChange( (value) => { this.contents.updateDiffusePlaneColor(value) } );
-        planeFolder.addColor( data, 'specular color' ).onChange( (value) => { this.contents.updateSpecularPlaneColor(value) } );
-        planeFolder.add(this.contents, 'planeShininess', 0, 1000).name("shininess").onChange( (value) => { this.contents.updatePlaneShininess(value) } );
-        planeFolder.open();
+        // Folder for Volume properties
+        const volumeFolder = this.datgui.addFolder('Volume');
+        volumeFolder.add(this.contents, 'nbrPolyg', 1, 50, 1).name("Polygons").onChange(() => this.contents.rebuildVolume());
+        volumeFolder.add(this.contents, 'volumeDimX', 1, 20).name("Volume Dim X").onChange(() => this.contents.rebuildVolume());
+        volumeFolder.add(this.contents, 'volumeDimY', 1, 20).name("Volume Dim Y").onChange(() => this.contents.rebuildVolume());
+        volumeFolder.add(this.contents, 'volumeDimZ', 1, 20).name("Volume Dim Z").onChange(() => this.contents.rebuildVolume());
+        volumeFolder.open();
 
-        // adds a folder to the gui interface for the camera
-        const cameraFolder = this.datgui.addFolder('Camera')
-        cameraFolder.add(this.app, 'activeCameraName', [ 'Perspective', 'Left', 'Top', 'Front' ] ).name("active camera");
-        // note that we are using a property from the app 
-        cameraFolder.add(this.app.activeCamera.position, 'x', 0, 10).name("x coord")
-        cameraFolder.open()
+        // Folder for Light settings
+        const lightFolder = this.datgui.addFolder('Lighting');
+        lightFolder.add(this.contents, 'mapSize', 512, 8192).name("Shadow Map Size").onChange(value => {
+            this.app.scene.traverse((obj) => {
+                if (obj.isLight) {
+                    obj.shadow.mapSize.set(value, value);
+                    obj.shadow.map.dispose(); // required to update map size
+                    obj.shadow.map = null;
+                }
+            });
+        });
+        lightFolder.open();
+
+        // Folder for Camera properties
+        const cameraFolder = this.datgui.addFolder('Camera');
+        cameraFolder.add(this.app, 'activeCameraName', ['Perspective', 'Left', 'Top', 'Front']).name("Active Camera");
+        cameraFolder.add(this.app.activeCamera.position, 'x', 0, 20).name("Camera X");
+        cameraFolder.add(this.app.activeCamera.position, 'y', 0, 20).name("Camera Y");
+        cameraFolder.add(this.app.activeCamera.position, 'z', 0, 20).name("Camera Z");
+        cameraFolder.open();
     }
 }
 
