@@ -40,14 +40,23 @@ class CerealBox extends THREE.Object3D {
         const smallLipTexture = new THREE.TextureLoader().load('textures/cerealBox/smallLip.png');
 
         const front = new THREE.Mesh(this.frontBackGeometry, new THREE.MeshPhongMaterial({ map: frontTexture }));
+        front.castShadow = true; front.receiveShadow = true;
         const back = new THREE.Mesh(this.frontBackGeometry, new THREE.MeshPhongMaterial({ map: backTexture }));
+        back.castShadow = true; back.receiveShadow = true;
         const side1 = new THREE.Mesh(this.sideGeometry, new THREE.MeshPhongMaterial({ map: sideTexture }));
+        side1.castShadow = true; side1.receiveShadow = true;
         const side2 = new THREE.Mesh(this.sideGeometry, new THREE.MeshPhongMaterial({ map: sideTexture }));
+        side2.castShadow = true; side2.receiveShadow = true;
         const bottom = new THREE.Mesh(this.bottomGeometry, new THREE.MeshPhongMaterial({ map: bottomTexture }));
+        bottom.castShadow = true; bottom.receiveShadow = true;
         const longLip1 = new THREE.Mesh(this.longLipGeometry, new THREE.MeshPhongMaterial({ map: largeLipTexture }));
+        longLip1.castShadow = true; longLip1.receiveShadow = true;
         const longLip2 = new THREE.Mesh(this.longLipGeometry, new THREE.MeshPhongMaterial({ map: largeLipTexture }));
+        longLip2.castShadow = true; longLip2.receiveShadow = true;
         const shortLip1 = new THREE.Mesh(this.shortLipGeometry, new THREE.MeshPhongMaterial({ map: smallLipTexture }));
+        shortLip1.castShadow = true; shortLip1.receiveShadow = true;
         const shortLip2 = new THREE.Mesh(this.shortLipGeometry, new THREE.MeshPhongMaterial({ map: smallLipTexture }));
+        shortLip2.castShadow = true; shortLip2.receiveShadow = true;
 
         const halfHeight = this.height/2;
         const halfWidth = this.width/2;
@@ -92,14 +101,23 @@ class CerealBox extends THREE.Object3D {
         const texture = new THREE.TextureLoader().load('textures/cerealBox/cardboard.jpg');
         const material = new THREE.MeshPhongMaterial({ map: texture });
         const front = new THREE.Mesh(this.frontBackGeometry, material);
+        front.castShadow = true; front.receiveShadow = true;
         const back = new THREE.Mesh(this.frontBackGeometry, material);
+        back.castShadow = true; back.receiveShadow = true; 
         const side1 = new THREE.Mesh(this.sideGeometry, material);
+        side1.castShadow = true; side1.receiveShadow = true;
         const side2 = new THREE.Mesh(this.sideGeometry, material);
+        side2.castShadow = true; side2.receiveShadow = true;
         const bottom = new THREE.Mesh(this.bottomGeometry, material);
+        bottom.castShadow = true; bottom.receiveShadow = true;
         const longLip1 = new THREE.Mesh(this.longLipGeometry, material);
+        longLip1.castShadow = true; longLip1.receiveShadow = true;
         const longLip2 = new THREE.Mesh(this.longLipGeometry, material);
+        longLip2.castShadow = true; longLip2.receiveShadow = true;
         const shortLip1 = new THREE.Mesh(this.shortLipGeometry, material);
+        shortLip1.castShadow = true; shortLip1.receiveShadow = true;
         const shortLip2 = new THREE.Mesh(this.shortLipGeometry, material);
+        shortLip2.castShadow = true; shortLip2.receiveShadow = true;
         
         const halfHeight = this.height/2;
         const halfWidth = this.width/2;
