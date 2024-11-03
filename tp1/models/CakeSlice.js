@@ -19,6 +19,7 @@ class CakeSlice extends THREE.Object3D {
 
         const cylinderGeometry = new THREE.CylinderGeometry(radius, radius, height, 32, 1, false, thetaStart, thetaLength);
         const planeGeometry = new THREE.PlaneGeometry(radius, height);
+        const chocolateTexture = new THREE.TextureLoader().load('textures/cake.png');
 
         const cakeMaterial = new THREE.MeshPhongMaterial({
             color: "#4a2f2d", specular: "#000000", emissive: "#000000", shininess: 90

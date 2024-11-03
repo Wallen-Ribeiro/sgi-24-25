@@ -1,4 +1,3 @@
-
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { MyContents } from './MyContents.js';
@@ -50,6 +49,10 @@ class MyApp  {
         this.renderer = new THREE.WebGLRenderer({antialias:true});
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setClearColor("#000000");
+
+        // Enable shadow map
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // You can choose the shadow map type
 
         // Configure renderer size
         this.renderer.setSize( window.innerWidth, window.innerHeight );

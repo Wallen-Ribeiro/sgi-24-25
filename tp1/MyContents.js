@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MyAxis } from './MyAxis.js';
 import { Cake } from './models/Cake.js'
 import { CakeSlice } from './models/CakeSlice.js';
@@ -14,6 +15,7 @@ import { BeetleFrame } from './models/BeetleFrame.js';
 import { Spring } from './models/Spring.js'
 import { Flower } from './models/Flower.js';
 import { Newspaper } from './models/Newspaper.js';
+
 
 /**
  *  This class contains the contents of out application
@@ -45,7 +47,7 @@ class MyContents {
         })
 
         // point light related attributes
-        this.pointLightPosition = new THREE.Vector3(0, 9, 0)
+        this.pointLightPosition = new THREE.Vector3(0,10, 0)
         this.pointLightColor = "#ffffff"
         this.pointLightIntensity = 50
 
@@ -118,6 +120,26 @@ class MyContents {
         this.buildSpring(); 
         this.buildVaseWithFLower();
         this.buildNewspaper();
+
+        const loader = new GLTFLoader(); 
+loader.load(
+    'textures/linguini.glb',
+    function (gltf) {
+        const model = gltf.scene;
+
+        model.position.set(4, 0, 0); 
+
+        model.scale.set(3, 3, 3); 
+
+        model.rotateY(-Math.PI / 2);
+
+        this.app.scene.add(model);
+    }.bind(this),
+    undefined,
+    function (error) {
+        console.error(error);
+    }
+);
     }
 
     /**
@@ -214,10 +236,13 @@ class MyContents {
 
     buildCakeAndPlate() {
         this.cake = new Cake(0.6, 0.3, 6);
+        this.cake.castShadow = true; // Enable shadow casting for the cake
         this.cakeSlice = new CakeSlice(0.6, 0.3, 6);
+        this.cakeSlice.castShadow = true; // Enable shadow casting for the cake slice
         this.plate = new Plate(0.6);
+        this.plate.castShadow = true; // Enable shadow casting for the plate
         this.candle = new Candle();
-
+        this.candle.castShadow = true; // Enable shadow casting for the candle
 
         this.plate.add(this.cakeSlice);
         this.cakeSlice.position.set(0.2, this.plate.height, -0.3);
@@ -235,6 +260,7 @@ class MyContents {
 
     buildTable() {
         this.table = new Table();
+        this.table.receiveShadow = true; // Enable shadow receiving for the table
         this.room.add(this.table);
     }
 
@@ -272,9 +298,13 @@ class MyContents {
         this.spotLight = new THREE.SpotLight(0xffff00);
         this.spotLight.position.set(this.lamp.position.x + 3, this.lamp.position.y + 2.5, this.lamp.position.z + 1.5);  // Position relative to the lamp's origin
         this.spotLight.target.position.set(7, 0, 0);
-        this.spotLight.angle = Math.PI / 10;
+        this.spotLight.angle = Math.PI / 6;
         this.spotLight.decay = 2;
         this.spotLight.intensity = 3;
+        this.spotLight.castShadow = true; // Enable shadow casting for the spotlight
+        this.spotLight.shadow.camera.near = 0.5;
+        this.spotLight.shadow.camera.far = 50;
+        this.spotLight.shadow.camera.fov = 30;
         this.lamp.add(this.spotLight);
         this.lamp.add(this.spotLight.target);  
         this.spotLightHelper = new THREE.SpotLightHelper(this.spotLight);
@@ -302,7 +332,7 @@ class MyContents {
 
     buildVaseWithFLower(){
         this.jar = new Jar();
-        this.flower = new Flower();
+        this.flower = new Flower(8, 0.35, 0xFF20FF);
         this.app.scene.add(this.flower);
         this.jar.scale.set(0.3, 0.3, 0.3);
         this.flower.position.set(-this.room.length/3, 0, this.room.length/3);

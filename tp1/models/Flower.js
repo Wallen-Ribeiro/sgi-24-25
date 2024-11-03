@@ -7,7 +7,7 @@ class Flower extends THREE.Object3D {
      * @param {Object} options An object to configure the flower
      * @param {number} options.curveIntensity The intensity of the stem curve
      */
-    constructor() {
+    constructor(numPetals, curveIntensity, petalColor) {
         super();
         this.type = 'Group';
         this.stemColor = 0x00FF22;

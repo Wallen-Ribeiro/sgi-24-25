@@ -21,6 +21,7 @@ class Room extends THREE.Object3D {
         const wallGeometry2 = new THREE.PlaneGeometry(this.length, this.heigth);
 
         const floorTexture = new THREE.TextureLoader().load('textures/wood_tiles.jpg');
+        const wallTexture = new THREE.TextureLoader().load('textures/brick-wall.jpg');
         floorTexture.wrapS = THREE.RepeatWrapping;
         floorTexture.wrapT = THREE.RepeatWrapping;
         floorTexture.repeat.set(2.5, 2.5);
@@ -28,7 +29,7 @@ class Room extends THREE.Object3D {
             map: floorTexture, specular: "#777777", emissive: "#000000", shininess: 0
         });
         const wallMaterial = new THREE.MeshPhongMaterial({
-            color: "#00ffff", specular: "#777777", emissive: "#000000", shininess: 0
+            map: wallTexture, specular: "#777777", emissive: "#000000", shininess: 0
         });
         const ceilingMaterial = new THREE.MeshLambertMaterial({
             color: "#ffffff", shininess: 0

@@ -36,7 +36,10 @@ class Lamp extends THREE.Object3D {
         const box2 = new THREE.BoxGeometry(0.5, 4, 0.5);
 
 
-        const lampMaterial = new THREE.MeshPhongMaterial({color: this.lampColor});
+        const lampMaterial = new THREE.MeshPhongMaterial({
+            color: "#bababa", specular: "#e6e6e6", emissive: "#000000", shininess: 10
+        });
+        
         const base = new THREE.Mesh(cilinder, lampMaterial);
         const struct1 = new THREE.Mesh(cilinder2, lampMaterial); 
         const struct2 = new THREE.Mesh(box1, lampMaterial);
