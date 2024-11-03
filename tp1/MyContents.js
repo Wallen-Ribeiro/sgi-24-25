@@ -45,6 +45,7 @@ class MyContents {
      * @property {THREE.PointLightHelper} pointLightHelper - The point light helper object
      * @property {THREE.Object3D} table - The table object
      * @property {THREE.Object3D} cake - The cake object
+     * @property {THREE.Vector3} shelfDisplacement - The displacement of the shelf
     */
     constructor(app) {
         this.app = app
@@ -76,6 +77,9 @@ class MyContents {
 
         // cake attributes
         this.cakeDisplacement = new THREE.Vector3(1, 0, 0);
+
+        // shelf attributes
+        this.shelfDisplacement = new THREE.Vector3(6.5, 0, -5);
     }
 
     /**
@@ -138,31 +142,33 @@ class MyContents {
         this.buildLamp();
         this.buildBeetleFrame();
         this.buildSpring(); 
+        this.buildShelf();
         this.buildVaseWithFLower();
         this.buildNewspaper();
         this.buildDoor();
         this.buildShelf();
         this.buildSkyDome();
+        this.buildSmallVaseWithFlower();
 
         const loader = new GLTFLoader(); 
-loader.load(
-    'textures/linguini.glb',
-    function (gltf) {
-        const model = gltf.scene;
+        loader.load(
+            'textures/linguini.glb',
+            function (gltf) {
+                const model = gltf.scene;
 
-        model.position.set(4, 0, 0); 
+                model.position.set(4, 0, 0); 
 
-        model.scale.set(3, 3, 3); 
+                model.scale.set(3, 3, 3); 
 
-        model.rotateY(-Math.PI / 2);
+                model.rotateY(-Math.PI / 2);
 
-        this.app.scene.add(model);
-    }.bind(this),
-    undefined,
-    function (error) {
-        console.error(error);
-    }
-);
+                this.app.scene.add(model);
+            }.bind(this),
+            undefined,
+            function (error) {
+                console.error(error);
+            }
+        );
     }
 
     /**
@@ -252,6 +258,8 @@ loader.load(
 
         this.cake.position.setX(this.cakeDisplacement.x);
         this.cake.position.setZ(this.cakeDisplacement.z); 
+
+        this.shelf.position.set(...this.shelfDisplacement);
 
         this.pointLight.position.set(...this.pointLightPosition);
         this.pointLightHelper.update();
@@ -365,12 +373,6 @@ loader.load(
         this.app.scene.add(this.jar);
     }
 
-    buildNewspaper() {
-        this.newspaper = new Newspaper();
-        this.newspaper.position.set(0, this.table.height + 0.05, -3);
-        this.table.add(this.newspaper);
-    }
-
     buildDoor() {
         this.door = new Door();
         this.door.position.set(0, this.room.heigth/2 - 1 , this.room.length/2 - 0.1);
@@ -380,8 +382,26 @@ loader.load(
     buildShelf() {
         this.shelf = new Shelf();
         this.shelf.rotateY(-Math.PI / 2);
-        this.shelf.position.set(this.room.width / 2 - this.shelf.depth / 2, 0, -this.room.length / 2 + this.shelf.width / 2);
-        this.app.scene.add(this.shelf);
+        this.shelf.position.set(...this.shelfDisplacement);
+        this.room.add(this.shelf);
+    }
+
+    buildNewspaper() {
+        this.newspaper = new Newspaper();
+        this.newspaper.position.set(0, this.shelf.height, this.shelf.position.z + 4.8);
+        this.shelf.add(this.newspaper);
+    }
+
+    buildSmallVaseWithFlower() {
+        const smallVaseGroup = new THREE.Group();
+        this.smallJar = new Jar();
+        this.smallFlower = new Flower(10, 0.15, 0xFFFF00, 1);
+        this.app.scene.add(this.smallFlower);
+        this.smallJar.scale.set(0.2, 0.3, 0.2);
+        this.shelf.add(this.smallJar);
+        this.shelf.add(this.smallFlower);
+        this.smallJar.position.set(-0.5, this.shelf.height, 0);
+        this.smallFlower.position.set(-0.5, this.shelf.height + 1, 0);
     }
 
     buildSkyDome() {
