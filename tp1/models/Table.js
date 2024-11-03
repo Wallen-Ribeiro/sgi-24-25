@@ -80,6 +80,8 @@ class Table extends THREE.Object3D {
         });
         const leg = new THREE.Mesh(cylinder, legMaterial);
         leg.position.set(...position);
+        leg.castShadow = true;
+        leg.receiveShadow = true;
         this.add(leg);
     }
 }

@@ -42,6 +42,9 @@ class Room extends THREE.Object3D {
         const wall1 = new THREE.Mesh(wallGeometry1, wallMaterial);
         const wall3 = new THREE.Mesh(wallGeometry1, wallMaterial);
         const wall4 = new THREE.Mesh(wallGeometry2, wallMaterial);
+        wall1.receiveShadow = true;
+        wall3.receiveShadow = true;
+        wall4.receiveShadow = true;
 
         floor.rotateX(-Math.PI / 2);
 

@@ -17,6 +17,7 @@ import { Flower } from './models/Flower.js';
 import { Newspaper } from './models/Newspaper.js';
 import { Door } from './models/Door.js';
 import { Shelf } from './models/Shelf.js';
+import { BigLamp } from './models/BigLamp.js';
 import { SkyDome } from './models/SkyDome.js';
 import { CerealBox } from './models/CerealBox.js';
 
@@ -80,7 +81,7 @@ class MyContents {
         this.cakeDisplacement = new THREE.Vector3(1, 0, 0);
 
         // shelf attributes
-        this.shelfDisplacement = new THREE.Vector3(6.5, 0, -5);
+        this.shelfDisplacement = new THREE.Vector3(6.5, 0, -3);
     }
 
     /**
@@ -147,10 +148,10 @@ class MyContents {
         this.buildVaseWithFLower();
         this.buildNewspaper();
         this.buildDoor();
-        this.buildShelf();
         this.buildSkyDome();
         this.buildSmallVaseWithFlower();
         this.buildCerealBox();
+        this.buildBigLamp();
 
         const loader = new GLTFLoader(); 
         loader.load(
@@ -269,13 +270,9 @@ class MyContents {
 
     buildCakeAndPlate() {
         this.cake = new Cake(0.6, 0.3, 6);
-        this.cake.castShadow = true; // Enable shadow casting for the cake
         this.cakeSlice = new CakeSlice(0.6, 0.3, 6);
-        this.cakeSlice.castShadow = true; // Enable shadow casting for the cake slice
         this.plate = new Plate(0.6);
-        this.plate.castShadow = true; // Enable shadow casting for the plate
         this.candle = new Candle();
-        this.candle.castShadow = true; // Enable shadow casting for the candle
 
         this.plate.add(this.cakeSlice);
         this.cakeSlice.position.set(0.2, this.plate.height, -0.3);
@@ -294,12 +291,12 @@ class MyContents {
 
     buildTable() {
         this.table = new Table();
-        this.table.receiveShadow = true; // Enable shadow receiving for the table
         this.room.add(this.table);
     }
 
     buildRoom() {
         this.room = new Room(15, 15, 10);
+
 
         this.app.scene.add(this.room);
     }
@@ -367,7 +364,7 @@ class MyContents {
 
     buildVaseWithFLower(){
         this.jar = new Jar();
-        this.flower = new Flower(8, 0.35, 0xFF20FF, 3);
+        this.flower = new Flower(12, 0.35, 0xFFFF00, 3);
         this.app.scene.add(this.flower);
         this.jar.scale.set(0.3, 0.4, 0.3);
         this.flower.position.set(-this.room.length/3, 0, this.room.length/3);
@@ -384,26 +381,58 @@ class MyContents {
     buildShelf() {
         this.shelf = new Shelf();
         this.shelf.rotateY(-Math.PI / 2);
-        this.shelf.position.set(...this.shelfDisplacement);
         this.room.add(this.shelf);
     }
 
     buildNewspaper() {
         this.newspaper = new Newspaper();
-        this.newspaper.position.set(0, this.shelf.height, this.shelf.position.z + 4.8);
         this.shelf.add(this.newspaper);
+        this.newspaper.position.set(0, this.shelf.height, 0);
     }
 
     buildSmallVaseWithFlower() {
+        const smallJar = new Jar();
+        const smallFlower = new Flower(6, 0.25, 0xFF20FF, 1);
+
         const smallVaseGroup = new THREE.Group();
-        this.smallJar = new Jar();
-        this.smallFlower = new Flower(10, 0.15, 0xFFFF00, 1);
-        this.app.scene.add(this.smallFlower);
-        this.smallJar.scale.set(0.2, 0.3, 0.2);
-        this.shelf.add(this.smallJar);
-        this.shelf.add(this.smallFlower);
-        this.smallJar.position.set(-0.5, this.shelf.height, 0);
-        this.smallFlower.position.set(-0.5, this.shelf.height + 1, 0);
+        smallVaseGroup.add(smallJar);
+        smallVaseGroup.add(smallFlower);
+
+        smallJar.position.set(0, 0, 0);
+        smallFlower.position.set(0, 2, 0);
+
+        smallFlower.scale.set(3, 5, 3);
+
+        smallVaseGroup.scale.set(0.2, 0.3, 0.2);
+        this.shelf.add(smallVaseGroup);
+        smallVaseGroup.position.set(-0.5, this.shelf.height, 0);
+
+    }
+
+    buildBigLamp() {
+        this.lamp = new BigLamp();
+        this.lamp.position.set(6.5, 0, -6.5);
+
+        this.spotLight = new THREE.SpotLight(0xffffff);
+        this.spotLight.position.set(0, 5.84, 0.35);
+        this.spotLight.target.position.set(0, 0, 6);
+        this.spotLight.angle = Math.PI / 6;
+        this.spotLight.decay = 2;
+        this.spotLight.intensity = 5;
+        this.spotLight.castShadow = true;
+        this.spotLight.shadow.mapSize.width = 4096;
+        this.spotLight.shadow.mapSize.height = 4096;
+        this.spotLight.shadow.camera.near = 0.5;
+
+        this.lamp.add(this.spotLight);
+        this.lamp.add(this.spotLight.target);  
+        this.spotLightHelper = new THREE.SpotLightHelper(this.spotLight);
+        //this.app.scene.add(this.spotLightHelper); 
+
+
+        this.room.add(this.lamp);
+
+    
     }
 
     buildSkyDome() {

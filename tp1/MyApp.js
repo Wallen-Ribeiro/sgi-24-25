@@ -52,10 +52,6 @@ class MyApp  {
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
 
-        // Enable shadow map
-        this.renderer.shadowMap.enabled = true;
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // You can choose the shadow map type
-
         // Configure renderer size
         this.renderer.setSize( window.innerWidth, window.innerHeight );
 
