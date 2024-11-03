@@ -36,6 +36,7 @@ class Room extends THREE.Object3D {
         });
 
         const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+        floor.receiveShadow = true;
         const ceiling = new THREE.Mesh(floorGeometry, ceilingMaterial);
         const wall1 = new THREE.Mesh(wallGeometry1, wallMaterial);
         const wall2 = new THREE.Mesh(wallGeometry2, wallMaterial);

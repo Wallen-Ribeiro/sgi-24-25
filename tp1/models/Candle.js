@@ -37,6 +37,8 @@ class Candle extends THREE.Object3D {
         const candleMaterial = new THREE.MeshToonMaterial({color: this.candleColor});
         const stemMaterial = new THREE.MeshPhongMaterial({color: this.stemColor});
         const candle = new THREE.Mesh(cilinder, candleMaterial);
+        candle.castShadow = true;
+        candle.receiveShadow = true
         const stem = new THREE.Mesh(cilinder2, stemMaterial);
 
         candle.position.y = this.candleHeight / 2;

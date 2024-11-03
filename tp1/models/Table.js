@@ -36,6 +36,9 @@ class Table extends THREE.Object3D {
         const box = new THREE.BoxGeometry(this.baseWidth, this.baseHeight, this.baseLength);
         const material = new THREE.MeshPhongMaterial({ specular: "#0x000000", emissive: "#0x8B4513", shininess: 100, map: this.tableTopTexture });
         const base = new THREE.Mesh(box, material);
+        base.castShadow = true;
+        base.receiveShadow = true;
+        
         base.position.y = this.legSize + this.baseHeight / 2;
         this.add(base);
     }
