@@ -71,7 +71,7 @@ class Window extends THREE.Object3D {
     createWindow() {
       this.createFrame();
       this.createGlass();
-      this.createOutside();
+      // this.createOutside();
     }
 
     createFrame() {
@@ -110,10 +110,10 @@ class Window extends THREE.Object3D {
       const landscapeTexture = new THREE.TextureLoader().load( "textures/paris.jpg" )
       landscapeTexture.wrapS = THREE.RepeatWrapping;
       landscapeTexture.wrapT = THREE.RepeatWrapping;
-      const landscapeGeometry = new THREE.BoxGeometry(this.width - 0.2, this.heigth - 0.2, this.depth);
+      const landscapeGeometry = new THREE.BoxGeometry(60, 60, this.depth);
       const landscapeMaterial = new THREE.MeshLambertMaterial({ map: landscapeTexture});
       const landscape = new THREE.Mesh(landscapeGeometry, landscapeMaterial);
-      landscape.position.z = -0.1;
+      landscape.position.z = -20;
       this.add(landscape);
     }
 }

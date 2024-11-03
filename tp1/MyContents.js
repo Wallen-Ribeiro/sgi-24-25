@@ -17,6 +17,7 @@ import { Flower } from './models/Flower.js';
 import { Newspaper } from './models/Newspaper.js';
 import { Door } from './models/Door.js';
 import { Shelf } from './models/Shelf.js';
+import { SkyDome } from './models/SkyDome.js';
 
 /**
  *  This class contains the contents of out application
@@ -141,6 +142,7 @@ class MyContents {
         this.buildNewspaper();
         this.buildDoor();
         this.buildShelf();
+        this.buildSkyDome();
 
         const loader = new GLTFLoader(); 
 loader.load(
@@ -380,6 +382,12 @@ loader.load(
         this.shelf.rotateY(-Math.PI / 2);
         this.shelf.position.set(this.room.width / 2 - this.shelf.depth / 2, 0, -this.room.length / 2 + this.shelf.width / 2);
         this.app.scene.add(this.shelf);
+    }
+
+    buildSkyDome() {
+        this.skyDome = new SkyDome('textures/paris_dome.jpg', 150);
+        this.skyDome.rotateY(Math.PI);
+        this.app.scene.add(this.skyDome);
     }
 }
 
