@@ -83,11 +83,9 @@ Mentioning the required tasks:
     - A newspaper in shape of a reed
 - There is also a jar with a different flower on the ground
 
-Mention that most of the objects created are parameterrized so is easy to change them.
-The gui also has some changeable properties, to see its actions on the scene.
-
-
 ### Other Implementations
+
+- Most of the objects are parameterized, which enable to quickly change them.
 
 - Added an inverted sphere with a high-resolution texture of Paris on its inner surface, creating the illusion of an an immersive outside world when looking through the window.
 
