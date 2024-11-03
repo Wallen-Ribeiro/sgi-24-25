@@ -16,7 +16,7 @@ class Plate extends THREE.Object3D {
 
         const radiusTop = radius;
         const radiusBottom = radiusTop * 2/3;
-        this.height = 0.2;
+        this.height = 0.15;
 
         const cylinderGeometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, this.height, 32, 1, false);
 

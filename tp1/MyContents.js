@@ -18,6 +18,7 @@ import { Newspaper } from './models/Newspaper.js';
 import { Door } from './models/Door.js';
 import { Shelf } from './models/Shelf.js';
 import { BigLamp } from './models/BigLamp.js';
+import { SkyDome } from './models/SkyDome.js';
 
 /**
  *  This class contains the contents of out application
@@ -146,6 +147,8 @@ class MyContents {
         this.buildVaseWithFLower();
         this.buildNewspaper();
         this.buildDoor();
+        this.buildShelf();
+        this.buildSkyDome();
         this.buildSmallVaseWithFlower();
         this.buildBigLamp();
 
@@ -266,13 +269,9 @@ class MyContents {
 
     buildCakeAndPlate() {
         this.cake = new Cake(0.6, 0.3, 6);
-        this.cake.castShadow = true; // Enable shadow casting for the cake
         this.cakeSlice = new CakeSlice(0.6, 0.3, 6);
-        this.cakeSlice.castShadow = true; // Enable shadow casting for the cake slice
         this.plate = new Plate(0.6);
-        this.plate.castShadow = true; // Enable shadow casting for the plate
         this.candle = new Candle();
-        this.candle.castShadow = true; // Enable shadow casting for the candle
 
         this.plate.add(this.cakeSlice);
         this.cakeSlice.position.set(0.2, this.plate.height, -0.3);
@@ -433,6 +432,12 @@ class MyContents {
         this.room.add(this.lamp);
 
     
+    }
+
+    buildSkyDome() {
+        this.skyDome = new SkyDome('textures/paris_dome.jpg', 150);
+        this.skyDome.rotateY(Math.PI);
+        this.app.scene.add(this.skyDome);
     }
 }
 
