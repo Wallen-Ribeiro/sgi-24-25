@@ -9,7 +9,7 @@
 
 ----
 ## Project information
-
+![](/tp1/screenshots/linguini.mp4)
 Our project scene is inspired by Alfredo Linguini's room, a key character from the award-winning animated film [_Ratatouille_](https://www.imdb.com/title/tt0382932/), a landmark in the world of computer graphics [Linguini's Room Fanart](https://dimasnp.artstation.com/projects/wJP549). Our scene includes our unique creative twist to meet TP1 project's requirements, while still capturing many recognizable elements from the original movie.
 
 
