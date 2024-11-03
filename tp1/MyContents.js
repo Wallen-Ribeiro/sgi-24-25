@@ -353,11 +353,11 @@ loader.load(
 
     buildVaseWithFLower(){
         this.jar = new Jar();
-        this.flower = new Flower(8, 0.35, 0xFF20FF);
+        this.flower = new Flower(8, 0.35, 0xFF20FF, 3);
         this.app.scene.add(this.flower);
-        this.jar.scale.set(0.3, 0.3, 0.3);
+        this.jar.scale.set(0.3, 0.4, 0.3);
         this.flower.position.set(-this.room.length/3, 0, this.room.length/3);
-        this.jar.position.set(-this.room.length/3, 0, this.room.length/3);
+        this.jar.position.set(-this.room.length/3 - 0.1, 0, this.room.length/3 + 0.1);
         this.app.scene.add(this.jar);
     }
 
