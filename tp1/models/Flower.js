@@ -50,6 +50,9 @@ class Flower extends THREE.Object3D {
         const material = new THREE.MeshPhongMaterial({ color: this.stemColor });
         const stem = new THREE.Mesh(tubeGeometry, material);
 
+        stem.castShadow = true;
+        stem.receiveShadow = true;
+
         this.add(stem);
     }
 
@@ -62,6 +65,9 @@ class Flower extends THREE.Object3D {
         const material = new THREE.MeshToonMaterial({ color: this.receptacleColor });
         const head = new THREE.Mesh(sphere, material);
         head.position.y = this.stemHeight;
+
+        head.castShadow = true;
+        head.receiveShadow = true;
 
         this.add(head);
     }
@@ -116,6 +122,10 @@ class Flower extends THREE.Object3D {
             petal.position.x = -Math.sin(angle) * offsetDistance;
 
             petal.rotateZ(angle);
+
+            petal.castShadow = true; 
+            petal.receiveShadow = true;
+
             this.add(petal);
         }
     }

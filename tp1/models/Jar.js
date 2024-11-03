@@ -54,6 +54,8 @@ class Jar extends THREE.Group {
         halfJarsControlPoints.forEach(controlPoints => {
             const surfaceData = build(controlPoints, 2, 3, this.samplesU, this.samplesV, this.material);
             const mesh = new THREE.Mesh(surfaceData, this.material);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
             this.add(mesh);
             this.meshes.push(mesh);
         });

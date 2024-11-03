@@ -29,6 +29,11 @@ class Shelf extends THREE.Object3D {
         shelfTop.position.set(0, this.height - this.thickness, 0);
         shelfBottom.position.set(0, this.thickness, 0);
 
+        shelfTop.receiveShadow = true;
+        shelfTop.castShadow = true;
+        shelfBottom.receiveShadow = true;
+        shelfBottom.castShadow = true;
+
         this.add(shelfTop);
         this.add(shelfBottom);
 
@@ -39,6 +44,11 @@ class Shelf extends THREE.Object3D {
 
         shelfLeft.position.set(-this.width / 2 + this.thickness / 2, this.height / 2, 0);
         shelfRight.position.set(this.width / 2 - this.thickness / 2, this.height / 2, 0);
+
+        shelfLeft.receiveShadow = true;
+        shelfLeft.castShadow = true;
+        shelfRight.receiveShadow = true;
+        shelfRight.castShadow = true;
 
         this.add(shelfLeft);
         this.add(shelfRight);
@@ -59,6 +69,8 @@ class Shelf extends THREE.Object3D {
         for (let i = 0; i < this.shelves; i++) {
             const shelf = new THREE.Mesh(shelfGeometry, shelfMaterial);
             shelf.position.set(0, this.height - this.thickness - (i + 1) * this.height / (this.shelves + 1), 0);
+            shelf.receiveShadow = true; 
+            shelf.castShadow = true;
             this.add(shelf);
         }
     }

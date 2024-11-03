@@ -85,6 +85,15 @@ class Newspaper extends THREE.Object3D {
         this.rotateY(Math.PI / 6);
         this.rotateX(Math.PI / 2);
         this.rotateY(Math.PI / 6);
+
+        object.castShadow = true; 
+        object.receiveShadow = true;
+        object2.castShadow = true;
+        object2.receiveShadow = true;
+        object3.castShadow = true;
+        object3.receiveShadow = true;
+        object4.castShadow = true;
+        object4.receiveShadow = true;
     }
 
 }
