@@ -147,7 +147,6 @@ class MyContents {
         this.buildVaseWithFLower();
         this.buildNewspaper();
         this.buildDoor();
-        this.buildShelf();
         this.buildSkyDome();
         this.buildSmallVaseWithFlower();
         this.buildBigLamp();
@@ -380,7 +379,6 @@ class MyContents {
     buildShelf() {
         this.shelf = new Shelf();
         this.shelf.rotateY(-Math.PI / 2);
-        this.shelf.position.set(...this.shelfDisplacement);
         this.room.add(this.shelf);
     }
 
@@ -404,8 +402,9 @@ class MyContents {
         smallFlower.scale.set(3, 5, 3);
 
         smallVaseGroup.scale.set(0.2, 0.3, 0.2);
-        smallVaseGroup.position.set(-0.5, this.shelf.height, 0);
         this.shelf.add(smallVaseGroup);
+        smallVaseGroup.position.set(-0.5, this.shelf.height, 0);
+
     }
 
     buildBigLamp() {
