@@ -53,22 +53,6 @@ class MyContents {
         this.app = app
         this.axis = null
 
-        // box related attributes
-        this.boxMesh = null
-        this.boxMeshSize = 1.0
-        this.boxEnabled = true
-        this.lastBoxEnabled = null
-        this.boxDisplacement = new THREE.Vector3(0, 2, 0)
-
-        // plane related attributes
-        this.diffusePlaneColor = "#00ffff"
-        this.specularPlaneColor = "#777777"
-        this.planeShininess = 30
-        this.planeMaterial = new THREE.MeshPhongMaterial({
-            color: this.diffusePlaneColor,
-            specular: this.specularPlaneColor, emissive: "#000000", shininess: this.planeShininess
-        })
-
         // point light related attributes
         this.pointLightPosition = new THREE.Vector3(0,10, 0)
         this.pointLightColor = "#ffffff"
@@ -82,22 +66,6 @@ class MyContents {
 
         // shelf attributes
         this.shelfDisplacement = new THREE.Vector3(6.5, 0, -3);
-    }
-
-    /**
-     * builds the box mesh with material assigned
-     */
-    buildBox() {
-        let boxMaterial = new THREE.MeshPhongMaterial({
-            color: "#ffff77",
-            specular: "#000000", emissive: "#000000", shininess: 90
-        })
-
-        // Create a Cube Mesh with basic material
-        let box = new THREE.BoxGeometry(this.boxMeshSize, this.boxMeshSize, this.boxMeshSize);
-        this.boxMesh = new THREE.Mesh(box, boxMaterial);
-        this.boxMesh.rotation.x = -Math.PI / 2;
-        this.boxMesh.position.y = this.boxDisplacement.y;
     }
 
     /**
@@ -125,16 +93,6 @@ class MyContents {
         // add an ambient light
         const ambientLight = new THREE.AmbientLight(0x555555);
         this.app.scene.add(ambientLight);
-
-        this.buildBox()
-
-        // Create a Plane Mesh with basic material
-
-        let plane = new THREE.PlaneGeometry(10, 10);
-        this.planeMesh = new THREE.Mesh(plane, this.planeMaterial);
-        this.planeMesh.rotation.x = -Math.PI / 2;
-        this.planeMesh.position.y = -0;
-        //this.app.scene.add( this.planeMesh );
 
         this.buildRoom();
         this.buildTable();
@@ -190,44 +148,6 @@ class MyContents {
         this.specularPlaneColor = value
         this.planeMaterial.specular.set(this.specularPlaneColor)
     }
-    /**
-     * updates the plane shininess and the material
-     * @param {number} value 
-     */
-    updatePlaneShininess(value) {
-        this.planeShininess = value
-        this.planeMaterial.shininess = this.planeShininess
-    }
-
-    /**
-     * rebuilds the box mesh if required
-     * this method is called from the gui interface
-     */
-    rebuildBox() {
-        // remove boxMesh if exists
-        if (this.boxMesh !== undefined && this.boxMesh !== null) {
-            this.app.scene.remove(this.boxMesh)
-        }
-        this.buildBox();
-        this.lastBoxEnabled = null
-    }
-
-    /**
-     * updates the box mesh if required
-     * this method is called from the render method of the app
-     * updates are trigered by boxEnabled property changes
-     */
-    updateBoxIfRequired() {
-        if (this.boxEnabled !== this.lastBoxEnabled) {
-            this.lastBoxEnabled = this.boxEnabled
-            if (this.boxEnabled) {
-                //this.app.scene.add(this.boxMesh)
-            }
-            else {
-                this.app.scene.remove(this.boxMesh)
-            }
-        }
-    }
 
     updatePointLightIntensity(value) {
         this.pointLightIntensity = value;
@@ -239,21 +159,12 @@ class MyContents {
         this.pointLight.color.set(this.pointLightColor);
     }
 
-
     /**
      * updates the contents
      * this method is called from the render method of the app
      * 
      */
     update() {
-        // check if box mesh needs to be updated
-        //this.updateBoxIfRequired()
-
-        // sets the box mesh position based on the displacement vector
-        this.boxMesh.position.x = this.boxDisplacement.x
-        this.boxMesh.position.y = this.boxDisplacement.y
-        this.boxMesh.position.z = this.boxDisplacement.z
-
         this.pointLight.position.set(...this.pointLightPosition);
         this.pointLightHelper.update();
 
@@ -344,8 +255,6 @@ class MyContents {
     
         this.table.add(this.lamp);
     }
-    
-    
 
     buildBeetleFrame() {
         this.beetleFrame = new BeetleFrame();
@@ -406,7 +315,6 @@ class MyContents {
         smallVaseGroup.scale.set(0.2, 0.3, 0.2);
         this.shelf.add(smallVaseGroup);
         smallVaseGroup.position.set(-0.5, this.shelf.height, 0);
-
     }
 
     buildBigLamp() {
@@ -429,10 +337,7 @@ class MyContents {
         this.spotLightHelper = new THREE.SpotLightHelper(this.spotLight);
         //this.app.scene.add(this.spotLightHelper); 
 
-
         this.room.add(this.lamp);
-
-    
     }
 
     buildSkyDome() {
