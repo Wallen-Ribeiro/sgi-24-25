@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 class SceneGraph {
 
     constructor() {
@@ -5,63 +7,127 @@ class SceneGraph {
         this.ambientLight = null;
     }
 
-    parse(data) {
+        parse(data) {
+            const yasf = data['yasf'];
+            this.parseGlobals(yasf['globals'], yasf['fog']); // globals, fog and skybox
+            this.parseCameras(yasf['cameras']);
+            this.parseTextures(yasf['textures']);
+            this.parseMaterials(yasf['materials']);
+            //this.parseSkyBox(yasf['skybox'])
+            this.parseGraph(yasf['graph']);
+        }
 
-        const yasf = data['yasf'];
-        this.parseGlobals(yasf['globals'], yasf['fog'], yasf['skybox']); // globals, fog and skybox
-        this.parseCameras(yasf['cameras']);
-        this.parseTextures(yasf['textures']);
-        this.parseMaterials(yasf['materials']);
-        this.parseGraph(yasf['graph']);
-
-    }
-
-    parseGlobals(globals, fog, skybox) {
+    parseGlobals(globals, fog) {
         const background = globals['background'];
-        this.backgroundColor = { 'r': background['r'], 'g': background['g'], 'b': background['b'] };
+        this.backgroundColor = new THREE.Color(background['r'], background['g'], background['b']);
 
         const ambient = globals['ambient'];
-        this.ambientLight = {
-            'color': { 'r': ambient['r'], 'g': ambient['g'], 'b': ambient['b'] },
-            'intensity': ambient['intensity']
-        };
+        this.ambientLight = new THREE.AmbientLight(ambient['r'], ambient['g'], ambient['b'], ambient['intensity']);
 
-        this.skybox = {
-            'size': { 'x': skybox['size']['x'], 'y': skybox['size']['y'], 'z': skybox['size']['z'] },
-            'center': { 'x': skybox['center']['x'], 'y': skybox['center']['y'], 'z': skybox['center']['z'] },
-            'emissive': { 'r': skybox['emissive']['r'], 'g': skybox['emissive']['g'], 'b': skybox['emissive']['b'] },
-            'intensity': skybox['intensity'],
-            'texture': {
-                'front': skybox['front'],
-                'back': skybox['back'],
-                'up': skybox['up'],
-                'down': skybox['down'],
-                'left': skybox['left'],
-                'right': skybox['right'],
-            }
-        };
-
-        this.fog = {
-            'color': { 'r': fog['color']['r'], 'g': fog['color']['g'], 'b': fog['color']['b'] },
-            'near': fog['near'],
-            'far': fog['far']
-        };
+        this.fog = new THREE.Fog(fog['color']['r'], fog['color']['g'], fog['color']['b'], fog['near'], fog['far']);
     }
 
     parseCameras(cameras) {
-        // TODO
+
+        this.cameras = {};
+
+        for (const [id, camera] of Object.entries(cameras)) {
+            if (camera.type === 'orthogonal') {
+                const orthogonalCamera = new THREE.OrthographicCamera(camera.left, camera.right, camera.top, camera.bottom, camera.near, camera.far);
+                orthogonalCamera.position.set(new THREE.Vector3(camera.location.x, camera.location.y, camera.location.z));
+                orthogonalCamera.lookAt(new THREE.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                this.cameras[id] = orthogonalCamera;
+            }
+            else if (camera.type === 'perspective') {
+                const perspectiveCamera = new THREE.PerspectiveCamera(camera.angle, 1, camera.near, camera.far);
+                perspectiveCamera.position.set(new THREE.Vector3(camera.location.x, camera.location.y, camera.location.z));
+                perspectiveCamera.lookAt(new THREE.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                this.cameras[id] = perspectiveCamera;
+            }
+        }
+        this.activeCamera = this.cameras[cameras.initial]; // cameras.inital = inital id    
     }
 
     parseTextures(textures) {
-        // TODO
+        this.textures = {};
+        const mipmapKeys = ['mipmap0', 'mipmap1', 'mipmap2', 'mipmap3', 'mipmap4', 'mipmap5', 'mipmap6', 'mipmap7'];
+
+        Object.keys(textures).forEach((textureId) => {
+            const texture = textures[textureId];
+
+            this.textures[textureId] = new THREE.TextureLoader().load(texture['filepath']);
+            for(let i = 0; i <= 7 && texture[mipmapKeys[i]]; i++) {
+                this.textures[textureId].mipmaps.push(texture[mipmapKeys[i]]);
+            }
+        });
     }
 
     parseMaterials(materials) {
-        // TODO
+        this.materials = {};
+
+        Object.keys(materials).forEach((materialId) => {
+            const material = materials[materialId];
+
+            this.materials[materialId] = new THREE.MeshPhongMaterial({
+                color: new THREE.Color(material['color']['r'], material['color']['g'], material['color']['b']),
+                specular: new THREE.Color(material['specular']['r'], material['specular']['g'], material['specular']['b']),
+                emissive: new THREE.Color(material['emissive']['r'], material['emissive']['g'], material['emissive']['b']),
+                shininess: material['shininess'],
+                transparent: material['transparent'],
+                opacity: material['opacity'],
+                wireframe: material['wireframe'] ?? false,
+                shading: material['shading'] ?? 'smooth',
+                side: material['twosided'] ? THREE.DoubleSide : THREE.FrontSide,
+                map: material['textureref'] ?? 'null',
+                bumpMap: material['bumpscale'] ?? 'null',
+                specularMap: material['specularref'] ?? 'null',
+                // texturelengyh_s
+                // texturelengyh_t
+            })
+
+        });
+    }
+
+    parseSkyBox(skybox){
+        this.geometry = new THREE.BoxGeometry(skybox['size'], skybox['size'], skybox['size']);
+
+        const ft = new THREE.TextureLoader().load(skybox['front']);
+        const bk = new THREE.TextureLoader().load(skybox['back']);
+        const up = new THREE.TextureLoader().load(skybox['up']);
+        const dn = new THREE.TextureLoader().load(skybox['down']);
+        const rt = new THREE.TextureLoader().load(skybox['right']);
+        const lf = new THREE.TextureLoader().load(skybox['left']);     
+        
+        
+        const materials = [
+            new THREE.MeshBasicMaterial({map: rt, side: THREE.BackSide}),
+            new THREE.MeshBasicMaterial({map: lf, side: THREE.BackSide}),
+            new THREE.MeshBasicMaterial({map: up, side: THREE.BackSide}),
+            new THREE.MeshBasicMaterial({map: dn, side: THREE.BackSide}),
+            new THREE.MeshBasicMaterial({map: ft, side: THREE.BackSide}),
+            new THREE.MeshBasicMaterial({map: bk, side: THREE.BackSide})
+        ];
+
+        materials.forEach(material => {
+            material.emissive = new THREE.Color(skybox['emissive']['r'], skybox['emissive']['g'], skybox['emissive']['b']); 
+            material.emissiveIntensity = skybox['emissive']['intensity'];
+        });
+
+        this.skybox = new THREE.Mesh(this.geometry, materials);
+        this.skybox.position.set(new THREE.Vector3(skybox['center']['x'], skybox['center']['y'], skybox['center']['z']));
+    
     }
 
     parseGraph(graph) {
-        // TODO
+        // bfs
+        // visit node
+        // mark node has visited
+        // add children to queue
+        // node = queue.pop
+
+        this.root = graph['rootId']
+        
+        //visitNode(root)
     }
 
 }

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { YASFParser } from './YASFParser.js';
+import { SceneGraph } from './SceneGraph.js';
 
 /**
  *  1. in a given class file MyWhateverNameClass.js in the constructor call:
@@ -29,14 +30,14 @@ class MyFileReader {
 
     open(jsonfile) {
         fetch(jsonfile)
-            .then((res) => {
+            .then(async (res) => {
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);
                 }
-                const data = res.json();
-                const yasfParser = new YASFParser(data);
-                const sceneGraph = yasfParser.parse();
-                this.onSceneLoadedCallback(sceneGraph);
+                const data = await res.json();
+                const sceneGraph = new SceneGraph();
+                sceneGraph.parse(data);
+                return sceneGraph;
             })
             .then((data) => {
                 this.onSceneLoadedCallback(data);
