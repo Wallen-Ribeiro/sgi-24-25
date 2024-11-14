@@ -55,8 +55,15 @@ class SceneGraph {
         Object.keys(textures).forEach((textureId) => {
             const texture = textures[textureId];
 
-            this.textures[textureId] = new THREE.TextureLoader().load(texture['filepath']);
-            for (let i = 0; i <= 7 && texture[mipmapKeys[i]]; i++) {
+            const isVideo = texture.isVideo;
+
+            if (isVideo){
+                this.textures[textureId] = new THREE.VideoTexture()
+            } else {
+                this.textures[textureId] = new THREE.TextureLoader().load(texture['filepath']);
+            }
+            
+            for(let i = 0; i <= 7 && texture[mipmapKeys[i]]; i++) {
                 this.textures[textureId].mipmaps.push(texture[mipmapKeys[i]]);
             }
         });
@@ -136,6 +143,7 @@ class SceneGraph {
 
     }
 
+
     visitNode(node, nodeId) {
         let visited = node['visited'] ?? false;
 
@@ -150,8 +158,17 @@ class SceneGraph {
                 const group = new THREE.Group();
                 visited = true;
                 const children = node['children'];
+                const materialRef= node['materialref'];
 
-                // materialref (opt)
+                if (materialRef){
+                    const materialId = materialRef['materialId'];
+                    const parentMaterial = this.materials[materialId];
+                    Object.keys(children).forEach((child) => {
+                        if (child instanceof THREE.Mesh) {
+                            child.material = parentMaterial;
+                        }
+                    });
+                }
 
                 Object.keys(children).forEach((childId) => {
                     const childNode = this.visitNode(children[childId], childId);
@@ -169,9 +186,31 @@ class SceneGraph {
                     this.modified = true;
                     node['visited'] = true;
 
-                    // transforms (opt)
-                    // castshadows (opt)
-                    // receiveshadows (opt)
+                    const castShadows = this.nodes[nodeId]['castShadows'];
+                    const receiveShadows = this.nodes[nodeId]['receiveShadows'];
+
+                    this.nodes[nodeId].castShadows = castShadows ?? false;
+                    this.nodes[nodeId].receiveShadows = receiveShadows ?? false;
+
+
+                    const tranformationsArray = node['transforms'];
+
+                    tranformationsArray?.forEach((transformation) => {
+                        const transformation_type = transformation['type'];
+                        if (transformation_type === "translate"){
+                            this.nodes[nodeId].translateX(transformation["amount"]["x"]) 
+                            this.nodes[nodeId].translateY(transformation["amount"]["y"]);
+                            this.nodes[nodeId].translateZ(transformation["amount"]["z"]);
+                        } else if (transformation_type === "rotate"){
+                            this.nodes[nodeId].rotateX(transformation["amount"]["x"]) 
+                            this.nodes[nodeId].rotateY(transformation["amount"]["y"]);
+                            this.nodes[nodeId].rotateZ(transformation["amount"]["z"]);
+                        } else if (transformation_type === "scale"){
+                            this.nodes[nodeId].scale.set(new THREE.Vector3(transformation["amount"]["x"],
+                                 transformation["amount"]["y"], transformation["amount"]["z"]));
+                        }
+                    });
+
                     return group;
                 }
 
@@ -188,6 +227,7 @@ class SceneGraph {
                 return this.createPrimitive(node, nodeId);
         }
     }
+
 
     createPrimitive(node, nodeId) {
         switch (node['type']) {
