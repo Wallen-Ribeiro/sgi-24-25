@@ -120,6 +120,7 @@ class SceneGraph {
 
     parseGraph(graph) {
         const rootId = graph['rootid']
+        delete graph['rootid'];
 
         this.nodes = {};
         this.modified = true;
@@ -130,64 +131,91 @@ class SceneGraph {
             });
         }
 
+        console.log(this.nodes);
         return this.nodes[rootId];
 
     }
 
     visitNode(node, nodeId) {
-        if (this.nodes[nodeId]) {
-            if (node['children']) {
-                let group = this.nodes[nodeId];
-                for (const child of node['children']) {
-                    const childNode = this.visitNode(child, child['id']);
-                    if (childNode) {
-                        group.add(childNode);
-                    }
-                }
-            }
+        let visited = node['visited'] ?? false;
 
+        if (visited) {
             return null;
-        } else {
-            // not visited yet
-
-            const type = node['type'];
-
-            switch (type) {
-                case 'node':
-                    this.modified = true;
-                    group = new THREE.Group();
-                    this.nodes[nodeId] = group;
-
-                    // transforms (opt)
-                    // materialref (opt)
-                    // castshadows (opt)
-                    // receiveshadows (opt)
-                    for (const child of node['children']) {
-                        const childNode = this.visitNode(child, child['id']);
-                        if (childNode) {
-                            group.add(childNode);
-                        }
-                    }
-
-                    return group;
-                case 'noderef':
-                    if (this.nodes[node['nodeid']]) {
-                        this.modified = true;
-                        this.nodes[nodeId] = ""; // as its a ref, it should not be referenced? marking as visited only
-                        return this.nodes[node['nodeid']].clone();
-                    }
-                    return null;
-                default:
-                    this.modified = true;
-                    return createPrimitive(node, nodeId);
-            }
-
         }
 
+        const type = node['type'];
+
+        switch (type) {
+            case 'node':
+                const group = new THREE.Group();
+                visited = true;
+                const children = node['children'];
+
+                // materialref (opt)
+
+                Object.keys(children).forEach((childId) => {
+                    const childNode = this.visitNode(children[childId], childId);
+                    if (childNode) {
+                        group.add(childNode);
+                    } else {
+                        visited = false;
+                        return;
+                    }
+                });
+
+                if (visited) {
+                    this.nodes[nodeId] = group;
+                    group.name = nodeId;
+                    this.modified = true;
+                    node['visited'] = true;
+
+                    // transforms (opt)
+                    // castshadows (opt)
+                    // receiveshadows (opt)
+                    return group;
+                }
+
+                return null;
+
+            case 'noderef':
+                if (this.nodes[nodeId]) {
+                    this.modified = true;
+                    return this.nodes[nodeId].clone();
+                }
+                return null;
+            default:
+                this.modified = true;
+                return this.createPrimitive(node, nodeId);
+        }
     }
 
     createPrimitive(node, nodeId) {
+        switch (node['type']) {
+            case 'rectangle':
+                break;
+            case 'triangle':
+                break;
+            case 'box':
+                break;
+            case 'cylinder':
+                break;
+            case 'sphere':
+                break;
+            case 'nurbs':
+                break;
+            case 'polygon':
+                break;
+            case 'pointlight':
+                break;
+            case 'spotlight':
+                break;
+            case 'directionallight':
+                break;
+        }
 
+        this.nodes[nodeId] = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial());
+        this.nodes[nodeId].name = nodeId;
+        return this.nodes[nodeId];
     }
 }
 
