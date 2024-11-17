@@ -442,9 +442,9 @@
                     }
                 ],
                 "children": {
-                    "unitCube": {
+                    "leg": {
                         "type": "noderef",
-                        "nodeId": "unitCube"
+                        "nodeId": "leg"
                     }
                 }
             },
@@ -461,9 +461,9 @@
                     }
                 ],
                 "children": {
-                    "unitCube": {
+                    "leg": {
                         "type": "noderef",
-                        "nodeId": "unitCube"
+                        "nodeId": "leg"
                     }
                 }
             },
@@ -480,9 +480,9 @@
                     }
                 ],
                 "children": {
-                    "unitCube": {
+                    "leg": {
                         "type": "noderef",
-                        "nodeId": "unitCube"
+                        "nodeId": "leg"
                     }
                 }
             },
@@ -499,9 +499,23 @@
                     }
                 ],
                 "children": {
-                    "unitCube": {
+                    "leg": {
                         "type": "noderef",
-                        "nodeId": "unitCube"
+                        "nodeId": "leg"
+                    }
+                }
+            },
+            "leg": {
+                "type": "node",
+                "children": {
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "base": 0.05,
+                        "top": 0.05,
+                        "height": 0.5,
+                        "slices": 20,
+                        "stacks": 20,
+                        "capsclose": true
                     }
                 }
             },
