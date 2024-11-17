@@ -200,13 +200,13 @@ class SceneGraph {
                     tranformationsArray?.forEach((transformation) => {
                         const transformation_type = transformation['type'];
                         if (transformation_type === "translate") {
-                            this.nodes[nodeId].translateX(transformation["amount"]["x"])
-                            this.nodes[nodeId].translateY(transformation["amount"]["y"]);
-                            this.nodes[nodeId].translateZ(transformation["amount"]["z"]);
+                            this.nodes[nodeId].translateX(this.degreeToRad(transformation["amount"]["x"]))
+                            this.nodes[nodeId].translateY(this.degreeToRad(transformation["amount"]["y"]));
+                            this.nodes[nodeId].translateZ(this.degreeToRad(transformation["amount"]["z"]));
                         } else if (transformation_type === "rotate") {
-                            this.nodes[nodeId].rotateX(transformation["amount"]["x"])
-                            this.nodes[nodeId].rotateY(transformation["amount"]["y"]);
-                            this.nodes[nodeId].rotateZ(transformation["amount"]["z"]);
+                            this.nodes[nodeId].rotateX(this.degreeToRad(transformation["amount"]["x"]))
+                            this.nodes[nodeId].rotateY(this.degreeToRad(transformation["amount"]["y"]));
+                            this.nodes[nodeId].rotateZ(this.degreeToRad(transformation["amount"]["z"]));
                         } else if (transformation_type === "scale") {
                             this.nodes[nodeId].scale.set(transformation["amount"]["x"],
                                 transformation["amount"]["y"], transformation["amount"]["z"]);
@@ -257,6 +257,11 @@ class SceneGraph {
                 console.error('Unknown primitive type: ' + node['type']);
                 return;
         }
+    }
+
+    degreeToRad(degree){
+        const rad = degree * Math.PI/180;
+        return rad;
     }
 }
 
