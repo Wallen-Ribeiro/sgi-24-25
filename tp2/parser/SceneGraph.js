@@ -188,11 +188,11 @@ class SceneGraph {
                     this.modified = true;
                     node['visited'] = true;
 
-                    const castShadows = this.nodes[nodeId]['castShadows'];
-                    const receiveShadows = this.nodes[nodeId]['receiveShadows'];
+                    const castShadow = this.nodes[nodeId]['castShadow'];
+                    const receiveShadow = this.nodes[nodeId]['receiveShadow'];
 
-                    this.nodes[nodeId].castShadows = castShadows ?? false;
-                    this.nodes[nodeId].receiveShadows = receiveShadows ?? false;
+                    this.nodes[nodeId].castShadow = castShadow ?? false;
+                    this.nodes[nodeId].receiveShadow = receiveShadow ?? false;
 
 
                     const tranformationsArray = node['transforms'];
