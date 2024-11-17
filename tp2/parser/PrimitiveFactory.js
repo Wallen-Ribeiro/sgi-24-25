@@ -13,6 +13,7 @@ class PrimitiveFactory {
         const width = x2 - x1;
         const height = y2 - y1;
 
+        // console.log(material)
         const geometry = new THREE.PlaneGeometry(width, height, wSegments, hSegments);
 
         const mesh = new THREE.Mesh(geometry, material);

@@ -75,24 +75,32 @@ class SceneGraph {
 
         Object.keys(materials).forEach((materialId) => {
             const material = materials[materialId];
+            const textureRef = material['textureref'];
+            const texture = textureRef ? this.textures[textureRef] : null;
+            const color = new THREE.Color(material['color']['r'], material['color']['g'], material['color']['b']);
+            const specular = new THREE.Color(material['specular']['r'], material['specular']['g'], material['specular']['b']);
+            const emissive = new THREE.Color(material['emissive']['r'], material['emissive']['g'], material['emissive']['b']);
+            const red = new THREE.Color(1, 0, 0);
+            const green = new THREE.Color(0, 1, 0);
 
             this.materials[materialId] = new THREE.MeshPhongMaterial({
-                color: new THREE.Color(material['color']['r'], material['color']['g'], material['color']['b']),
-                specular: new THREE.Color(material['specular']['r'], material['specular']['g'], material['specular']['b']),
-                emissive: new THREE.Color(material['emissive']['r'], material['emissive']['g'], material['emissive']['b']),
+                color: color.getHex(),
+                specular: specular.getHex(),
+                emissive: emissive.getHex(),
                 shininess: material['shininess'],
                 transparent: material['transparent'],
                 opacity: material['opacity'],
                 wireframe: material['wireframe'] ?? false,
-                //shading: material['shading'] ? 'flat' : 'smooth',
+                // shading: material['shading'] ? 'flat' : 'smooth',
                 side: material['twosided'] ? THREE.DoubleSide : THREE.FrontSide,
-                map: material['textureref'] ?? 'null',
-                bumpMap: material['bumpscale'] ?? 'null',
-                specularMap: material['specularref'] ?? 'null',
+                map: texture,
+                // bumpMap: material['bumpscale'] ?? 'null',
+                // specularMap: material['specularref'] ?? 'null',
                 // texturelengyh_s
                 // texturelengyh_t
-            })
+            });
 
+            this.materials[materialId].name = materialId;
         });
     }
 
@@ -141,6 +149,9 @@ class SceneGraph {
 
         console.log(this.nodes);
         this.scene = this.nodes[rootId];
+
+        this.applyMaterial(this.scene);
+
         return this.nodes[rootId];
 
     }
@@ -162,16 +173,6 @@ class SceneGraph {
                 const children = node['children'];
                 const materialRef = node['materialref'];
 
-                if (materialRef) {
-                    const materialId = materialRef['materialId'];
-                    const parentMaterial = this.materials[materialId];
-                    Object.keys(children).forEach((child) => {
-                        if (child instanceof THREE.Mesh) {
-                            child.material = parentMaterial;
-                        }
-                    });
-                }
-
                 Object.keys(children).forEach((childId) => {
                     const childNode = this.visitNode(children[childId], childId);
                     if (childNode) {
@@ -185,6 +186,9 @@ class SceneGraph {
                 if (visited) {
                     this.nodes[nodeId] = group;
                     group.name = nodeId;
+                    if (materialRef) {
+                        group.material = this.materials[materialRef['materialId']];
+                    }
                     this.modified = true;
                     node['visited'] = true;
 
@@ -221,7 +225,12 @@ class SceneGraph {
             case 'noderef':
                 if (this.nodes[nodeId]) {
                     this.modified = true;
-                    return this.nodes[nodeId].clone();
+                    const clone = this.nodes[nodeId].clone();
+                    clone.material = this.nodes[nodeId].material;
+                    if (node['materialref']) {
+                        clone.material = this.materials[node['materialref']];
+                    }
+                    return clone;
                 }
                 return null;
             default:
@@ -232,21 +241,23 @@ class SceneGraph {
 
 
     createPrimitive(node, nodeId) {
+        const material = this.materials[node['materialref']];
+        // const material = this.materials['floorApp'];
         switch (node['type']) {
             case 'rectangle':
-                return PrimitiveFactory.createRectangleFromYASF(node, this.materials[node['materialref']]);
+                return PrimitiveFactory.createRectangleFromYASF(node, material);
             case 'triangle':
-                return PrimitiveFactory.createTriangleFromYASF(node, this.materials[node['materialref']]);
+                return PrimitiveFactory.createTriangleFromYASF(node, material);
             case 'box':
-                return PrimitiveFactory.createBoxFromYASF(node, this.materials[node['materialref']]);
+                return PrimitiveFactory.createBoxFromYASF(node, material);
             case 'cylinder':
-                return PrimitiveFactory.createCylinderFromYASF(node, this.materials[node['materialref']]);
+                return PrimitiveFactory.createCylinderFromYASF(node, material);
             case 'sphere':
-                return PrimitiveFactory.createSphereFromYASF(node, this.materials[node['materialref']]);
+                return PrimitiveFactory.createSphereFromYASF(node, material);
             case 'nurbs':
-                return PrimitiveFactory.createNurbsCurveFromYASF(node, this.materials[node['materialref']]);
+                return PrimitiveFactory.createNurbsCurveFromYASF(node, material);
             case 'polygon':
-                return PrimitiveFactory.createPolygonFromYASF(node, this.materials[node['materialref']]);
+                return PrimitiveFactory.createPolygonFromYASF(node, material);
             case 'pointlight':
                 return PrimitiveFactory.createPointLightFromYASF(node);
             case 'spotlight':
@@ -262,6 +273,19 @@ class SceneGraph {
     degreeToRad(degree) {
         const rad = degree * Math.PI / 180;
         return rad;
+    }
+
+    applyMaterial(node, material = null) {
+        if (node.isMesh && material) {
+            node.material = material;
+        } else if (node.material) {
+            material = node.material;
+        } else if (material) {
+            node.material = material;
+        }
+        for (let i = 0; i < node.children.length; i++) {
+            this.applyMaterial(node.children[i], material);
+        }
     }
 }
 

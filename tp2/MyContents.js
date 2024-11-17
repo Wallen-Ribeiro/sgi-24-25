@@ -55,6 +55,7 @@ class MyContents {
         //this.printYASF(data)
         console.log(data);
         this.app.scene.add(data.scene);
+        this.app.scene.add(data.ambientLight);
         //this.addCameras(data.cameras, data.activeCamera);
     }
 
