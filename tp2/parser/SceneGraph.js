@@ -58,13 +58,13 @@ class SceneGraph {
 
             const isVideo = texture.isVideo;
 
-            if (isVideo){
+            if (isVideo) {
                 this.textures[textureId] = new THREE.VideoTexture()
             } else {
                 this.textures[textureId] = new THREE.TextureLoader().load(texture['filepath']);
             }
-            
-            for(let i = 0; i <= 7 && texture[mipmapKeys[i]]; i++) {
+
+            for (let i = 0; i <= 7 && texture[mipmapKeys[i]]; i++) {
                 this.textures[textureId].mipmaps.push(texture[mipmapKeys[i]]);
             }
         });
@@ -84,7 +84,7 @@ class SceneGraph {
                 transparent: material['transparent'],
                 opacity: material['opacity'],
                 wireframe: material['wireframe'] ?? false,
-                shading: material['shading'] ? 'flat' : 'smooth',
+                //shading: material['shading'] ? 'flat' : 'smooth',
                 side: material['twosided'] ? THREE.DoubleSide : THREE.FrontSide,
                 map: material['textureref'] ?? 'null',
                 bumpMap: material['bumpscale'] ?? 'null',
@@ -160,9 +160,9 @@ class SceneGraph {
                 const group = new THREE.Group();
                 visited = true;
                 const children = node['children'];
-                const materialRef= node['materialref'];
+                const materialRef = node['materialref'];
 
-                if (materialRef){
+                if (materialRef) {
                     const materialId = materialRef['materialId'];
                     const parentMaterial = this.materials[materialId];
                     Object.keys(children).forEach((child) => {
@@ -199,17 +199,17 @@ class SceneGraph {
 
                     tranformationsArray?.forEach((transformation) => {
                         const transformation_type = transformation['type'];
-                        if (transformation_type === "translate"){
-                            this.nodes[nodeId].translateX(transformation["amount"]["x"]) 
+                        if (transformation_type === "translate") {
+                            this.nodes[nodeId].translateX(transformation["amount"]["x"])
                             this.nodes[nodeId].translateY(transformation["amount"]["y"]);
                             this.nodes[nodeId].translateZ(transformation["amount"]["z"]);
-                        } else if (transformation_type === "rotate"){
-                            this.nodes[nodeId].rotateX(transformation["amount"]["x"]) 
+                        } else if (transformation_type === "rotate") {
+                            this.nodes[nodeId].rotateX(transformation["amount"]["x"])
                             this.nodes[nodeId].rotateY(transformation["amount"]["y"]);
                             this.nodes[nodeId].rotateZ(transformation["amount"]["z"]);
-                        } else if (transformation_type === "scale"){
-                            this.nodes[nodeId].scale.set(new THREE.Vector3(transformation["amount"]["x"],
-                                 transformation["amount"]["y"], transformation["amount"]["z"]));
+                        } else if (transformation_type === "scale") {
+                            this.nodes[nodeId].scale.set(transformation["amount"]["x"],
+                                transformation["amount"]["y"], transformation["amount"]["z"]);
                         }
                     });
 
