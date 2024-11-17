@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { PrimitiveFactory } from './PrimitiveFactory.js';
 
 class SceneGraph {
 
@@ -45,7 +46,7 @@ class SceneGraph {
                 this.cameras[id] = perspectiveCamera;
             }
         }
-        this.activeCamera = this.cameras[cameras.initial]; // cameras.inital = inital id    
+        this.activeCamera = cameras.initial; // cameras.inital = inital id    
     }
 
     parseTextures(textures) {
@@ -132,6 +133,7 @@ class SceneGraph {
         }
 
         console.log(this.nodes);
+        this.scene = this.nodes[rootId];
         return this.nodes[rootId];
 
     }
@@ -192,30 +194,29 @@ class SceneGraph {
     createPrimitive(node, nodeId) {
         switch (node['type']) {
             case 'rectangle':
-                break;
+                return PrimitiveFactory.createRectangleFromYASF(node, this.materials[node['materialref']]);
             case 'triangle':
-                break;
+                return PrimitiveFactory.createTriangleFromYASF(node, this.materials[node['materialref']]);
             case 'box':
-                break;
+                return PrimitiveFactory.createBoxFromYASF(node, this.materials[node['materialref']]);
             case 'cylinder':
-                break;
+                return PrimitiveFactory.createCylinderFromYASF(node, this.materials[node['materialref']]);
             case 'sphere':
-                break;
+                return PrimitiveFactory.createSphereFromYASF(node, this.materials[node['materialref']]);
             case 'nurbs':
-                break;
+                return PrimitiveFactory.createNurbsCurveFromYASF(node, this.materials[node['materialref']]);
             case 'polygon':
-                break;
+                return PrimitiveFactory.createPolygonFromYASF(node, this.materials[node['materialref']]);
             case 'pointlight':
-                break;
+                return PrimitiveFactory.createPointLightFromYASF(node);
             case 'spotlight':
-                break;
+                return PrimitiveFactory.createSpotLightFromYASF(node);
             case 'directionallight':
-                break;
+                return PrimitiveFactory.createDirectionalLightFromYASF(node);
+            default:
+                console.error('Unknown primitive type: ' + node['type']);
+                return;
         }
-
-        this.nodes[nodeId] = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshBasicMaterial());
-        this.nodes[nodeId].name = nodeId;
-        return this.nodes[nodeId];
     }
 }
 

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
+import { MyApp } from './MyApp.js';
 /**
  *  This class contains the contents of out application
  */
@@ -53,6 +54,18 @@ class MyContents {
     onAfterSceneLoadedAndBeforeRender(data) {
         //this.printYASF(data)
         console.log(data);
+        this.app.scene.add(data.scene);
+        //this.addCameras(data.cameras, data.activeCamera);
+    }
+
+    addCameras(cameras, activeCamera) {
+        console.log(cameras);
+        Object.keys(cameras).forEach((cameraId) => {
+            this.app.cameras[cameraId] = cameras[cameraId];
+        });
+
+        console.log(this.app.cameras[activeCamera])
+        this.app.setActiveCamera(this.app.cameras[activeCamera]);
     }
 
     update() {

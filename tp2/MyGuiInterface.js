@@ -5,7 +5,7 @@ import { MyContents } from './MyContents.js';
 /**
     This class customizes the gui interface for the app
 */
-class MyGuiInterface  {
+class MyGuiInterface {
 
     /**
      * 
@@ -13,7 +13,7 @@ class MyGuiInterface  {
      */
     constructor(app) {
         this.app = app
-        this.datgui =  new GUI();
+        this.datgui = new GUI();
         this.contents = null
     }
 
@@ -29,6 +29,10 @@ class MyGuiInterface  {
      * Initialize the gui interface
      */
     init() {
+        const cameraFolder = this.datgui.addFolder('Camera')
+        cameraFolder.add(this.app, 'activeCameraName', ['Perspective']).name("active camera").onChange((value) => {
+            this.app.setActiveCamera(value);
+        });
     }
 }
 
