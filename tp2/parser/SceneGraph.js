@@ -38,8 +38,8 @@ class SceneGraph {
         for (const [id, camera] of Object.entries(cameras)) {
             if (camera.type === 'orthogonal') {
                 const orthogonalCamera = new THREE.OrthographicCamera(camera.left, camera.right, camera.top, camera.bottom, camera.near, camera.far);
-                orthogonalCamera.position.set(new THREE.Vector3(camera.location.x, camera.location.y, camera.location.z));
-                orthogonalCamera.lookAt(new THREE.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                orthogonalCamera.position.set(camera.location.x, camera.location.y, camera.location.z);
+                orthogonalCamera.lookAt(camera.target.x, camera.target.y, camera.target.z);
                 this.cameras[id] = orthogonalCamera;
             }
             else if (camera.type === 'perspective') {
