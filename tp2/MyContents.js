@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
 import { MyApp } from './MyApp.js';
+import { MyGuiInterface } from './MyGuiInterface.js';
 /**
  *  This class contains the contents of out application
  */
@@ -69,17 +70,21 @@ class MyContents {
         this.app.scene.add(data.scene);
         this.app.scene.add(data.skybox);
         this.app.scene.add(data.ambientLight);
-        //this.addCameras(data.cameras, data.activeCamera);
+        this.addCameras(data.cameras, data.activeCamera);
+        this.buildGui();
     }
 
     addCameras(cameras, activeCamera) {
-        console.log(cameras);
         Object.keys(cameras).forEach((cameraId) => {
             this.app.cameras[cameraId] = cameras[cameraId];
         });
+        this.app.setActiveCamera(activeCamera);
+    }
 
-        console.log(this.app.cameras[activeCamera])
-        this.app.setActiveCamera(this.app.cameras[activeCamera]);
+    buildGui() {
+        const gui = new MyGuiInterface(this.app);
+        gui.init();
+        this.app.setGui(gui);
     }
 
     buildCar() {

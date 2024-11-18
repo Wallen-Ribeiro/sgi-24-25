@@ -44,8 +44,8 @@ class SceneGraph {
             }
             else if (camera.type === 'perspective') {
                 const perspectiveCamera = new THREE.PerspectiveCamera(camera.angle, 1, camera.near, camera.far);
-                perspectiveCamera.position.set(new THREE.Vector3(camera.location.x, camera.location.y, camera.location.z));
-                perspectiveCamera.lookAt(new THREE.Vector3(camera.target.x, camera.target.y, camera.target.z));
+                perspectiveCamera.position.set(camera.location.x, camera.location.y, camera.location.z);
+                perspectiveCamera.lookAt(camera.target.x, camera.target.y, camera.target.z);
                 this.cameras[id] = perspectiveCamera;
             }
         }
@@ -79,12 +79,23 @@ class SceneGraph {
         Object.keys(materials).forEach((materialId) => {
             const material = materials[materialId];
             const textureRef = material['textureref'];
-            const texture = textureRef ? this.textures[textureRef] : null;
+            let texture = textureRef ? this.textures[textureRef] : null;
+            const bumpRef = material['bumpref'];
+            const bumpMap = bumpRef ? this.textures[bumpRef] : null;
+            const specularRef = material['specularref'];
+            const specularMap = specularRef ? this.textures[specularRef] : null;
+            const texLengthS = material['texlength_s'] ?? 1;
+            const texLengthT = material['texlength_t'] ?? 1;
             const color = new THREE.Color(material['color']['r'], material['color']['g'], material['color']['b']);
             const specular = new THREE.Color(material['specular']['r'], material['specular']['g'], material['specular']['b']);
             const emissive = new THREE.Color(material['emissive']['r'], material['emissive']['g'], material['emissive']['b']);
-            const red = new THREE.Color(1, 0, 0);
-            const green = new THREE.Color(0, 1, 0);
+
+            if (texture) {
+                texture = texture.clone();
+                texture.wrapS = THREE.RepeatWrapping;
+                texture.wrapT = THREE.RepeatWrapping;
+                texture.repeat.set(texLengthS, texLengthT);
+            }
 
             this.materials[materialId] = new THREE.MeshPhongMaterial({
                 color: color.getHex(),
@@ -94,13 +105,11 @@ class SceneGraph {
                 transparent: material['transparent'],
                 opacity: material['opacity'],
                 wireframe: material['wireframe'] ?? false,
-                // shading: material['shading'] ? 'flat' : 'smooth',
+                flatShading: material['shading'] ?? false,
                 side: material['twosided'] ? THREE.DoubleSide : THREE.FrontSide,
                 map: texture,
-                // bumpMap: material['bumpscale'] ?? 'null',
-                // specularMap: material['specularref'] ?? 'null',
-                // texturelengyh_s
-                // texturelengyh_t
+                bumpMap: bumpMap,
+                specularMap: specularMap,
             });
 
             this.materials[materialId].name = materialId;
@@ -128,11 +137,6 @@ class SceneGraph {
             new THREE.MeshLambertMaterial({ map: ft, side: THREE.BackSide, emissive: eColor, emissiveIntensity: eIntensity }),
             new THREE.MeshLambertMaterial({ map: bk, side: THREE.BackSide, emissive: eColor, emissiveIntensity: eIntensity })
         ];
-
-        // materials.forEach(material => {
-        //     material.emissive = new THREE.Color(skybox['emissive']['r'], skybox['emissive']['g'], skybox['emissive']['b']);
-        //     material.emissiveIntensity = skybox['intensity'];
-        // });
 
         this.skybox = new THREE.Mesh(geometry, materials);
         this.skybox.position.set(skybox['center']['x'], skybox['center']['y'], skybox['center']['z']);
