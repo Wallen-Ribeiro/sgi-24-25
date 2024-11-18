@@ -45,7 +45,17 @@
                 "down": "scenes/car/textures/ny.png"
             }
         },
-        "textures": {},
+        "textures": {
+            "licensePlateTex": {
+                "filepath": "scenes/car/textures/license_plate.jpg"
+            },
+            "carBottomTex": {
+                "filepath": "scenes/car/textures/car_bottom.png"
+            },
+            "carChairTex": {
+                "filepath": "scenes/car/textures/car_chair.jpg"
+            }
+        },
         "materials": {
             "carBody": {
                 "color": {
@@ -87,7 +97,8 @@
                 },
                 "transparent": false,
                 "opacity": 1.0,
-                "twosided": true
+                "twosided": true,
+                "textureref": "carBottomTex"
             },
             "carWheel": {
                 "color": {
@@ -109,6 +120,80 @@
                 "transparent": false,
                 "opacity": 1.0,
                 "twosided": true
+            },
+            "carLight" : {
+                "color" : { "r" : 1.0, "g" : 0.0, "b" : 0.0 },
+                "specular" : { "r" : 1.0, "g" : 1.0, "b" : 0.0 },
+                "shininess" : 10,
+                "emissive" : { "r" : 1.0, "g" : 1.0, "b" : 0.0 },
+                "transparent" : false,
+                "opacity" : 1.0,
+                "twosided" : true
+            },
+            "carWindow": {
+                "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": true,
+                "opacity": 0.5,
+                "twosided": true
+            },
+            "licensePlate": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "licensePlateTex"
+            },
+            "carChair": {
+                "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "carChairTex"
             }
         },
         "cameras": {
@@ -440,6 +525,25 @@
                     }
                 }
             },
+            "carMiddle": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "carEnd": {
+                        "type": "noderef",
+                        "nodeId": "carEnd"
+                    }
+                }
+            },
             "carBack": {
                 "type": "node",
                 "transforms": [
@@ -501,7 +605,7 @@
                         "type": "translate",
                         "amount": {
                             "x": 0.0,
-                            "y": 3.0,
+                            "y": 2.5,
                             "z": -1.5
                         }
                     },
@@ -536,7 +640,7 @@
                         "type": "translate",
                         "amount": {
                             "x": 0,
-                            "y": 2,
+                            "y": 1.5,
                             "z": 0
                         }
                     },
@@ -740,6 +844,221 @@
                     }
                 }
             },
+            "frontCarLight":{
+                "type": "node",
+                "materialref": {
+                    "materialId": "carLight"
+                },
+                "children": {
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "top": 0.35,
+                        "base": 0.35,
+                        "height": 0.375,
+                        "slices": 20,
+                        "stacks": 20,
+                        "cap": true
+                    }
+                }
+            },
+            "frontCarLight1" : {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 1, "y": 0, "z": 3 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 90, "y": 0, "z": 0 }
+                    }
+                ],
+                "children": {
+                    "frontCarLight": {
+                        "type": "noderef",
+                        "nodeId": "frontCarLight"
+                    }
+                }
+            },
+            "frontCarLight2" : {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": -1, "y": 0, "z": 3 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 90, "y": 0, "z": 0 }
+                    }
+                ],
+                "children": {
+                    "frontCarLight": {
+                        "type": "noderef",
+                        "nodeId": "frontCarLight"
+                    }
+                }
+            },
+            "backCarLight" : {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carLight"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0.0, "y": 0.5, "z": -3.0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 2.5, "y": 0.25, "z": 0.25 }
+                    }
+                ],
+                "children": {
+                    "boxPrim" : {
+                        "type": "box",
+                        "xyz1": { "x": -0.5, "y": -0.5, "z": -0.5 }, 
+                        "xyz2": { "x": 0.5, "y": 0.5, "z": 0.5 } 
+                    }
+                }
+            },
+            "carLights" : {
+                "type" : "node",
+                "children" : {
+                    "frontCarLight1" : {
+                        "type" : "noderef",
+                        "nodeId" : "frontCarLight1"
+                    },
+                    "frontCarLight2" : {
+                        "type" : "noderef",
+                        "nodeId" : "frontCarLight2"
+                    },
+                    "backCarLight" : {
+                        "type" : "noderef",
+                        "nodeId" : "backCarLight"
+                    }
+                }
+            },
+            "carWindow": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carWindow"
+                },
+                "children": {
+                    "unitPlane": {
+                        "type": "noderef",
+                        "nodeId": "unitPlane"
+                    }
+                }
+            },
+            "carWindow1":{
+                "type": "node",
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0.0, "y": 1.75, "z": 0.0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 2.5, "y": 1.5, "z": 0.8 }
+                    }
+                ],
+                "children": {
+                    "carWindow": {
+                        "type": "noderef",
+                        "nodeId": "carWindow"
+                    }
+                }
+            },
+            "carWindow2":{
+                "type": "node",
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": { "x": 1.5, "y": 1.75, "z": -1.5 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 0, "y": 90, "z": 0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 2.5, "y": 1.5, "z": 0.8 }
+                    }
+                    
+                ],
+                "children": {
+                    "carWindow": {
+                        "type": "noderef",
+                        "nodeId": "carWindow"
+                    }
+                }
+
+            },
+            "carWindow3":{
+                "type": "node",
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": { "x": -1.5, "y": 1.75, "z": -1.5 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 0, "y": 90, "z": 0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 2.5, "y": 1.5, "z": 0.8 }
+                    }
+                    
+                ],
+                "children": {
+                    "carWindow": {
+                        "type": "noderef",
+                        "nodeId": "carWindow"
+                    }
+                }
+            },
+            "carWindow4":{
+                "type": "node",
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0.0, "y": 1.75, "z": -3.0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 2.5, "y": 1.5, "z": 0.8 }
+                    }
+                ],
+                "children": {
+                    "carWindow": {
+                        "type": "noderef",
+                        "nodeId": "carWindow"
+                    }
+                }
+            },
+            "carWindows":{
+                "type": "node",
+                "children": {
+                    "carWindow1": {
+                        "type": "noderef",
+                        "nodeId": "carWindow1"
+                    },
+                    "carWindow2": {
+                        "type": "noderef",
+                        "nodeId": "carWindow2"
+                    },
+                    "carWindow3": {
+                        "type": "noderef",
+                        "nodeId": "carWindow3"
+                    },
+                    "carWindow4": {
+                        "type": "noderef",
+                        "nodeId": "carWindow4"
+                    }
+                }
+            },
             "carBezels": {
                 "type": "node",
                 "transforms": [],
@@ -778,6 +1097,78 @@
                     }
                 }
             },
+            "licensePlate":{
+                "type": "node", 
+                "materialref": {
+                    "materialId": "licensePlate"
+                },
+                "children": {
+                    "unitPlane": {
+                        "type": "noderef",
+                        "nodeId": "unitPlane"
+                    }
+                }
+            },
+            "frontLicensePlate":{
+                "type": "node",
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0.0, "y": -0.5, "z": 3.01 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 0, "y": 180, "z": 0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 1.0, "y": 0.5, "z": 1.0 }
+                    }
+                ],
+                "children": {
+                    "licensePlate": {
+                        "type": "noderef",
+                        "nodeId": "licensePlate"
+                    }
+                }
+            },
+            "backLicensePlate":{
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0.0, "y": -0.25, "z": -3.01 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 0, "y": 180, "z": 0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 1.0, "y": 0.5, "z": 1.0 }
+                    }
+                ],
+                "children": {
+                    "licensePlate": {
+                        "type": "noderef",
+                        "nodeId": "licensePlate"
+                    }
+                }
+            },
+            "licensePlates":
+            {
+                "type": "node",
+                "children": {
+                    "frontLicensePlate": {
+                        "type": "noderef",
+                        "nodeId": "frontLicensePlate"
+                    },
+                    "backLicensePlate": {
+                        "type": "noderef",
+                        "nodeId": "backLicensePlate"
+                    }
+                }
+            },
             "carBody": {
                 "type": "node",
                 "transforms": [],
@@ -801,6 +1192,10 @@
                         "type": "noderef",
                         "nodeId": "carFront"
                     },
+                    "carMiddle": {
+                        "type": "noderef",
+                        "nodeId": "carFront"
+                    },
                     "carBack": {
                         "type": "noderef",
                         "nodeId": "carBack"
@@ -812,6 +1207,19 @@
                     "carBezels": {
                         "type": "noderef",
                         "nodeId": "carBezels"
+                    },
+                    "carLights":{
+                        "type" : "noderef",
+                        "nodeId" : "carLights"
+                    },
+                    "licensePlates":
+                    {
+                        "type": "noderef",
+                        "nodeId": "licensePlates"
+                    },
+                    "carWindows": {
+                        "type": "noderef",
+                        "nodeId": "carWindows"
                     }
                 }
             },
