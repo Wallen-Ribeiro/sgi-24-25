@@ -30,14 +30,17 @@ class MyContents {
             this.app.scene.add(this.axis)
         }
 
+        // ambient light
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        this.app.scene.add(ambientLight);
+
         // light point
         const light = new THREE.PointLight(0xffffff, 50);
         const pointLightHelper = new THREE.PointLightHelper(light);
         light.position.set(2, 3, 2);
         this.app.scene.add(light);
         this.app.scene.add(pointLightHelper);
-        
-        //this.buildSkyBox();
+
         //this.buildCar();
 
         console.log(this.app.scene.toJSON())
@@ -67,7 +70,7 @@ class MyContents {
         //this.printYASF(data)
         console.log(data);
         this.app.scene.add(data.scene);
-        this.app.scene.add(data.skybox);
+        //this.app.scene.add(data.skybox);
         this.app.scene.add(data.ambientLight);
         //this.addCameras(data.cameras, data.activeCamera);
     }
@@ -86,9 +89,9 @@ class MyContents {
         this.carLength = 6;
         this.carWidth = 3;
         this.carHeight = 3;
-        this.carHoodLength = this.carLength/2;
+        this.carHoodLength = this.carLength / 2;
         this.carRoofLength = this.carLength - this.carHoodLength;
-        this.carBezelWidth = 1/4;
+        this.carBezelWidth = 1 / 4;
         // red color
         this.carBodyColor = 0x8f0000;
         this.carBodySpecular = 0xffffff;
@@ -106,13 +109,13 @@ class MyContents {
         this.app.scene.add(carGroup);
         carGroup.position.set(0, 0, 0);
 
-        const carSideGeometry = new THREE.PlaneGeometry(this.carLength, this.carHeight/2);
-        const carFrontGeometry = new THREE.PlaneGeometry(this.carWidth, this.carHeight/2);
+        const carSideGeometry = new THREE.PlaneGeometry(this.carLength, this.carHeight / 2);
+        const carFrontGeometry = new THREE.PlaneGeometry(this.carWidth, this.carHeight / 2);
         const carHoodGeometry = new THREE.PlaneGeometry(this.carWidth, this.carHoodLength);
         const carRoofGeometry = new THREE.PlaneGeometry(this.carWidth, this.carRoofLength);
-        const carBezelGeometry = new THREE.PlaneGeometry(this.carBezelWidth, this.carHeight/2);
+        const carBezelGeometry = new THREE.PlaneGeometry(this.carBezelWidth, this.carHeight / 2);
 
-        const materialParameters = {color: this.carBodyColor, specular: this.carBodySpecular, side: THREE.DoubleSide};
+        const materialParameters = { color: this.carBodyColor, specular: this.carBodySpecular, side: THREE.DoubleSide };
         const carMaterial = new THREE.MeshPhongMaterial(materialParameters);
 
         const carSideMeshRight = new THREE.Mesh(carSideGeometry, carMaterial);
@@ -126,29 +129,29 @@ class MyContents {
             carBezelMeshes.push(new THREE.Mesh(carBezelGeometry, carMaterial));
         }
 
-        carSideMeshRight.rotateY(Math.PI/2);
-        carSideMeshRight.position.set(this.carWidth/2, 0, 0);
-        carSideMeshLeft.rotateY(Math.PI/2);
-        carSideMeshLeft.position.set(-this.carWidth/2, 0, 0);
-        carFrontMesh.position.set(0, 0, this.carLength/2);
-        carBackMesh.position.set(0, 0, -this.carLength/2);
-        carHoodMesh.rotateX(Math.PI/2);
-        carHoodMesh.position.set(0, this.carHeight/4, this.carLength/2 - this.carHoodLength/2);
-        carRoofMesh.rotateX(Math.PI/2);
-        carRoofMesh.position.set(0, 3 * this.carHeight/4, -this.carRoofLength/2);
-        carBezelMeshes[0].position.set(this.carWidth/2 - this.carBezelWidth/2, this.carHeight/2, 0);
-        carBezelMeshes[1].position.set(-this.carWidth/2 + this.carBezelWidth/2, this.carHeight/2, 0);
-        carBezelMeshes[2].position.set(this.carWidth/2 - this.carBezelWidth/2, this.carHeight/2, -this.carLength/2);
-        carBezelMeshes[3].position.set(-this.carWidth/2 + this.carBezelWidth/2, this.carHeight/2, -this.carLength/2);
-        carBezelMeshes[4].rotateY(Math.PI/2);
-        carBezelMeshes[4].position.set(this.carWidth/2, this.carHeight/2, -this.carBezelWidth/2);
-        carBezelMeshes[5].rotateY(Math.PI/2);
-        carBezelMeshes[5].position.set(-this.carWidth/2, this.carHeight/2, -this.carBezelWidth/2);
-        carBezelMeshes[6].rotateY(Math.PI/2);
-        carBezelMeshes[6].position.set(this.carWidth/2, this.carHeight/2, -this.carLength/2 + this.carBezelWidth/2);
-        carBezelMeshes[7].rotateY(Math.PI/2);
-        carBezelMeshes[7].position.set(-this.carWidth/2, this.carHeight/2, -this.carLength/2 + this.carBezelWidth/2);
-        
+        carSideMeshRight.rotateY(Math.PI / 2);
+        carSideMeshRight.position.set(this.carWidth / 2, 0, 0);
+        carSideMeshLeft.rotateY(Math.PI / 2);
+        carSideMeshLeft.position.set(-this.carWidth / 2, 0, 0);
+        carFrontMesh.position.set(0, 0, this.carLength / 2);
+        carBackMesh.position.set(0, 0, -this.carLength / 2);
+        carHoodMesh.rotateX(Math.PI / 2);
+        carHoodMesh.position.set(0, this.carHeight / 4, this.carLength / 2 - this.carHoodLength / 2);
+        carRoofMesh.rotateX(Math.PI / 2);
+        carRoofMesh.position.set(0, 3 * this.carHeight / 4, -this.carRoofLength / 2);
+        carBezelMeshes[0].position.set(this.carWidth / 2 - this.carBezelWidth / 2, this.carHeight / 2, 0);
+        carBezelMeshes[1].position.set(-this.carWidth / 2 + this.carBezelWidth / 2, this.carHeight / 2, 0);
+        carBezelMeshes[2].position.set(this.carWidth / 2 - this.carBezelWidth / 2, this.carHeight / 2, -this.carLength / 2);
+        carBezelMeshes[3].position.set(-this.carWidth / 2 + this.carBezelWidth / 2, this.carHeight / 2, -this.carLength / 2);
+        carBezelMeshes[4].rotateY(Math.PI / 2);
+        carBezelMeshes[4].position.set(this.carWidth / 2, this.carHeight / 2, -this.carBezelWidth / 2);
+        carBezelMeshes[5].rotateY(Math.PI / 2);
+        carBezelMeshes[5].position.set(-this.carWidth / 2, this.carHeight / 2, -this.carBezelWidth / 2);
+        carBezelMeshes[6].rotateY(Math.PI / 2);
+        carBezelMeshes[6].position.set(this.carWidth / 2, this.carHeight / 2, -this.carLength / 2 + this.carBezelWidth / 2);
+        carBezelMeshes[7].rotateY(Math.PI / 2);
+        carBezelMeshes[7].position.set(-this.carWidth / 2, this.carHeight / 2, -this.carLength / 2 + this.carBezelWidth / 2);
+
         carGroup.add(carSideMeshRight);
         carGroup.add(carSideMeshLeft);
         carGroup.add(carFrontMesh);
@@ -162,14 +165,14 @@ class MyContents {
         const carBottomGroup = new THREE.Group();
         this.app.scene.add(carBottomGroup);
 
-        const wheelRadius = this.carHeight/4;
-        const wheelThickness = this.carHeight/8;
+        const wheelRadius = this.carHeight / 4;
+        const wheelThickness = this.carHeight / 8;
 
         const wheelGeometry = new THREE.CylinderGeometry(wheelRadius, wheelRadius, wheelThickness, 32);
         const carBottomGeometry = new THREE.PlaneGeometry(this.carWidth, this.carLength);
 
-        const materialParameters = {color: this.carWheelColor};
-        const materialParameters2 = {color: this.carBottomColor, side: THREE.DoubleSide};
+        const materialParameters = { color: this.carWheelColor };
+        const materialParameters2 = { color: this.carBottomColor, side: THREE.DoubleSide };
         const wheelMaterial = new THREE.MeshPhongMaterial(materialParameters);
         const carBottomMaterial = new THREE.MeshPhongMaterial(materialParameters2);
 
@@ -177,22 +180,22 @@ class MyContents {
         const wheelMeshes = [];
         for (let i = 0; i < 4; i++) {
             wheelMeshes.push(new THREE.Mesh(wheelGeometry, wheelMaterial));
-            wheelMeshes[i].rotateZ(Math.PI/2);
+            wheelMeshes[i].rotateZ(Math.PI / 2);
         }
 
-        carBottomMesh.rotateX(Math.PI/2);
-        carBottomMesh.position.set(0, -this.carHeight/4, 0);
+        carBottomMesh.rotateX(Math.PI / 2);
+        carBottomMesh.position.set(0, -this.carHeight / 4, 0);
 
         const extrudingPercentage = 0.2;
-        const wheelWidth =  this.carWidth /2 - wheelThickness * extrudingPercentage;
-        const wheelOffset = this.carLength/2 - wheelRadius - 0.1
-        wheelMeshes[0].position.set(wheelWidth, -this.carHeight/4, wheelOffset);
+        const wheelWidth = this.carWidth / 2 - wheelThickness * extrudingPercentage;
+        const wheelOffset = this.carLength / 2 - wheelRadius - 0.1
+        wheelMeshes[0].position.set(wheelWidth, -this.carHeight / 4, wheelOffset);
         //console.log(wheelWidth, -this.carHeight/4, wheelOffset);
-        wheelMeshes[1].position.set(-wheelWidth, -this.carHeight/4, wheelOffset);
+        wheelMeshes[1].position.set(-wheelWidth, -this.carHeight / 4, wheelOffset);
         //console.log(-wheelWidth, -this.carHeight/4, wheelOffset);
-        wheelMeshes[2].position.set(wheelWidth, -this.carHeight/4, -wheelOffset);
+        wheelMeshes[2].position.set(wheelWidth, -this.carHeight / 4, -wheelOffset);
         //console.log(wheelWidth, -this.carHeight/4, -wheelOffset);
-        wheelMeshes[3].position.set(-wheelWidth, -this.carHeight/4, -wheelOffset);
+        wheelMeshes[3].position.set(-wheelWidth, -this.carHeight / 4, -wheelOffset);
         //console.log(-wheelWidth, -this.carHeight/4, -wheelOffset);
 
         carBottomGroup.add(carBottomMesh);
@@ -203,20 +206,20 @@ class MyContents {
         const skyBoxGeometry = new THREE.BoxGeometry(500, 500, 500);
         const textureLoader = new THREE.TextureLoader();
         const skyBoxTextures = [
-            textureLoader.load('scenes/textures/px.png'),
-            textureLoader.load('scenes/textures/nx.png'),
-            textureLoader.load('scenes/textures/py.png'),
-            textureLoader.load('scenes/textures/ny.png'),
-            textureLoader.load('scenes/textures/pz.png'),
-            textureLoader.load('scenes/textures/nz.png')
+            textureLoader.load('scenes/car/textures/px.png'),
+            textureLoader.load('scenes/car/textures/nx.png'),
+            textureLoader.load('scenes/car/textures/py.png'),
+            textureLoader.load('scenes/car/textures/ny.png'),
+            textureLoader.load('scenes/car/textures/pz.png'),
+            textureLoader.load('scenes/car/textures/nz.png')
         ];
         const skyBoxMaterials = [
-            new THREE.MeshBasicMaterial({map: skyBoxTextures[0], side: THREE.BackSide}),
-            new THREE.MeshBasicMaterial({map: skyBoxTextures[1], side: THREE.BackSide}),
-            new THREE.MeshBasicMaterial({map: skyBoxTextures[2], side: THREE.BackSide}),
-            new THREE.MeshBasicMaterial({map: skyBoxTextures[3], side: THREE.BackSide}),
-            new THREE.MeshBasicMaterial({map: skyBoxTextures[4], side: THREE.BackSide}),
-            new THREE.MeshBasicMaterial({map: skyBoxTextures[5], side: THREE.BackSide})
+            new THREE.MeshBasicMaterial({ map: skyBoxTextures[0], side: THREE.BackSide }),
+            new THREE.MeshBasicMaterial({ map: skyBoxTextures[1], side: THREE.BackSide }),
+            new THREE.MeshBasicMaterial({ map: skyBoxTextures[2], side: THREE.BackSide }),
+            new THREE.MeshBasicMaterial({ map: skyBoxTextures[3], side: THREE.BackSide }),
+            new THREE.MeshBasicMaterial({ map: skyBoxTextures[4], side: THREE.BackSide }),
+            new THREE.MeshBasicMaterial({ map: skyBoxTextures[5], side: THREE.BackSide })
         ];
 
         const skyBox = new THREE.Mesh(skyBoxGeometry, skyBoxMaterials);

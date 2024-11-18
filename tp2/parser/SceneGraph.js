@@ -141,116 +141,26 @@ class SceneGraph {
     }
 
     parseGraph(graph) {
+        this.graph = graph;
         const rootId = graph['rootid']
         delete graph['rootid'];
+        graph[rootId]['id'] = rootId;
 
         this.nodes = {};
-        this.modified = true;
-        // while (this.modified) {
-        //     this.modified = false;
-        //     Object.keys(graph).forEach((nodeId) => {
-        //         this.visitNode(graph[nodeId], nodeId);
-        //     });
-        // }
-            Object.keys(graph).forEach((nodeId) => {
-                this.visitNode(graph[nodeId], nodeId);
-            });
 
-        this.scene = this.nodes[rootId];
-
-        this.applyMaterial(this.scene);
+        this.scene = this.buildNode(graph[rootId]);
 
         return this.nodes[rootId];
 
     }
 
-
-    visitNode(node, nodeId) {
-        let visited = node['visited'] ?? false;
-
-        if (visited) {
-            return null;
+    createPrimitive(node, materialref) {
+        let material = null;
+        if (materialref && this.materials[materialref]) {
+            material = this.materials[materialref];
+        } else {
+            material = new THREE.MeshPhongMaterial({ color: 0x00ff00, side: THREE.DoubleSide });
         }
-
-        const type = node['type'];
-
-        switch (type) {
-            case 'node':
-                const group = new THREE.Group();
-                visited = true;
-                const children = node['children'];
-                const materialRef = node['materialref'];
-
-                Object.keys(children).forEach((childId) => {
-                    const childNode = this.visitNode(children[childId], childId);
-                    if (childNode) {
-                        group.add(childNode);
-                    } else {
-                        visited = false;
-                        return;
-                    }
-                });
-
-                if (visited) {
-                    this.nodes[nodeId] = group;
-                    group.name = nodeId;
-                    if (materialRef) {
-                        group.material = this.materials[materialRef['materialId']];
-                    }
-                    this.modified = true;
-                    node['visited'] = true;
-
-                    const castShadow = this.nodes[nodeId]['castShadow'];
-                    const receiveShadow = this.nodes[nodeId]['receiveShadow'];
-
-                    this.nodes[nodeId].castShadow = castShadow ?? false;
-                    this.nodes[nodeId].receiveShadow = receiveShadow ?? false;
-
-
-                    const tranformationsArray = node['transforms'];
-                    
-                    tranformationsArray?.forEach((transformation) => {
-                        const transformation_type = transformation['type'];
-                        if (transformation_type === "translate") {
-                            this.nodes[nodeId].translateX(transformation["amount"]["x"]);
-                            this.nodes[nodeId].translateY(transformation["amount"]["y"]);
-                            this.nodes[nodeId].translateZ(transformation["amount"]["z"]);
-                        } else if (transformation_type === "rotate") {
-                            this.nodes[nodeId].rotateX(this.degreeToRad(transformation["amount"]["x"]))
-                            this.nodes[nodeId].rotateY(this.degreeToRad(transformation["amount"]["y"]));
-                            this.nodes[nodeId].rotateZ(this.degreeToRad(transformation["amount"]["z"]));
-                        } else if (transformation_type === "scale") {
-                            this.nodes[nodeId].scale.set(transformation["amount"]["x"],
-                                transformation["amount"]["y"], transformation["amount"]["z"]);
-                        }
-                    });
-
-                    return group;
-                }
-
-                return null;
-
-            case 'noderef':
-                if (this.nodes[nodeId]) {
-                    const clone = this.nodes[nodeId].clone();
-                    clone.material = this.nodes[nodeId].material;
-                    if (node['materialref']) {
-                        clone.material = this.materials[node['materialref']];
-                    }
-                    return clone;
-                }
-                //this.modified = true;
-                return null;
-            default:
-                //this.modified = true;
-                return this.createPrimitive(node, nodeId);
-        }
-    }
-
-
-    createPrimitive(node, nodeId) {
-        const material = this.materials[node['materialref']];
-        // const material = this.materials['floorApp'];
         switch (node['type']) {
             case 'rectangle':
                 return PrimitiveFactory.createRectangleFromYASF(node, material);
@@ -273,8 +183,7 @@ class SceneGraph {
             case 'directionallight':
                 return PrimitiveFactory.createDirectionalLightFromYASF(node);
             default:
-                //console.error('Unknown primitive type: ' + node['type'] + ' for node ' + nodeId);
-                console.error(node);
+                console.error('Unknown primitive type: ' + node['type'] + ' for node ' + nodeId);
                 return;
         }
     }
@@ -284,18 +193,94 @@ class SceneGraph {
         return rad;
     }
 
-    applyMaterial(node, material = null) {
-        if (node.isMesh && material) {
-            node.material = material;
-        } else if (node.material) {
-            material = node.material;
-        } else if (material) {
-            node.material = material;
-        }
-        for (let i = 0; i < node.children.length; i++) {
-            this.applyMaterial(node.children[i], material);
-        }
+    buildNodeRef(nodeId, materialRef = null) {
+        let node = null;
+
+        Object.keys(this.graph).forEach((graphChildId) => {
+            if (graphChildId === nodeId) {
+                this.graph[graphChildId]['id'] = graphChildId;
+                node = this.buildNode(this.graph[graphChildId], materialRef);
+            }
+        });
+
+        return node;
     }
+
+    buildNode(node, materialRef = null) {
+        const type = node['type'];
+
+        if (type !== 'node') {
+            console.error('Reference to a non-node type');
+            return null;
+        }
+
+        const group = new THREE.Group();
+        group.name = node['id'];
+        const children = node['children'];
+        if (node['materialref']) {
+            materialRef = node['materialref']['materialId'];
+        }
+
+        Object.keys(children).forEach((childId) => {
+            const child = children[childId];
+            child['id'] = childId;
+            const childType = child['type'];
+
+            if (childType === 'node') {
+                console.error('Node cannot be a child of another node');
+                return null;
+            }
+
+            switch (childType) {
+                case 'noderef':
+                    // if (this.nodes[childId]) {
+                    //     const clone = this.nodes[childId].clone();
+                    //     group.add(clone);
+                    // } else {
+                    const newRef = this.buildNodeRef(childId, materialRef);
+                    if (!newRef) {
+                        console.error('Couldn\'t build reference to node ' + childId);
+                        return null;
+                    }
+                    group.add(newRef);
+                    // }
+                    break;
+                default:
+                    const primitive = this.createPrimitive(child, materialRef);
+                    if (!primitive) {
+                        return null;
+                    }
+                    group.add(primitive);
+                    break;
+            };
+        });
+
+        const castShadow = node['castShadow'];
+        const receiveShadow = node['receiveShadow'];
+
+        group.castShadow = castShadow ?? false;
+        group.receiveShadow = receiveShadow ?? false;
+
+        const tranformationsArray = node['transforms'];
+        tranformationsArray?.forEach((transformation) => {
+            const transformation_type = transformation['type'];
+            if (transformation_type === "translate") {
+                group.translateX(transformation["amount"]["x"]);
+                group.translateY(transformation["amount"]["y"]);
+                group.translateZ(transformation["amount"]["z"]);
+            } else if (transformation_type === "rotate") {
+                group.rotateX(this.degreeToRad(transformation["amount"]["x"]))
+                group.rotateY(this.degreeToRad(transformation["amount"]["y"]));
+                group.rotateZ(this.degreeToRad(transformation["amount"]["z"]));
+            } else if (transformation_type === "scale") {
+                group.scale.set(transformation["amount"]["x"], transformation["amount"]["y"], transformation["amount"]["z"]);
+            }
+        });
+
+        this.nodes[node['id']] = group;
+        return group;
+    }
+
 }
 
 export { SceneGraph };
