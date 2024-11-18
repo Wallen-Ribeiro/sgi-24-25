@@ -43,8 +43,6 @@ class MyContents {
 
         //this.buildSkyBox();
         //this.buildCar();
-
-        console.log(this.app.scene.toJSON())
     }
 
     /**
@@ -68,10 +66,8 @@ class MyContents {
     }
 
     onAfterSceneLoadedAndBeforeRender(data) {
-        //this.printYASF(data)
-        console.log(data);
         this.app.scene.add(data.scene);
-        //this.app.scene.add(data.skybox);
+        this.app.scene.add(data.skybox);
         this.app.scene.add(data.ambientLight);
         //this.addCameras(data.cameras, data.activeCamera);
     }
@@ -250,6 +246,7 @@ class MyContents {
         ];
 
         const skyBox = new THREE.Mesh(skyBoxGeometry, skyBoxMaterials);
+        console.log(skyBox);
         this.app.scene.add(skyBox);
     }
 

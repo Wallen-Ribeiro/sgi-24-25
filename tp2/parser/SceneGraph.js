@@ -108,7 +108,7 @@ class SceneGraph {
     }
 
     parseSkyBox(skybox) {
-        this.geometry = new THREE.BoxGeometry(skybox['size']['x'], skybox['size']['y'], skybox['size']['z']);
+        const geometry = new THREE.BoxGeometry(skybox['size']['x'], skybox['size']['y'], skybox['size']['z']);
 
         const ft = new THREE.TextureLoader().load(skybox['front']);
         const bk = new THREE.TextureLoader().load(skybox['back']);
@@ -117,17 +117,16 @@ class SceneGraph {
         const rt = new THREE.TextureLoader().load(skybox['right']);
         const lf = new THREE.TextureLoader().load(skybox['left']);
 
-        const emissiveColor = new THREE.Color(skybox['emissive']['r'], skybox['emissive']['g'], skybox['emissive']['b']);
-        const emissiveIntensity = skybox['intensity'];
-        const emissiveHex = emissiveColor.getHex();
+        const eColor = new THREE.Color(skybox['emissive']['r'], skybox['emissive']['g'], skybox['emissive']['b']).getHex();
+        const eIntensity = skybox['intensity'];
 
         const materials = [
-            new THREE.MeshPhongMaterial({ map: rt, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
-            new THREE.MeshPhongMaterial({ map: lf, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
-            new THREE.MeshPhongMaterial({ map: up, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
-            new THREE.MeshPhongMaterial({ map: dn, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
-            new THREE.MeshPhongMaterial({ map: ft, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
-            new THREE.MeshPhongMaterial({ map: bk, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity })
+            new THREE.MeshLambertMaterial({ map: rt, side: THREE.BackSide, emissive: eColor, emissiveIntensity: eIntensity }),
+            new THREE.MeshLambertMaterial({ map: lf, side: THREE.BackSide, emissive: eColor, emissiveIntensity: eIntensity }),
+            new THREE.MeshLambertMaterial({ map: up, side: THREE.BackSide, emissive: eColor, emissiveIntensity: eIntensity }),
+            new THREE.MeshLambertMaterial({ map: dn, side: THREE.BackSide, emissive: eColor, emissiveIntensity: eIntensity }),
+            new THREE.MeshLambertMaterial({ map: ft, side: THREE.BackSide, emissive: eColor, emissiveIntensity: eIntensity }),
+            new THREE.MeshLambertMaterial({ map: bk, side: THREE.BackSide, emissive: eColor, emissiveIntensity: eIntensity })
         ];
 
         // materials.forEach(material => {
@@ -135,8 +134,8 @@ class SceneGraph {
         //     material.emissiveIntensity = skybox['intensity'];
         // });
 
-        this.skybox = new THREE.Mesh(this.geometry, materials);
-        this.skybox.position.set(new THREE.Vector3(skybox['center']['x'], skybox['center']['y'], skybox['center']['z']));
+        this.skybox = new THREE.Mesh(geometry, materials);
+        this.skybox.position.set(skybox['center']['x'], skybox['center']['y'], skybox['center']['z']);
 
     }
 
