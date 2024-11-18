@@ -53,7 +53,7 @@
                 "filepath": "scenes/car/textures/car_bottom.png"
             },
             "carChairTex": {
-                "filepath": "scenes/car/textures/car_chair.jpg"
+                "filepath": "scenes/car/textures/car_chair.png"
             }
         },
         "materials": {
@@ -175,14 +175,14 @@
             },
             "carChair": {
                 "color": {
-                    "r": 0.0,
-                    "g": 0.0,
-                    "b": 0.0
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
                 },
                 "specular": {
-                    "r": 0.0,
-                    "g": 0.0,
-                    "b": 0.0
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
                 },
                 "shininess": 10,
                 "emissive": {
@@ -1169,6 +1169,45 @@
                     }
                 }
             },
+            "carChair": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carChair"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -1.0,
+                            "z": -2.8
+                        }
+                    }
+                ],
+                "children": {
+                    "boxPrim" : {
+                        "type": "box",
+                        
+                        "xyz1": { "x": -1.25, "y": 0.5, "z": 0 }, 
+                        "xyz2": { "x": 1.25, "y": 3, "z": 0.5 } 
+                    },
+                    "boxPrim2" : {
+                        "type": "box",
+                        
+                        "xyz1": { "x": -1.25, "y": 0.5, "z": 0 }, 
+                        "xyz2": { "x": 1.25, "y": 1, "z": 2.5 } 
+                    }
+                }
+            },
+            "carInterior": {
+                "type": "node",
+                "children": {
+                    "carChair": {
+                        "type": "noderef",
+                        "nodeId": "carChair"
+                    }
+                }
+            },
             "carBody": {
                 "type": "node",
                 "transforms": [],
@@ -1220,6 +1259,10 @@
                     "carWindows": {
                         "type": "noderef",
                         "nodeId": "carWindows"
+                    },
+                    "carInterior": {
+                        "type": "noderef",
+                        "nodeId": "carInterior"
                     }
                 }
             },
