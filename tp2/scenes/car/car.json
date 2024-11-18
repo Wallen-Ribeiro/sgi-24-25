@@ -37,12 +37,12 @@
                     "b": 0.0
                 },
                 "intensity": 1.0,
-                "front": "scenes/car/textures/pz.png",
-                "back": "scenes/car/textures/nz.png",
-                "left": "scenes/car/textures/nx.png",
-                "right": "scenes/car/textures/px.png",
-                "up": "scenes/car/textures/py.png",
-                "down": "scenes/car/textures/ny.png"
+                "front": "scenes/car/textures/pz.jpg",
+                "back": "scenes/car/textures/nz.jpg",
+                "left": "scenes/car/textures/nx.jpg",
+                "right": "scenes/car/textures/px.jpg",
+                "up": "scenes/car/textures/py.jpg",
+                "down": "scenes/car/textures/ny.jpg"
             }
         },
         "textures": {
@@ -50,10 +50,10 @@
                 "filepath": "scenes/car/textures/license_plate.jpg"
             },
             "carBottomTex": {
-                "filepath": "scenes/car/textures/car_bottom.png"
+                "filepath": "scenes/car/textures/car_bottom.jpg"
             },
             "carChairTex": {
-                "filepath": "scenes/car/textures/car_chair.png"
+                "filepath": "scenes/car/textures/car_chair.jpg"
             }
         },
         "materials": {
