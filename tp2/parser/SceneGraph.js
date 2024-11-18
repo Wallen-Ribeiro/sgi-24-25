@@ -10,22 +10,25 @@ class SceneGraph {
 
     parse(data) {
         const yasf = data['yasf'];
-        this.parseGlobals(yasf['globals'], yasf['fog']); // globals, fog and skybox
+        this.parseGlobals(yasf['globals']); // globals, fog and skybox
         this.parseCameras(yasf['cameras']);
         this.parseTextures(yasf['textures']);
         this.parseMaterials(yasf['materials']);
-        //this.parseSkyBox(yasf['skybox'])
         this.parseGraph(yasf['graph']);
     }
 
-    parseGlobals(globals, fog) {
+    parseGlobals(globals) {
         const background = globals['background'];
         this.backgroundColor = new THREE.Color(background['r'], background['g'], background['b']);
 
         const ambient = globals['ambient'];
         this.ambientLight = new THREE.AmbientLight(new THREE.Color(ambient['r'], ambient['g'], ambient['b']), ambient['intensity']);
 
+        const fog = globals['fog'];
         this.fog = new THREE.Fog(fog['color']['r'], fog['color']['g'], fog['color']['b'], fog['near'], fog['far']);
+
+        const skybox = globals['skybox'];
+        this.parseSkyBox(skybox);
     }
 
     parseCameras(cameras) {
@@ -105,7 +108,7 @@ class SceneGraph {
     }
 
     parseSkyBox(skybox) {
-        this.geometry = new THREE.BoxGeometry(skybox['size'], skybox['size'], skybox['size']);
+        this.geometry = new THREE.BoxGeometry(skybox['size']['x'], skybox['size']['y'], skybox['size']['z']);
 
         const ft = new THREE.TextureLoader().load(skybox['front']);
         const bk = new THREE.TextureLoader().load(skybox['back']);
@@ -114,20 +117,23 @@ class SceneGraph {
         const rt = new THREE.TextureLoader().load(skybox['right']);
         const lf = new THREE.TextureLoader().load(skybox['left']);
 
+        const emissiveColor = new THREE.Color(skybox['emissive']['r'], skybox['emissive']['g'], skybox['emissive']['b']);
+        const emissiveIntensity = skybox['intensity'];
+        const emissiveHex = emissiveColor.getHex();
 
         const materials = [
-            new THREE.MeshBasicMaterial({ map: rt, side: THREE.BackSide }),
-            new THREE.MeshBasicMaterial({ map: lf, side: THREE.BackSide }),
-            new THREE.MeshBasicMaterial({ map: up, side: THREE.BackSide }),
-            new THREE.MeshBasicMaterial({ map: dn, side: THREE.BackSide }),
-            new THREE.MeshBasicMaterial({ map: ft, side: THREE.BackSide }),
-            new THREE.MeshBasicMaterial({ map: bk, side: THREE.BackSide })
+            new THREE.MeshPhongMaterial({ map: rt, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
+            new THREE.MeshPhongMaterial({ map: lf, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
+            new THREE.MeshPhongMaterial({ map: up, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
+            new THREE.MeshPhongMaterial({ map: dn, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
+            new THREE.MeshPhongMaterial({ map: ft, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity }),
+            new THREE.MeshPhongMaterial({ map: bk, side: THREE.BackSide, emissive: emissiveHex, emissiveIntensity: emissiveIntensity })
         ];
 
-        materials.forEach(material => {
-            material.emissive = new THREE.Color(skybox['emissive']['r'], skybox['emissive']['g'], skybox['emissive']['b']);
-            material.emissiveIntensity = skybox['emissive']['intensity'];
-        });
+        // materials.forEach(material => {
+        //     material.emissive = new THREE.Color(skybox['emissive']['r'], skybox['emissive']['g'], skybox['emissive']['b']);
+        //     material.emissiveIntensity = skybox['intensity'];
+        // });
 
         this.skybox = new THREE.Mesh(this.geometry, materials);
         this.skybox.position.set(new THREE.Vector3(skybox['center']['x'], skybox['center']['y'], skybox['center']['z']));
@@ -140,14 +146,16 @@ class SceneGraph {
 
         this.nodes = {};
         this.modified = true;
-        while (this.modified) {
-            this.modified = false;
+        // while (this.modified) {
+        //     this.modified = false;
+        //     Object.keys(graph).forEach((nodeId) => {
+        //         this.visitNode(graph[nodeId], nodeId);
+        //     });
+        // }
             Object.keys(graph).forEach((nodeId) => {
                 this.visitNode(graph[nodeId], nodeId);
             });
-        }
 
-        console.log(this.nodes);
         this.scene = this.nodes[rootId];
 
         this.applyMaterial(this.scene);
@@ -200,7 +208,7 @@ class SceneGraph {
 
 
                     const tranformationsArray = node['transforms'];
-
+                    
                     tranformationsArray?.forEach((transformation) => {
                         const transformation_type = transformation['type'];
                         if (transformation_type === "translate") {
@@ -224,7 +232,6 @@ class SceneGraph {
 
             case 'noderef':
                 if (this.nodes[nodeId]) {
-                    this.modified = true;
                     const clone = this.nodes[nodeId].clone();
                     clone.material = this.nodes[nodeId].material;
                     if (node['materialref']) {
@@ -232,9 +239,10 @@ class SceneGraph {
                     }
                     return clone;
                 }
+                //this.modified = true;
                 return null;
             default:
-                this.modified = true;
+                //this.modified = true;
                 return this.createPrimitive(node, nodeId);
         }
     }
@@ -265,7 +273,8 @@ class SceneGraph {
             case 'directionallight':
                 return PrimitiveFactory.createDirectionalLightFromYASF(node);
             default:
-                console.error('Unknown primitive type: ' + node['type']);
+                //console.error('Unknown primitive type: ' + node['type'] + ' for node ' + nodeId);
+                console.error(node);
                 return;
         }
     }

@@ -1,0 +1,630 @@
+{
+    "yasf": {
+        "globals": {
+            "background": { "r": 0.0, "g": 0.0, "b": 0.0 },
+            "ambient": { "r": 1.0, "g": 1.0, "b": 1.0 },
+            "fog": {
+                "color": { "r": 1.0, "g": 1.0, "b": 1.0 },
+                "near": 1.0,
+                "far": 100.0
+            },
+            "skybox": {
+                "size" : { "x" : 500, "y" : 500, "z" : 500 },
+                "center" : { "x" : 0, "y" : 0, "z" : 0 },
+                "emissive" : { "r" : 0.0, "g" : 0.0, "b" : 0.0 },
+                "intensity": 1.0,
+                "front": "scenes/car/textures/pz.png",
+                "back": "scenes/car/textures/nz.png",
+                "left": "scenes/car/textures/nx.png",
+                "right": "scenes/car/textures/px.png",
+                "up": "scenes/car/textures/py.png",
+                "down": "scenes/car/textures/ny.png"
+            }
+        },
+        "textures": {},
+        "materials": {
+            "carBody": {
+                "color": { "r": 0.8, "g": 0.0, "b": 0.0 },
+                "specular": { "r": 1.0, "g": 1.0, "b": 1.0 },
+                "shininess": 10,
+                "emissive": { "r": 0.0, "g": 0.0, "b": 0.0 },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "carBottom": {
+                "color": { "r": 0.4, "g": 0.4, "b": 0.4 },
+                "specular": { "r": 0.0, "g": 0.0, "b": 0.0 },
+                "shininess": 10,
+                "emissive": { "r": 0.0, "g": 0.0, "b": 0.0 },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "carWheel": {
+                "color": { "r": 0.0, "g": 0.0, "b": 0.0 },
+                "specular": { "r": 0.0, "g": 0.0, "b": 0.0 },
+                "shininess": 10,
+                "emissive": { "r": 0.0, "g": 0.0, "b": 0.0 },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            }
+        },
+        "cameras": {
+            "initial": "cam1",
+            "cam1": {
+                "type": "perspective",
+                "angle": 75,
+                "near": 0.1,
+                "far": 1000,
+                "location": { "x": 10, "y": 10, "z": 10 },
+                "target": { "x": 0, "y": 0, "z": 0 }
+            }
+        },
+        "graph": {
+            "rootid": "scene",
+            "unitPlane": {
+                "type": "node",
+                "children": {
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": { "x": -0.5, "y": -0.5 },
+                        "xy2": { "x": 0.5, "y": 0.5 }
+                    }
+
+                }
+            },
+            "carWheel":{
+                "type": "node",
+                "children": {
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "top": 0.75,
+                        "base": 0.75,
+                        "height": 0.375,
+                        "slices": 20,
+                        "stacks": 20,
+                        "cap": true
+                    }
+                }
+            },
+            "carWheel1": {
+                "type": "node",
+                "transforms" : [
+                    {
+                        "type" : "translate",
+                        "amount": {"x": -1.425, "y": -0.75, "z": 2.15}
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {"x": 90, "y": 0, "z": 90}
+                    }
+                ],
+                "children": {
+                    "carWheel": {
+                        "type" : "noderef",
+                        "nodeId": "carWheel"
+                    }
+                }
+            },
+            "carWheel2": {
+                "type": "node",
+                "transforms" : [
+                    {
+                        "type" : "translate",
+                        "amount": {"x": 1.425, "y": -0.75, "z": 2.15}
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {"x": 90, "y": 0, "z": 90}
+                    }
+                ],
+                "children": {
+                    "carWheel": {
+                        "type" : "noderef",
+                        "nodeId": "carWheel"
+                    }
+                }
+            },
+            "carWheel3": {
+                "type": "node",
+                "transforms" : [
+                    {
+                        "type" : "translate",
+                        "amount": {"x": 1.425, "y": -0.75, "z": -2.15}
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {"x": 90, "y": 0, "z": 90}
+                    }
+                ],
+                "children": {
+                    "carWheel": {
+                        "type" : "noderef",
+                        "nodeId": "carWheel"
+                    }
+                }
+
+            }, 
+            "carWheel4": {
+                "type": "node",
+                "transforms" : [
+                    {
+                        "type" : "translate",
+                        "amount": {"x": -1.425, "y": -0.75, "z": -2.15}
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {"x": 90, "y": 0, "z": 90}
+                    }
+                ],
+                "children": {
+                    "carWheel": {
+                        "type" : "noderef",
+                        "nodeId": "carWheel"
+                    }
+                }
+
+            },
+            "carFloor":{
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {"x": 0.0, "y": -1.0, "z": 0.0}
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {"x" : 90, "y" : 0, "z" : 0}
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {"x": 3.0, "y": 6.0, "z": 1.0}
+                    }
+
+                ],
+                "children": {
+                    "unitPlane" : {
+                        "type": "noderef",
+                        "nodeId": "unitPlane"
+                    }
+                } 
+            },
+            "carBottom": {
+                "type": "node",
+                "transforms": [],
+                "children": {
+                    "carWheel1": {
+                        "type": "noderef",
+                        "nodeId": "carWheel1"
+                    },
+                    "carWheel2": {
+                        "type": "noderef",
+                        "nodeId": "carWheel2"
+                    },
+                    "carWheel3": {
+                        "type": "noderef",
+                        "nodeId": "carWheel3"
+                    },
+                    "carWheel4": {
+                        "type": "noderef",
+                        "nodeId": "carWheel4"
+                    },
+                    "carFloor": {
+                        "type": "noderef",
+                        "nodeId": "carFloor"
+                    }
+                }
+            },
+            "carSide": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 0, "y": 90, "z": 0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 6, "y": 2, "z": 1 } 
+                    }
+                ],
+                "children": {
+                    "unitPlane" : {
+                        "type": "noderef",
+                        "nodeId": "unitPlane"
+                    }
+                }
+            },
+            "carLeft": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": -1.5, "y": 0.0, "z": 0.0 }
+                    }
+                ],
+                "children": {
+                    "carSide": {
+                        "type": "noderef",
+                        "nodeId": "carSide"
+                    }
+                }
+            },
+            "carRight": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 1.5, "y": 0.0, "z": 0.0 }
+                    }
+                ],
+                "children": {
+                    "carSide": {
+                        "type": "noderef",
+                        "nodeId": "carSide"
+                    }
+                }
+            },
+            "carEnd": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "scale",
+                        "amount": { "x": 3, "y": 2, "z": 1 }
+                    }
+                ],
+                "children": {
+                    "unitPlane": {
+                        "type": "noderef",
+                        "nodeId": "unitPlane"
+                    }
+                }
+            },
+            "carFront": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0.0, "y": 0.0, "z": 3.0 }
+                    }
+                ],
+                "children": {
+                    "carEnd": {
+                        "type": "noderef",
+                        "nodeId": "carEnd"
+                    }
+                }
+            },
+            "carBack": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0.0, "y": 0.0, "z": -3.0 }
+                    }
+                ],
+                "children": {
+                    "carEnd": {
+                        "type": "noderef",
+                        "nodeId": "carEnd"
+                    }
+                }
+            },
+            "carHood": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0.0, "y": 1.0, "z": 1.5 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 90, "y": 0, "z": 0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 3, "y": 3, "z": 1 }
+                    }
+                ],
+                "children": {
+                    "unitPlane": {
+                        "type": "noderef",
+                        "nodeId": "unitPlane"
+                    }
+                }
+            },
+            "carTop": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0.0, "y": 3.0, "z": -1.5 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 90, "y": 0, "z": 0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 3, "y": 3, "z": 1 }
+                    }
+                ],
+                "children": {
+                    "unitPlane": {
+                        "type": "noderef",
+                        "nodeId": "unitPlane"
+                    }
+                }
+            },
+            "carBezel": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 0, "y": 2, "z": 0 }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": { "x": 0.25, "y": 2, "z": 1 }
+                    }
+                ],
+                "children": {
+                    "unitPlane": {
+                        "type": "noderef",
+                        "nodeId": "unitPlane"
+                    }
+                }
+            },
+            "carBezel1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": -1.375, "y": 0.0, "z": 0.0 }
+                    }
+                ],
+                "children": {
+                    "carBezel": {
+                        "type": "noderef",
+                        "nodeId": "carBezel"
+                    }
+                }
+            },
+            "carBezel2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 1.375, "y": 0.0, "z": 0.0 }
+                    }
+                ],
+                "children": {
+                    "carBezel": {
+                        "type": "noderef",
+                        "nodeId": "carBezel"
+                    }
+                }
+            },
+            "carBezel3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 1.375, "y": 0.0, "z": -3.0 }
+                    }
+                ],
+                "children": {
+                    "carBezel": {
+                        "type": "noderef",
+                        "nodeId": "carBezel"
+                    }
+                }
+            },
+            "carBezel4": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": -1.375, "y": 0.0, "z": -3.0 }
+                    }
+                ],
+                "children": {
+                    "carBezel": {
+                        "type": "noderef",
+                        "nodeId": "carBezel"
+                    }
+                }
+            },
+            "carBezel5": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 1.5, "y": 0.0, "z": -0.125 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 0, "y": 90, "z": 0 }
+                    }
+                ],
+                "children": {
+                    "carBezel": {
+                        "type": "noderef",
+                        "nodeId": "carBezel"
+                    }
+                }
+            },
+            "carBezel6": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": 1.5, "y": 0.0, "z": -2.875 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 0, "y": 90, "z": 0 }
+                    }
+                ],
+                "children": {
+                    "carBezel": {
+                        "type": "noderef",
+                        "nodeId": "carBezel"
+                    }
+                }
+            },
+            "carBezel7": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": -1.5, "y": 0.0, "z": -0.125 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 0, "y": 90, "z": 0 }
+                    }
+                ],
+                "children": {
+                    "carBezel": {
+                        "type": "noderef",
+                        "nodeId": "carBezel"
+                    }
+                }
+            },
+            "carBezel8": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": { "x": -1.5, "y": 0.0, "z": -2.875 }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": { "x": 0, "y": 90, "z": 0 }
+                    }
+                ],
+                "children": {
+                    "carBezel": {
+                        "type": "noderef",
+                        "nodeId": "carBezel"
+                    }
+                }
+            },
+            "carBezels": {
+                "type": "node",
+                "transforms": [],
+                "children": {
+                    "carBezel1": {
+                        "type": "noderef",
+                        "nodeId": "carBezel1"
+                    },
+                    "carBezel2": {
+                        "type": "noderef",
+                        "nodeId": "carBezel2"
+                    },
+                    "carBezel3": {
+                        "type": "noderef",
+                        "nodeId": "carBezel3"
+                    },
+                    "carBezel4": {
+                        "type": "noderef",
+                        "nodeId": "carBezel4"
+                    },
+                    "carBezel5": {
+                        "type": "noderef",
+                        "nodeId": "carBezel5"
+                    },
+                    "carBezel6": {
+                        "type": "noderef",
+                        "nodeId": "carBezel6"
+                    },
+                    "carBezel7": {
+                        "type": "noderef",
+                        "nodeId": "carBezel7"
+                    },
+                    "carBezel8": {
+                        "type": "noderef",
+                        "nodeId": "carBezel8"
+                    }
+                }
+            },
+            "carBody": {
+                "type": "node",
+                "transforms": [],
+                "materialref": {
+                    "materialId": "carBody"
+                },
+                "children": {
+                    "carLeft": {
+                        "type": "noderef",
+                        "nodeId": "carLeft"
+                    },
+                    "carRight": {
+                        "type": "noderef",
+                        "nodeId": "carRight"
+                    },
+                    "carTop": {
+                        "type": "noderef",
+                        "nodeId": "carTop"
+                    },
+                    "carFront": {
+                        "type": "noderef",
+                        "nodeId": "carFront"
+                    },
+                    "carBack": {
+                        "type": "noderef",
+                        "nodeId": "carBack"
+                    },
+                    "carHood": {
+                        "type": "noderef",
+                        "nodeId": "carHood"
+                    },
+                    "carBezels": {
+                        "type": "noderef",
+                        "nodeId": "carBezels"
+                    }
+                }
+            },
+            "car": {
+                "type": "node",
+                "transforms": [],
+                "children": {
+                    "carBody": {
+                        "type": "noderef",
+                        "nodeId": "carBody"
+                    },
+                    "carBottom": {
+                        "type": "noderef",
+                        "nodeId": "carBottom"
+                    }
+                }
+            },
+            "scene": {
+                "type": "node",
+                "children": {
+                    "car": {
+                        "type": "noderef",
+                        "nodeId": "car"
+                    },
+                    "pointLight": {
+                        "type": "pointlight",
+                        "enabled": true,
+                        "color": { "r": 1.0, "g": 1.0, "b": 1.0 },
+                        "intensity": 1.0,
+                        "distance": 1000,
+                        "decay": 2.0,
+                        "castshadow": false,
+                        "position": {
+                            "x": 33.75,
+                            "y": 37.3,
+                            "z": 33.75
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

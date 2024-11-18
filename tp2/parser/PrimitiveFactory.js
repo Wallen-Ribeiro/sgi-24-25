@@ -16,7 +16,8 @@ class PrimitiveFactory {
         // console.log(material)
         const geometry = new THREE.PlaneGeometry(width, height, wSegments, hSegments);
 
-        const mesh = new THREE.Mesh(geometry, material);
+        const material1 = material ?? new THREE.MeshPhongMaterial({ color: 0x990000, side: THREE.DoubleSide, specular: 0x000000 });
+        const mesh = new THREE.Mesh(geometry, material1);
         mesh.position.set(x1 + width / 2, y1 + height / 2, 0);
 
         return mesh;
