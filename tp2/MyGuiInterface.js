@@ -29,8 +29,9 @@ class MyGuiInterface {
      * Initialize the gui interface
      */
     init() {
-        const cameraFolder = this.datgui.addFolder('Camera')
-        cameraFolder.add(this.app, 'activeCameraName', ['Perspective']).name("active camera").onChange((value) => {
+        const cameraNames = Object.keys(this.app.cameras);
+        const cameraFolder = this.datgui.addFolder('Camera');
+        cameraFolder.add(this.app, 'activeCameraName', cameraNames).name("active camera").onChange((value) => {
             this.app.setActiveCamera(value);
         });
     }
