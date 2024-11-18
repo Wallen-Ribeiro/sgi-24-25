@@ -167,10 +167,14 @@ class MyContents {
         carBezelMeshes[7].rotateY(Math.PI / 2);
         carBezelMeshes[7].position.set(-this.carWidth / 2, this.carHeight / 2, -this.carLength / 2 + this.carBezelWidth / 2);
         frontCarLightMesh1.position.set(this.carWidth / 3, 0, this.carLength / 2);
+        console.log(frontCarLightMesh1.position);
         frontCarLightMesh2.position.set(-this.carWidth / 3, 0, this.carLength / 2);
+        console.log(frontCarLightMesh2.position);
+        backCarLightMesh.position.set(0, 0, -this.carLength / 2);
         frontCarLightMesh1.rotateX(Math.PI / 2);
         frontCarLightMesh2.rotateX(Math.PI / 2);
         backCarLightMesh.position.set(0, this.carHeight / 10, -this.carLength / 2);
+        console.log(backCarLightMesh.position);
         frontLicensePlateMesh.position.set(0, -this.carHeight / 10, this.carLength / 2 + 0.1);
         backlicensePlateMesh.position.set(0, -this.carHeight / 10, -this.carLength / 2 - 0.1);
 
