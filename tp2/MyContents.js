@@ -37,10 +37,11 @@ class MyContents {
         // light point
         const light = new THREE.PointLight(0xffffff, 50);
         const pointLightHelper = new THREE.PointLightHelper(light);
-        light.position.set(2, 3, 2);
+        light.position.set(0, 5, -5);
         this.app.scene.add(light);
         this.app.scene.add(pointLightHelper);
 
+        //this.buildSkyBox();
         //this.buildCar();
 
         console.log(this.app.scene.toJSON())
@@ -114,10 +115,24 @@ class MyContents {
         const carHoodGeometry = new THREE.PlaneGeometry(this.carWidth, this.carHoodLength);
         const carRoofGeometry = new THREE.PlaneGeometry(this.carWidth, this.carRoofLength);
         const carBezelGeometry = new THREE.PlaneGeometry(this.carBezelWidth, this.carHeight / 2);
+        const frontCarLight = new THREE.CylinderGeometry(this.carWidth / 8, this.carWidth / 8, this.carWidth / 10, 32);
+        const backCarLight = new THREE.BoxGeometry(this.carWidth / 1.2, this.carWidth / 8, this.carWidth / 15);
+        const licensePlate = new THREE.PlaneGeometry(this.carWidth / 4, this.carHeight / 5);
+
 
         const materialParameters = { color: this.carBodyColor, specular: this.carBodySpecular, side: THREE.DoubleSide };
         const carMaterial = new THREE.MeshPhongMaterial(materialParameters);
 
+        const lightMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+        const frontCarLightMesh1 = new THREE.Mesh(frontCarLight, lightMaterial);
+        const frontCarLightMesh2 = new THREE.Mesh(frontCarLight, lightMaterial);
+        const backCarLightMesh = new THREE.Mesh(backCarLight, lightMaterial);
+
+        const licenseTexture = new THREE.TextureLoader().load('scenes/textures/license_plate.jpg');
+        const frontLicensePlateMesh = new THREE.Mesh(licensePlate,
+            new THREE.MeshPhongMaterial({ map: licenseTexture, side: THREE.DoubleSide }));
+        const backlicensePlateMesh = new THREE.Mesh(licensePlate,
+            new THREE.MeshPhongMaterial({ map: licenseTexture, side: THREE.DoubleSide }));
         const carSideMeshRight = new THREE.Mesh(carSideGeometry, carMaterial);
         const carSideMeshLeft = new THREE.Mesh(carSideGeometry, carMaterial);
         const carFrontMesh = new THREE.Mesh(carFrontGeometry, carMaterial);
@@ -151,6 +166,13 @@ class MyContents {
         carBezelMeshes[6].position.set(this.carWidth / 2, this.carHeight / 2, -this.carLength / 2 + this.carBezelWidth / 2);
         carBezelMeshes[7].rotateY(Math.PI / 2);
         carBezelMeshes[7].position.set(-this.carWidth / 2, this.carHeight / 2, -this.carLength / 2 + this.carBezelWidth / 2);
+        frontCarLightMesh1.position.set(this.carWidth / 3, 0, this.carLength / 2);
+        frontCarLightMesh2.position.set(-this.carWidth / 3, 0, this.carLength / 2);
+        frontCarLightMesh1.rotateX(Math.PI / 2);
+        frontCarLightMesh2.rotateX(Math.PI / 2);
+        backCarLightMesh.position.set(0, this.carHeight / 10, -this.carLength / 2);
+        frontLicensePlateMesh.position.set(0, -this.carHeight / 10, this.carLength / 2 + 0.1);
+        backlicensePlateMesh.position.set(0, -this.carHeight / 10, -this.carLength / 2 - 0.1);
 
         carGroup.add(carSideMeshRight);
         carGroup.add(carSideMeshLeft);
@@ -159,6 +181,11 @@ class MyContents {
         carGroup.add(carHoodMesh);
         carGroup.add(carRoofMesh);
         carGroup.add(...carBezelMeshes);
+        carGroup.add(frontCarLightMesh1);
+        carGroup.add(frontCarLightMesh2);
+        carGroup.add(backCarLightMesh);
+        carGroup.add(frontLicensePlateMesh);
+        carGroup.add(backlicensePlateMesh);
     }
 
     buildCarWheels() {
