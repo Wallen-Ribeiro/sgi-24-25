@@ -186,7 +186,7 @@ class SceneGraph {
             case 'directionallight':
                 return PrimitiveFactory.createDirectionalLightFromYASF(node);
             default:
-                console.error('Unknown primitive type: ' + node['type'] + ' for node ' + nodeId);
+                console.error('Unknown primitive type: ' + node['type'] + ' for node ' + node.id);
                 return;
         }
     }

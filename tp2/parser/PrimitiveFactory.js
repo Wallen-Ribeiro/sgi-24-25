@@ -33,7 +33,7 @@ class PrimitiveFactory {
         const y3 = triangle['xyz3']['y'];
         const z3 = triangle['xyz3']['z'];
 
-        const geometry = new THREE.Geometry();
+        const geometry = new THREE.BufferGeometry();
 
         const vertices = new Float32Array([
             x1, y1, z1, // v0
@@ -120,6 +120,67 @@ class PrimitiveFactory {
         const colorC = new THREE.Color(color_c['r'], color_c['g'], color_c['b']);
         const colorP = new THREE.Color(color_p['r'], color_p['g'], color_p['b']);
 
+        const rStep = radius / stacks;
+        const angleStep = 2 * Math.PI / slices;
+
+        let vertices = [];
+        const indices = [];
+        const colors = [];
+
+        vertices.push(0, 0, 0);
+        for (let stack = 1; stack <= stacks; stack++) {
+            const r = stack * rStep;
+            for (let slice = 0; slice < slices; slice++) {
+                const angle = slice * angleStep;
+                const x = r * Math.cos(angle);
+                const y = r * Math.sin(angle);
+
+                vertices.push(x, y, 0);
+            }
+        }
+
+        const lerpColor = new THREE.Color();
+        colors.push(...lerpColor.lerpColors(colorC, colorP, 0).toArray());
+        for (let stack = 1; stack <= stacks; stack++) {
+            const alpha = stack / stacks;
+            for (let slice = 0; slice < slices; slice++) {
+                colors.push(...lerpColor.lerpColors(colorC, colorP, alpha).toArray());
+            }
+        }
+
+        for (let slice = 0; slice < slices - 1; slice++) {
+            indices.push(0, slice + 2, slice + 1);
+        }
+        indices.push(0, 1, slices);
+
+        for (let stack = 1; stack < stacks; stack++) {
+            let k1 = (stack - 1) * slices + 1;
+            let k2 = k1 + slices;
+            for (let slice = 0; slice < slices - 1; slice++) {
+
+                indices.push(k1, k2 + 1, k2);
+                indices.push(k1 + 1, k2 + 1, k1);
+
+                k1++;
+                k2++;
+            }
+            indices.push(k1, k1 + 1, k2);
+            indices.push((stack - 1) * slices + 1, k1 + 1, k1);
+        }
+
+        const geometry = new THREE.BufferGeometry();
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+
+        material = new THREE.MeshPhongMaterial({
+            vertexColors: true,
+            side: THREE.DoubleSide,
+        });
+
+        return new THREE.Mesh(geometry, material);
     }
 
     static createPointLightFromYASF(pointlight) {

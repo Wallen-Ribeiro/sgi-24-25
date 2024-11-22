@@ -121,14 +121,26 @@
                 "opacity": 1.0,
                 "twosided": true
             },
-            "carLight" : {
-                "color" : { "r" : 1.0, "g" : 0.0, "b" : 0.0 },
-                "specular" : { "r" : 1.0, "g" : 1.0, "b" : 0.0 },
-                "shininess" : 10,
-                "emissive" : { "r" : 1.0, "g" : 1.0, "b" : 0.0 },
-                "transparent" : false,
-                "opacity" : 1.0,
-                "twosided" : true
+            "carLight": {
+                "color": {
+                    "r": 1.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 0.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
             },
             "carWindow": {
                 "color": {
@@ -197,7 +209,7 @@
             }
         },
         "cameras": {
-            "initial": "cam1",
+            "initial": "cam2",
             "cam1": {
                 "type": "perspective",
                 "angle": 75,
@@ -207,6 +219,22 @@
                     "x": -25,
                     "y": 50,
                     "z": 200
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            "cam2": {
+                "type": "perspective",
+                "angle": 75,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -5
                 },
                 "target": {
                     "x": 0,
@@ -844,7 +872,7 @@
                     }
                 }
             },
-            "frontCarLight":{
+            "frontCarLight": {
                 "type": "node",
                 "materialref": {
                     "materialId": "carLight"
@@ -861,16 +889,24 @@
                     }
                 }
             },
-            "frontCarLight1" : {
+            "frontCarLight1": {
                 "type": "node",
                 "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 1, "y": 0, "z": 3 }
+                        "amount": {
+                            "x": 1,
+                            "y": 0,
+                            "z": 3
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": 90, "y": 0, "z": 0 }
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
                     }
                 ],
                 "children": {
@@ -880,16 +916,24 @@
                     }
                 }
             },
-            "frontCarLight2" : {
+            "frontCarLight2": {
                 "type": "node",
                 "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": -1, "y": 0, "z": 3 }
+                        "amount": {
+                            "x": -1,
+                            "y": 0,
+                            "z": 3
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": 90, "y": 0, "z": 0 }
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
                     }
                 ],
                 "children": {
@@ -899,7 +943,7 @@
                     }
                 }
             },
-            "backCarLight" : {
+            "backCarLight": {
                 "type": "node",
                 "materialref": {
                     "materialId": "carLight"
@@ -907,35 +951,51 @@
                 "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 0.0, "y": 0.5, "z": -3.0 }
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -3.0
+                        }
                     },
                     {
                         "type": "scale",
-                        "amount": { "x": 2.5, "y": 0.25, "z": 0.25 }
+                        "amount": {
+                            "x": 2.5,
+                            "y": 0.25,
+                            "z": 0.25
+                        }
                     }
                 ],
                 "children": {
-                    "boxPrim" : {
+                    "boxPrim": {
                         "type": "box",
-                        "xyz1": { "x": -0.5, "y": -0.5, "z": -0.5 }, 
-                        "xyz2": { "x": 0.5, "y": 0.5, "z": 0.5 } 
+                        "xyz1": {
+                            "x": -0.5,
+                            "y": -0.5,
+                            "z": -0.5
+                        },
+                        "xyz2": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
+                        }
                     }
                 }
             },
-            "carLights" : {
-                "type" : "node",
-                "children" : {
-                    "frontCarLight1" : {
-                        "type" : "noderef",
-                        "nodeId" : "frontCarLight1"
+            "carLights": {
+                "type": "node",
+                "children": {
+                    "frontCarLight1": {
+                        "type": "noderef",
+                        "nodeId": "frontCarLight1"
                     },
-                    "frontCarLight2" : {
-                        "type" : "noderef",
-                        "nodeId" : "frontCarLight2"
+                    "frontCarLight2": {
+                        "type": "noderef",
+                        "nodeId": "frontCarLight2"
                     },
-                    "backCarLight" : {
-                        "type" : "noderef",
-                        "nodeId" : "backCarLight"
+                    "backCarLight": {
+                        "type": "noderef",
+                        "nodeId": "backCarLight"
                     }
                 }
             },
@@ -951,16 +1011,24 @@
                     }
                 }
             },
-            "carWindow1":{
+            "carWindow1": {
                 "type": "node",
-                "transforms":[
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 0.0, "y": 1.75, "z": 0.0 }
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.75,
+                            "z": 0.0
+                        }
                     },
                     {
                         "type": "scale",
-                        "amount": { "x": 2.5, "y": 1.5, "z": 0.8 }
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1.5,
+                            "z": 0.8
+                        }
                     }
                 ],
                 "children": {
@@ -970,22 +1038,33 @@
                     }
                 }
             },
-            "carWindow2":{
+            "carWindow2": {
                 "type": "node",
-                "transforms":[
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 1.5, "y": 1.75, "z": -1.5 }
+                        "amount": {
+                            "x": 1.5,
+                            "y": 1.75,
+                            "z": -1.5
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": 0, "y": 90, "z": 0 }
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
                     },
                     {
                         "type": "scale",
-                        "amount": { "x": 2.5, "y": 1.5, "z": 0.8 }
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1.5,
+                            "z": 0.8
+                        }
                     }
-                    
                 ],
                 "children": {
                     "carWindow": {
@@ -993,24 +1072,34 @@
                         "nodeId": "carWindow"
                     }
                 }
-
             },
-            "carWindow3":{
+            "carWindow3": {
                 "type": "node",
-                "transforms":[
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": -1.5, "y": 1.75, "z": -1.5 }
+                        "amount": {
+                            "x": -1.5,
+                            "y": 1.75,
+                            "z": -1.5
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": 0, "y": 90, "z": 0 }
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
                     },
                     {
                         "type": "scale",
-                        "amount": { "x": 2.5, "y": 1.5, "z": 0.8 }
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1.5,
+                            "z": 0.8
+                        }
                     }
-                    
                 ],
                 "children": {
                     "carWindow": {
@@ -1019,16 +1108,24 @@
                     }
                 }
             },
-            "carWindow4":{
+            "carWindow4": {
                 "type": "node",
-                "transforms":[
+                "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 0.0, "y": 1.75, "z": -3.0 }
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.75,
+                            "z": -3.0
+                        }
                     },
                     {
                         "type": "scale",
-                        "amount": { "x": 2.5, "y": 1.5, "z": 0.8 }
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1.5,
+                            "z": 0.8
+                        }
                     }
                 ],
                 "children": {
@@ -1038,7 +1135,7 @@
                     }
                 }
             },
-            "carWindows":{
+            "carWindows": {
                 "type": "node",
                 "children": {
                     "carWindow1": {
@@ -1097,8 +1194,8 @@
                     }
                 }
             },
-            "licensePlate":{
-                "type": "node", 
+            "licensePlate": {
+                "type": "node",
                 "materialref": {
                     "materialId": "licensePlate"
                 },
@@ -1109,43 +1206,32 @@
                     }
                 }
             },
-            "frontLicensePlate":{
-                "type": "node",
-                "transforms":[
-                    {
-                        "type": "translate",
-                        "amount": { "x": 0.0, "y": -0.5, "z": 3.01 }
-                    },
-                    {
-                        "type": "rotate",
-                        "amount": { "x": 0, "y": 180, "z": 0 }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": { "x": 1.0, "y": 0.5, "z": 1.0 }
-                    }
-                ],
-                "children": {
-                    "licensePlate": {
-                        "type": "noderef",
-                        "nodeId": "licensePlate"
-                    }
-                }
-            },
-            "backLicensePlate":{
+            "frontLicensePlate": {
                 "type": "node",
                 "transforms": [
                     {
                         "type": "translate",
-                        "amount": { "x": 0.0, "y": -0.25, "z": -3.01 }
+                        "amount": {
+                            "x": 0.0,
+                            "y": -0.5,
+                            "z": 3.01
+                        }
                     },
                     {
                         "type": "rotate",
-                        "amount": { "x": 0, "y": 180, "z": 0 }
+                        "amount": {
+                            "x": 0,
+                            "y": 180,
+                            "z": 0
+                        }
                     },
                     {
                         "type": "scale",
-                        "amount": { "x": 1.0, "y": 0.5, "z": 1.0 }
+                        "amount": {
+                            "x": 1.0,
+                            "y": 0.5,
+                            "z": 1.0
+                        }
                     }
                 ],
                 "children": {
@@ -1155,8 +1241,42 @@
                     }
                 }
             },
-            "licensePlates":
-            {
+            "backLicensePlate": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -0.25,
+                            "z": -3.01
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 180,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.0,
+                            "y": 0.5,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "licensePlate": {
+                        "type": "noderef",
+                        "nodeId": "licensePlate"
+                    }
+                }
+            },
+            "licensePlates": {
                 "type": "node",
                 "children": {
                     "frontLicensePlate": {
@@ -1185,17 +1305,31 @@
                     }
                 ],
                 "children": {
-                    "boxPrim" : {
+                    "boxPrim": {
                         "type": "box",
-                        
-                        "xyz1": { "x": -1.25, "y": 0.5, "z": 0 }, 
-                        "xyz2": { "x": 1.25, "y": 3, "z": 0.5 } 
+                        "xyz1": {
+                            "x": -1.25,
+                            "y": 0.5,
+                            "z": 0
+                        },
+                        "xyz2": {
+                            "x": 1.25,
+                            "y": 3,
+                            "z": 0.5
+                        }
                     },
-                    "boxPrim2" : {
+                    "boxPrim2": {
                         "type": "box",
-                        
-                        "xyz1": { "x": -1.25, "y": 0.5, "z": 0 }, 
-                        "xyz2": { "x": 1.25, "y": 1, "z": 2.5 } 
+                        "xyz1": {
+                            "x": -1.25,
+                            "y": 0.5,
+                            "z": 0
+                        },
+                        "xyz2": {
+                            "x": 1.25,
+                            "y": 1,
+                            "z": 2.5
+                        }
                     }
                 }
             },
@@ -1247,12 +1381,11 @@
                         "type": "noderef",
                         "nodeId": "carBezels"
                     },
-                    "carLights":{
-                        "type" : "noderef",
-                        "nodeId" : "carLights"
+                    "carLights": {
+                        "type": "noderef",
+                        "nodeId": "carLights"
                     },
-                    "licensePlates":
-                    {
+                    "licensePlates": {
                         "type": "noderef",
                         "nodeId": "licensePlates"
                     },
@@ -1269,14 +1402,13 @@
             "car": {
                 "type": "node",
                 "transforms": [
-                    {  
+                    {
                         "type": "translate",
                         "amount": {
                             "x": 150.0,
                             "y": -200.0,
                             "z": -100.0
                         }
-
                     },
                     {
                         "type": "scale",
@@ -1295,6 +1427,27 @@
                     "carBottom": {
                         "type": "noderef",
                         "nodeId": "carBottom"
+                    }
+                }
+            },
+            "polygon": {
+                "type": "node",
+                "children": {
+                    "polygonPrim": {
+                        "type": "polygon",
+                        "radius": 5.0,
+                        "stacks": 20,
+                        "slices": 20,
+                        "color_c": {
+                            "r": 0.6,
+                            "b": 0.0,
+                            "g": 0.0
+                        },
+                        "color_p": {
+                            "r": 0.8,
+                            "b": 0.2,
+                            "g": 0.0
+                        }
                     }
                 }
             },
@@ -1322,6 +1475,10 @@
                             "y": 37.3,
                             "z": 33.75
                         }
+                    },
+                    "polygon": {
+                        "type": "noderef",
+                        "nodeId": "polygon"
                     }
                 }
             }
