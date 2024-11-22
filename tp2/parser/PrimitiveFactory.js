@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { build } from './NURBSBuilder.js';
 
 class PrimitiveFactory {
 
@@ -107,9 +108,44 @@ class PrimitiveFactory {
         return mesh;
     }
 
-    static createNurbsCurveFromYASF(nurbs, material) {
 
+
+    static createNurbsCurveFromYASF(nurbs, material) {
+        const orderU = nurbs['degree_u'];
+        const orderV = nurbs['degree_v'];
+        const samplesU = nurbs['parts_u'];
+        const samplesV = nurbs['parts_v'];
+        const controlPoints = [];
+        console.log(nurbs)  
+        for (let i = 0; i <= orderU; i++){
+            let temp_array = [];
+            for (let j = 0; j <= orderV; j++){
+                temp_array.push(new THREE.Vector4(nurbs['control_points'][i]['x'], nurbs['control_points'][i]['y'], nurbs['control_points'][i]['z'], 1));
+            }
+            controlPoints.push(temp_array);
+        }
+
+        const map = new THREE.TextureLoader().load( 'scenes/car/textures/car_chair.jpg' );
+        map.wrapS = map.wrapT = THREE.RepeatWrapping; 
+        map.anisotropy = 16; 
+        map.colorSpace = THREE.SRGBColorSpace; 
+        this.material = new THREE.MeshLambertMaterial( { map: map,
+                        side: THREE.DoubleSide,
+                        transparent: true, opacity: 0.90 } );
+
+
+        const surfaceData = build(
+            controlPoints, orderU, orderV, samplesU, samplesV, this.material
+        );
+
+        
+        const mesh = new THREE.Mesh(surfaceData, material);
+
+        console.log(mesh);
+
+        return mesh;
     }
+
 
     static createPolygonFromYASF(polygon, material) {
         const radius = polygon['radius'];
@@ -267,6 +303,7 @@ class PrimitiveFactory {
 
         return light;
     }
+
 
 }
 

@@ -1458,6 +1458,27 @@
                         "type": "noderef",
                         "nodeId": "car"
                     },
+                    "nurbs":{
+                        "type" : "nurbs",
+                        "degree_u" : 2,
+                        "degree_v" : 3,
+                        "parts_u" : 20,
+                        "parts_v" : 20,
+                        "control_points": [
+                            {"x": 0, "y": 0, "z": -2},
+                            {"x": 0, "y": 2, "z": -3},
+                            {"x": 0, "y": 4, "z": -0.25},
+                            {"x": 0, "y": 5, "z": -1.5},
+                            {"x": 4, "y": 0, "z": 0},
+                            {"x": 6, "y": 2, "z": 0},
+                            {"x": 0.5, "y": 4, "z": 0},
+                            {"x": 2.5, "y": 5, "z": 0},
+                            {"x": 0, "y": 0, "z": 2},
+                            {"x": 0, "y": 2, "z": 3},
+                            {"x": 0, "y": 4, "z": 0.25},
+                            {"x": 0, "y": 5, "z": 1.5}
+                        ]            
+                    },
                     "pointLight": {
                         "type": "pointlight",
                         "enabled": true,
