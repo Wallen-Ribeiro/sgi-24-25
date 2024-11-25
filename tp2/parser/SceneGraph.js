@@ -234,19 +234,18 @@ class SceneGraph {
                 return null;
             }
 
-            switch (childType) {
-                case 'noderef':
-                    // if (this.nodes[childId]) {
-                    //     const clone = this.nodes[childId].clone();
-                    //     group.add(clone);
-                    // } else {
-                    const newRef = this.buildNodeRef(childId, materialRef);
-                    if (!newRef) {
-                        console.error('Couldn\'t build reference to node ' + childId);
-                        return null;
+            switch (childId) {
+                case 'nodesList':
+                    for (const nodeId of child) {
+                        const newRef = this.buildNodeRef(nodeId, materialRef);
+                        if (!newRef) {
+                            console.error('Couldn\'t build reference to node ' + childId);
+                            return null;
+                        }
+                        group.add(newRef);
                     }
-                    group.add(newRef);
-                    // }
+                    break;
+                case 'lodsList':
                     break;
                 default:
                     const primitive = this.createPrimitive(child, materialRef);
@@ -286,7 +285,7 @@ class SceneGraph {
 
 
 
-    
+
 
 }
 

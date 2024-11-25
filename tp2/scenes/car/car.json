@@ -248,6 +248,8 @@
             "unitPlane": {
                 "type": "node",
                 "children": {
+                    "nodesList": [],
+                    "lodsList": [],
                     "rectanglePrim": {
                         "type": "rectangle",
                         "xy1": {
@@ -267,6 +269,8 @@
                     "materialId": "carWheel"
                 },
                 "children": {
+                    "nodesList": [],
+                    "lodsList": [],
                     "cylinderPrim": {
                         "type": "cylinder",
                         "top": 0.75,
@@ -299,10 +303,10 @@
                     }
                 ],
                 "children": {
-                    "carWheel": {
-                        "type": "noderef",
-                        "nodeId": "carWheel"
-                    }
+                    "nodesList": [
+                        "carWheel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carWheel2": {
@@ -326,10 +330,10 @@
                     }
                 ],
                 "children": {
-                    "carWheel": {
-                        "type": "noderef",
-                        "nodeId": "carWheel"
-                    }
+                    "nodesList": [
+                        "carWheel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carWheel3": {
@@ -353,10 +357,10 @@
                     }
                 ],
                 "children": {
-                    "carWheel": {
-                        "type": "noderef",
-                        "nodeId": "carWheel"
-                    }
+                    "nodesList": [
+                        "carWheel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carWheel4": {
@@ -380,10 +384,10 @@
                     }
                 ],
                 "children": {
-                    "carWheel": {
-                        "type": "noderef",
-                        "nodeId": "carWheel"
-                    }
+                    "nodesList": [
+                        "carWheel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carFloor": {
@@ -418,36 +422,24 @@
                     }
                 ],
                 "children": {
-                    "unitPlane": {
-                        "type": "noderef",
-                        "nodeId": "unitPlane"
-                    }
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBottom": {
                 "type": "node",
                 "transforms": [],
                 "children": {
-                    "carWheel1": {
-                        "type": "noderef",
-                        "nodeId": "carWheel1"
-                    },
-                    "carWheel2": {
-                        "type": "noderef",
-                        "nodeId": "carWheel2"
-                    },
-                    "carWheel3": {
-                        "type": "noderef",
-                        "nodeId": "carWheel3"
-                    },
-                    "carWheel4": {
-                        "type": "noderef",
-                        "nodeId": "carWheel4"
-                    },
-                    "carFloor": {
-                        "type": "noderef",
-                        "nodeId": "carFloor"
-                    }
+                    "nodesList": [
+                        "carWheel1",
+                        "carWheel2",
+                        "carWheel3",
+                        "carWheel4",
+                        "carFloor"
+                    ],
+                    "lodsList": []
                 }
             },
             "carSide": {
@@ -471,10 +463,10 @@
                     }
                 ],
                 "children": {
-                    "unitPlane": {
-                        "type": "noderef",
-                        "nodeId": "unitPlane"
-                    }
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
                 }
             },
             "carLeft": {
@@ -490,10 +482,10 @@
                     }
                 ],
                 "children": {
-                    "carSide": {
-                        "type": "noderef",
-                        "nodeId": "carSide"
-                    }
+                    "nodesList": [
+                        "carSide"
+                    ],
+                    "lodsList": []
                 }
             },
             "carRight": {
@@ -509,10 +501,10 @@
                     }
                 ],
                 "children": {
-                    "carSide": {
-                        "type": "noderef",
-                        "nodeId": "carSide"
-                    }
+                    "nodesList": [
+                        "carSide"
+                    ],
+                    "lodsList": []
                 }
             },
             "carEnd": {
@@ -528,10 +520,10 @@
                     }
                 ],
                 "children": {
-                    "unitPlane": {
-                        "type": "noderef",
-                        "nodeId": "unitPlane"
-                    }
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
                 }
             },
             "carFront": {
@@ -547,10 +539,10 @@
                     }
                 ],
                 "children": {
-                    "carEnd": {
-                        "type": "noderef",
-                        "nodeId": "carEnd"
-                    }
+                    "nodesList": [
+                        "carEnd"
+                    ],
+                    "lodsList": []
                 }
             },
             "carMiddle": {
@@ -566,10 +558,10 @@
                     }
                 ],
                 "children": {
-                    "carEnd": {
-                        "type": "noderef",
-                        "nodeId": "carEnd"
-                    }
+                    "nodesList": [
+                        "carEnd"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBack": {
@@ -585,10 +577,10 @@
                     }
                 ],
                 "children": {
-                    "carEnd": {
-                        "type": "noderef",
-                        "nodeId": "carEnd"
-                    }
+                    "nodesList": [
+                        "carEnd"
+                    ],
+                    "lodsList": []
                 }
             },
             "carHood": {
@@ -620,10 +612,10 @@
                     }
                 ],
                 "children": {
-                    "unitPlane": {
-                        "type": "noderef",
-                        "nodeId": "unitPlane"
-                    }
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
                 }
             },
             "carTop": {
@@ -655,10 +647,10 @@
                     }
                 ],
                 "children": {
-                    "unitPlane": {
-                        "type": "noderef",
-                        "nodeId": "unitPlane"
-                    }
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezel": {
@@ -682,10 +674,10 @@
                     }
                 ],
                 "children": {
-                    "unitPlane": {
-                        "type": "noderef",
-                        "nodeId": "unitPlane"
-                    }
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezel1": {
@@ -701,10 +693,10 @@
                     }
                 ],
                 "children": {
-                    "carBezel": {
-                        "type": "noderef",
-                        "nodeId": "carBezel"
-                    }
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezel2": {
@@ -720,10 +712,10 @@
                     }
                 ],
                 "children": {
-                    "carBezel": {
-                        "type": "noderef",
-                        "nodeId": "carBezel"
-                    }
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezel3": {
@@ -739,10 +731,10 @@
                     }
                 ],
                 "children": {
-                    "carBezel": {
-                        "type": "noderef",
-                        "nodeId": "carBezel"
-                    }
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezel4": {
@@ -758,10 +750,10 @@
                     }
                 ],
                 "children": {
-                    "carBezel": {
-                        "type": "noderef",
-                        "nodeId": "carBezel"
-                    }
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezel5": {
@@ -785,10 +777,10 @@
                     }
                 ],
                 "children": {
-                    "carBezel": {
-                        "type": "noderef",
-                        "nodeId": "carBezel"
-                    }
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezel6": {
@@ -812,10 +804,10 @@
                     }
                 ],
                 "children": {
-                    "carBezel": {
-                        "type": "noderef",
-                        "nodeId": "carBezel"
-                    }
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezel7": {
@@ -839,10 +831,10 @@
                     }
                 ],
                 "children": {
-                    "carBezel": {
-                        "type": "noderef",
-                        "nodeId": "carBezel"
-                    }
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezel8": {
@@ -866,10 +858,10 @@
                     }
                 ],
                 "children": {
-                    "carBezel": {
-                        "type": "noderef",
-                        "nodeId": "carBezel"
-                    }
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
                 }
             },
             "frontCarLight": {
@@ -878,6 +870,8 @@
                     "materialId": "carLight"
                 },
                 "children": {
+                    "nodesList": [],
+                    "lodsList": [],
                     "cylinderPrim": {
                         "type": "cylinder",
                         "top": 0.35,
@@ -910,10 +904,10 @@
                     }
                 ],
                 "children": {
-                    "frontCarLight": {
-                        "type": "noderef",
-                        "nodeId": "frontCarLight"
-                    }
+                    "nodesList": [
+                        "frontCarLight"
+                    ],
+                    "lodsList": []
                 }
             },
             "frontCarLight2": {
@@ -937,10 +931,10 @@
                     }
                 ],
                 "children": {
-                    "frontCarLight": {
-                        "type": "noderef",
-                        "nodeId": "frontCarLight"
-                    }
+                    "nodesList": [
+                        "frontCarLight"
+                    ],
+                    "lodsList": []
                 }
             },
             "backCarLight": {
@@ -985,18 +979,12 @@
             "carLights": {
                 "type": "node",
                 "children": {
-                    "frontCarLight1": {
-                        "type": "noderef",
-                        "nodeId": "frontCarLight1"
-                    },
-                    "frontCarLight2": {
-                        "type": "noderef",
-                        "nodeId": "frontCarLight2"
-                    },
-                    "backCarLight": {
-                        "type": "noderef",
-                        "nodeId": "backCarLight"
-                    }
+                    "nodesList": [
+                        "frontCarLight1",
+                        "frontCarLight2",
+                        "backCarLight"
+                    ],
+                    "lodsList": []
                 }
             },
             "carWindow": {
@@ -1005,10 +993,10 @@
                     "materialId": "carWindow"
                 },
                 "children": {
-                    "unitPlane": {
-                        "type": "noderef",
-                        "nodeId": "unitPlane"
-                    }
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
                 }
             },
             "carWindow1": {
@@ -1032,10 +1020,10 @@
                     }
                 ],
                 "children": {
-                    "carWindow": {
-                        "type": "noderef",
-                        "nodeId": "carWindow"
-                    }
+                    "nodesList": [
+                        "carWindow"
+                    ],
+                    "lodsList": []
                 }
             },
             "carWindow2": {
@@ -1067,10 +1055,10 @@
                     }
                 ],
                 "children": {
-                    "carWindow": {
-                        "type": "noderef",
-                        "nodeId": "carWindow"
-                    }
+                    "nodesList": [
+                        "carWindow"
+                    ],
+                    "lodsList": []
                 }
             },
             "carWindow3": {
@@ -1102,10 +1090,10 @@
                     }
                 ],
                 "children": {
-                    "carWindow": {
-                        "type": "noderef",
-                        "nodeId": "carWindow"
-                    }
+                    "nodesList": [
+                        "carWindow"
+                    ],
+                    "lodsList": []
                 }
             },
             "carWindow4": {
@@ -1129,69 +1117,39 @@
                     }
                 ],
                 "children": {
-                    "carWindow": {
-                        "type": "noderef",
-                        "nodeId": "carWindow"
-                    }
+                    "nodesList": [
+                        "carWindow"
+                    ],
+                    "lodsList": []
                 }
             },
             "carWindows": {
                 "type": "node",
                 "children": {
-                    "carWindow1": {
-                        "type": "noderef",
-                        "nodeId": "carWindow1"
-                    },
-                    "carWindow2": {
-                        "type": "noderef",
-                        "nodeId": "carWindow2"
-                    },
-                    "carWindow3": {
-                        "type": "noderef",
-                        "nodeId": "carWindow3"
-                    },
-                    "carWindow4": {
-                        "type": "noderef",
-                        "nodeId": "carWindow4"
-                    }
+                    "nodesList": [
+                        "carWindow1",
+                        "carWindow2",
+                        "carWindow3",
+                        "carWindow4"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBezels": {
                 "type": "node",
                 "transforms": [],
                 "children": {
-                    "carBezel1": {
-                        "type": "noderef",
-                        "nodeId": "carBezel1"
-                    },
-                    "carBezel2": {
-                        "type": "noderef",
-                        "nodeId": "carBezel2"
-                    },
-                    "carBezel3": {
-                        "type": "noderef",
-                        "nodeId": "carBezel3"
-                    },
-                    "carBezel4": {
-                        "type": "noderef",
-                        "nodeId": "carBezel4"
-                    },
-                    "carBezel5": {
-                        "type": "noderef",
-                        "nodeId": "carBezel5"
-                    },
-                    "carBezel6": {
-                        "type": "noderef",
-                        "nodeId": "carBezel6"
-                    },
-                    "carBezel7": {
-                        "type": "noderef",
-                        "nodeId": "carBezel7"
-                    },
-                    "carBezel8": {
-                        "type": "noderef",
-                        "nodeId": "carBezel8"
-                    }
+                    "nodesList": [
+                        "carBezel1",
+                        "carBezel2",
+                        "carBezel3",
+                        "carBezel4",
+                        "carBezel5",
+                        "carBezel6",
+                        "carBezel7",
+                        "carBezel8"
+                    ],
+                    "lodsList": []
                 }
             },
             "licensePlate": {
@@ -1200,10 +1158,10 @@
                     "materialId": "licensePlate"
                 },
                 "children": {
-                    "unitPlane": {
-                        "type": "noderef",
-                        "nodeId": "unitPlane"
-                    }
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
                 }
             },
             "frontLicensePlate": {
@@ -1235,10 +1193,10 @@
                     }
                 ],
                 "children": {
-                    "licensePlate": {
-                        "type": "noderef",
-                        "nodeId": "licensePlate"
-                    }
+                    "nodesList": [
+                        "licensePlate"
+                    ],
+                    "lodsList": []
                 }
             },
             "backLicensePlate": {
@@ -1270,23 +1228,20 @@
                     }
                 ],
                 "children": {
-                    "licensePlate": {
-                        "type": "noderef",
-                        "nodeId": "licensePlate"
-                    }
+                    "nodesList": [
+                        "licensePlate"
+                    ],
+                    "lodsList": []
                 }
             },
             "licensePlates": {
                 "type": "node",
                 "children": {
-                    "frontLicensePlate": {
-                        "type": "noderef",
-                        "nodeId": "frontLicensePlate"
-                    },
-                    "backLicensePlate": {
-                        "type": "noderef",
-                        "nodeId": "backLicensePlate"
-                    }
+                    "nodesList": [
+                        "frontLicensePlate",
+                        "backLicensePlate"
+                    ],
+                    "lodsList": []
                 }
             },
             "carChair": {
@@ -1336,10 +1291,10 @@
             "carInterior": {
                 "type": "node",
                 "children": {
-                    "carChair": {
-                        "type": "noderef",
-                        "nodeId": "carChair"
-                    }
+                    "nodesList": [
+                        "carChair"
+                    ],
+                    "lodsList": []
                 }
             },
             "carBody": {
@@ -1349,54 +1304,21 @@
                     "materialId": "carBody"
                 },
                 "children": {
-                    "carLeft": {
-                        "type": "noderef",
-                        "nodeId": "carLeft"
-                    },
-                    "carRight": {
-                        "type": "noderef",
-                        "nodeId": "carRight"
-                    },
-                    "carTop": {
-                        "type": "noderef",
-                        "nodeId": "carTop"
-                    },
-                    "carFront": {
-                        "type": "noderef",
-                        "nodeId": "carFront"
-                    },
-                    "carMiddle": {
-                        "type": "noderef",
-                        "nodeId": "carFront"
-                    },
-                    "carBack": {
-                        "type": "noderef",
-                        "nodeId": "carBack"
-                    },
-                    "carHood": {
-                        "type": "noderef",
-                        "nodeId": "carHood"
-                    },
-                    "carBezels": {
-                        "type": "noderef",
-                        "nodeId": "carBezels"
-                    },
-                    "carLights": {
-                        "type": "noderef",
-                        "nodeId": "carLights"
-                    },
-                    "licensePlates": {
-                        "type": "noderef",
-                        "nodeId": "licensePlates"
-                    },
-                    "carWindows": {
-                        "type": "noderef",
-                        "nodeId": "carWindows"
-                    },
-                    "carInterior": {
-                        "type": "noderef",
-                        "nodeId": "carInterior"
-                    }
+                    "nodesList": [
+                        "carLeft",
+                        "carRight",
+                        "carTop",
+                        "carFront",
+                        "carHood",
+                        "carMiddle",
+                        "carBack",
+                        "carBezels",
+                        "carLights",
+                        "licensePlates",
+                        "carWindows",
+                        "carInterior"
+                    ],
+                    "lodsList": []
                 }
             },
             "car": {
@@ -1420,65 +1342,120 @@
                     }
                 ],
                 "children": {
-                    "carBody": {
-                        "type": "noderef",
-                        "nodeId": "carBody"
-                    },
-                    "carBottom": {
-                        "type": "noderef",
-                        "nodeId": "carBottom"
-                    }
+                    "nodesList": [
+                        "carBody",
+                        "carBottom"
+                    ],
+                    "lodsList": []
                 }
             },
             "polygon": {
                 "type": "node",
                 "children": {
+                    "nodesList": [],
+                    "lodsList": [],
                     "polygonPrim": {
                         "type": "polygon",
                         "radius": 5.0,
-                        "stacks": 20,
-                        "slices": 20,
+                        "stacks": 1,
+                        "slices": 3,
                         "color_c": {
-                            "r": 0.6,
+                            "r": 1.0,
                             "b": 0.0,
                             "g": 0.0
                         },
                         "color_p": {
-                            "r": 0.8,
-                            "b": 0.2,
+                            "r": 0.0,
+                            "b": 1.0,
                             "g": 0.0
                         }
+                    }
+                }
+            },
+            "nurb": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "nurbs": {
+                        "type": "nurbs",
+                        "degree_u": 2,
+                        "degree_v": 3,
+                        "parts_u": 20,
+                        "parts_v": 20,
+                        "control_points": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "z": -2
+                            },
+                            {
+                                "x": 0,
+                                "y": 2,
+                                "z": -3
+                            },
+                            {
+                                "x": 0,
+                                "y": 4,
+                                "z": -0.25
+                            },
+                            {
+                                "x": 0,
+                                "y": 5,
+                                "z": -1.5
+                            },
+                            {
+                                "x": 4,
+                                "y": 0,
+                                "z": 0
+                            },
+                            {
+                                "x": 6,
+                                "y": 2,
+                                "z": 0
+                            },
+                            {
+                                "x": 0.5,
+                                "y": 4,
+                                "z": 0
+                            },
+                            {
+                                "x": 2.5,
+                                "y": 5,
+                                "z": 0
+                            },
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "z": 2
+                            },
+                            {
+                                "x": 0,
+                                "y": 2,
+                                "z": 3
+                            },
+                            {
+                                "x": 0,
+                                "y": 4,
+                                "z": 0.25
+                            },
+                            {
+                                "x": 0,
+                                "y": 5,
+                                "z": 1.5
+                            }
+                        ]
                     }
                 }
             },
             "scene": {
                 "type": "node",
                 "children": {
-                    "car": {
-                        "type": "noderef",
-                        "nodeId": "car"
-                    },
-                    "nurbs":{
-                        "type" : "nurbs",
-                        "degree_u" : 2,
-                        "degree_v" : 3,
-                        "parts_u" : 20,
-                        "parts_v" : 20,
-                        "control_points": [
-                            {"x": 0, "y": 0, "z": -2},
-                            {"x": 0, "y": 2, "z": -3},
-                            {"x": 0, "y": 4, "z": -0.25},
-                            {"x": 0, "y": 5, "z": -1.5},
-                            {"x": 4, "y": 0, "z": 0},
-                            {"x": 6, "y": 2, "z": 0},
-                            {"x": 0.5, "y": 4, "z": 0},
-                            {"x": 2.5, "y": 5, "z": 0},
-                            {"x": 0, "y": 0, "z": 2},
-                            {"x": 0, "y": 2, "z": 3},
-                            {"x": 0, "y": 4, "z": 0.25},
-                            {"x": 0, "y": 5, "z": 1.5}
-                        ]            
-                    },
+                    "nodesList": [
+                        "car",
+                        "nurb"
+                    ],
+                    "lodsList": [],
                     "pointLight": {
                         "type": "pointlight",
                         "enabled": true,
@@ -1496,10 +1473,6 @@
                             "y": 37.3,
                             "z": 33.75
                         }
-                    },
-                    "polygon": {
-                        "type": "noderef",
-                        "nodeId": "polygon"
                     }
                 }
             }

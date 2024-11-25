@@ -116,29 +116,31 @@ class PrimitiveFactory {
         const samplesU = nurbs['parts_u'];
         const samplesV = nurbs['parts_v'];
         const controlPoints = [];
-        console.log(nurbs)  
-        for (let i = 0; i <= orderU; i++){
+        console.log(nurbs);
+        for (let i = 0; i <= orderU; i++) {
             let temp_array = [];
-            for (let j = 0; j <= orderV; j++){
+            for (let j = 0; j <= orderV; j++) {
                 temp_array.push(new THREE.Vector4(nurbs['control_points'][i]['x'], nurbs['control_points'][i]['y'], nurbs['control_points'][i]['z'], 1));
             }
             controlPoints.push(temp_array);
         }
 
-        const map = new THREE.TextureLoader().load( 'scenes/car/textures/car_chair.jpg' );
-        map.wrapS = map.wrapT = THREE.RepeatWrapping; 
-        map.anisotropy = 16; 
-        map.colorSpace = THREE.SRGBColorSpace; 
-        this.material = new THREE.MeshLambertMaterial( { map: map,
-                        side: THREE.DoubleSide,
-                        transparent: true, opacity: 0.90 } );
+        const map = new THREE.TextureLoader().load('scenes/car/textures/car_chair.jpg');
+        map.wrapS = map.wrapT = THREE.RepeatWrapping;
+        map.anisotropy = 16;
+        map.colorSpace = THREE.SRGBColorSpace;
+        this.material = new THREE.MeshLambertMaterial({
+            map: map,
+            side: THREE.DoubleSide,
+            transparent: true, opacity: 0.90
+        });
 
 
         const surfaceData = build(
             controlPoints, orderU, orderV, samplesU, samplesV, this.material
         );
 
-        
+
         const mesh = new THREE.Mesh(surfaceData, material);
 
         console.log(mesh);
