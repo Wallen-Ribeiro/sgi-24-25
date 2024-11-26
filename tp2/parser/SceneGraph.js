@@ -62,7 +62,18 @@ class SceneGraph {
             const isVideo = texture.isVideo;
 
             if (isVideo) {
-                this.textures[textureId] = new THREE.VideoTexture()
+                const body = document.getElementsByTagName('body')[0];
+                const video = document.createElement('video');
+                video.setAttribute('id', textureId);
+                video.setAttribute('crossOrigin', 'anonymous');
+                video.setAttribute('style', 'display:none');
+                video.setAttribute('src', texture['filepath']);
+                video.setAttribute('autoplay', true);
+                video.setAttribute('loop', true);
+                video.setAttribute('type', 'video/mp4');
+                body.appendChild(video);
+
+                this.textures[textureId] = new THREE.VideoTexture(video);
             } else {
                 this.textures[textureId] = new THREE.TextureLoader().load(texture['filepath']);
             }
