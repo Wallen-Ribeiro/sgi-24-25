@@ -31,16 +31,6 @@ class MyContents {
             this.app.scene.add(this.axis)
         }
 
-        // ambient light
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        this.app.scene.add(ambientLight);
-
-        // light point
-        const light = new THREE.PointLight(0xffffff, 50);
-        const pointLightHelper = new THREE.PointLightHelper(light);
-        light.position.set(0, 5, -5);
-        this.app.scene.add(light);
-        this.app.scene.add(pointLightHelper);
 
         //this.buildSkyBox();
         //this.buildCar();

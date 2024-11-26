@@ -233,6 +233,7 @@ class PrimitiveFactory {
         const shadowMapSize = pointlight['shadowmapsize'] ?? 512;
 
         const light = new THREE.PointLight(color, intensity, distance, decay);
+        const helper = new THREE.PointLightHelper(light, 1);
 
         light.castShadow = castShadow;
 
@@ -243,7 +244,7 @@ class PrimitiveFactory {
         light.position.set(position.x, position.y, position.z);
         light.enabled = enabled;
 
-        return light;
+        return [light, helper];
     }
 
     static createSpotLightFromYASF(spotlight) {
@@ -261,6 +262,7 @@ class PrimitiveFactory {
         const shadowMapSize = spotlight['shadowmapsize'] ?? 512;
 
         const light = new THREE.SpotLight(color, intensity, distance, angle, penumbra, decay);
+        const helper = new THREE.SpotLightHelper(light);
 
         light.castShadow = castShadow;
 
@@ -272,7 +274,7 @@ class PrimitiveFactory {
         light.target.position.set(target.x, target.y, target.z);
 
         light.enabled = enabled;
-        return light;
+        return [light, helper];
     }
 
     static createDirectionalLightFromYASF(directionallight) {
@@ -289,6 +291,7 @@ class PrimitiveFactory {
         const shadowMapSize = directionallight['shadowmapsize'] ?? 512;
 
         const light = new THREE.DirectionalLight(color, intensity);
+        const helper = new THREE.DirectionalLightHelper(light, 1);
 
         light.castShadow = castShadow;
 
@@ -303,7 +306,7 @@ class PrimitiveFactory {
         light.position.set(position.x, position.y, position.z);
         light.enabled = enabled;
 
-        return light;
+        return [light, helper];
     }
 
 

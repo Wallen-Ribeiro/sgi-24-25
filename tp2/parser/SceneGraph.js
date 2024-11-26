@@ -252,7 +252,15 @@ class SceneGraph {
                     if (!primitive) {
                         return null;
                     }
-                    group.add(primitive);
+                    // verify if the primitive is array (lights also return helper)
+                    if (Array.isArray(primitive)) {
+                        primitive.forEach((p) => {
+                            group.add(p);
+                        });
+                    } else {
+                        group.add(primitive);
+                    }
+
                     break;
             };
         });
