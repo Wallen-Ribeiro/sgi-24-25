@@ -246,6 +246,26 @@
         },
         "graph": {
             "rootid": "scene",
+            "unitBox":{
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "boxPrim": {
+                        "type": "box",
+                        "xyz1": {
+                            "x": -0.5,
+                            "y": -0.5,
+                            "z": -0.5
+                        },
+                        "xyz2": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
+                        }
+                    }
+                }
+            },
             "unitPlane": {
                 "type": "node",
                 "children": {
@@ -1245,6 +1265,68 @@
                     "lodsList": []
                 }
             },
+            "chairTop":{
+                "type": "node",
+                "materialref": {
+                    "materialId": "carChair"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 2.0,
+                            "z": 0.5
+                        }
+
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 2.5,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitBox"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "chairBottom":{
+                "type": "node",
+                "materialref": {
+                    "materialId": "carChair"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": 1.5
+                        }
+
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 0.5,
+                            "z": 2.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitBox"
+                    ],
+                    "lodsList": []
+                }
+            },
             "carChair": {
                 "type": "node",
                 "materialref": {
@@ -1261,32 +1343,11 @@
                     }
                 ],
                 "children": {
-                    "boxPrim": {
-                        "type": "box",
-                        "xyz1": {
-                            "x": -1.25,
-                            "y": 0.5,
-                            "z": 0
-                        },
-                        "xyz2": {
-                            "x": 1.25,
-                            "y": 3,
-                            "z": 0.5
-                        }
-                    },
-                    "boxPrim2": {
-                        "type": "box",
-                        "xyz1": {
-                            "x": -1.25,
-                            "y": 0.5,
-                            "z": 0
-                        },
-                        "xyz2": {
-                            "x": 1.25,
-                            "y": 1,
-                            "z": 2.5
-                        }
-                    }
+                    "nodesList": [
+                        "chairTop",
+                        "chairBottom"
+                    ],
+                    "lodsList": []
                 }
             },
             "carInterior": {
