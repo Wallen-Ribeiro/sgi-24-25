@@ -108,42 +108,30 @@ class PrimitiveFactory {
         return mesh;
     }
 
-
-
     static createNurbsCurveFromYASF(nurbs, material) {
         const orderU = nurbs['degree_u'];
         const orderV = nurbs['degree_v'];
         const samplesU = nurbs['parts_u'];
         const samplesV = nurbs['parts_v'];
         const controlPoints = [];
-        console.log(nurbs);
+        let index = 0;
         for (let i = 0; i <= orderU; i++) {
             let temp_array = [];
             for (let j = 0; j <= orderV; j++) {
-                temp_array.push(new THREE.Vector4(nurbs['control_points'][i]['x'], nurbs['control_points'][i]['y'], nurbs['control_points'][i]['z'], 1));
+                temp_array.push([nurbs['control_points'][index]['x'], nurbs['control_points'][index]['y'], nurbs['control_points'][index]['z'], 1]);
+                index++;
             }
             controlPoints.push(temp_array);
         }
 
-        const map = new THREE.TextureLoader().load('scenes/car/textures/car_chair.jpg');
-        map.wrapS = map.wrapT = THREE.RepeatWrapping;
-        map.anisotropy = 16;
-        map.colorSpace = THREE.SRGBColorSpace;
-        this.material = new THREE.MeshLambertMaterial({
-            map: map,
-            side: THREE.DoubleSide,
-            transparent: true, opacity: 0.90
-        });
-
-
         const surfaceData = build(
-            controlPoints, orderU, orderV, samplesU, samplesV, this.material
+            controlPoints, orderU, orderV, samplesU, samplesV, material
         );
 
 
         const mesh = new THREE.Mesh(surfaceData, material);
 
-        console.log(mesh);
+        console.log("lol",mesh);
 
         return mesh;
     }
