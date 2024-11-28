@@ -166,9 +166,6 @@ class PrimitiveFactory {
                 const y = r * Math.sin(angle);
                 const u = 0.5 + (x / (2 * radius)); 
                 const v = 0.5 - (y / (2 * radius)); 
-
-                //console.log("u is ",u);
-                console.log("v is ",v);
     
                 vertices.push(x, y, 0);
     
@@ -190,10 +187,10 @@ class PrimitiveFactory {
             }
         }
     
-        // Create geometry
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
         geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3));
+
         geometry.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(uvs), 2));
         geometry.setIndex(indices);
         geometry.computeVertexNormals();
