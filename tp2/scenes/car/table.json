@@ -62,7 +62,48 @@
             }
         },
         "materials": {
-            
+            "carBody": {
+                "color": {
+                    "r": 0.8,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "visorGlass": {
+                "color": {
+                    "r": 0.3,
+                    "g": 0.5,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 0.3,
+                    "g": 0.5,
+                    "b": 1.0
+                },
+                "shininess": 100,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 0.5,
+                "twosided": true
+            }
         },
         "cameras": {
             "initial": "cam2",
@@ -123,9 +164,6 @@
             },
             "unitCube": {
                 "type": "node",
-                "materialref": {
-                    "materialId": "amogusMat"
-                },
                 "children": {
                     "nodesList": [],
                     "lodsList": [],
@@ -151,7 +189,7 @@
                     "lodsList": [],
                     "spherePrim": {
                         "type": "sphere",
-                        "radius": 0.8,
+                        "radius": 1.0,
                         "slices": 20,
                         "stacks": 20
                     }
@@ -428,9 +466,7 @@
             },
             "tableChairNearPiece1":{
                 "type" : "node",
-                "transforms":[
-                    
-                    
+                "transforms":[ 
                     {
                         "type": "scale",
                         "amount": {
@@ -588,12 +624,7 @@
                 }
             },
             "tableChairNear":{
-
                 "type" : "node",
-                "transforms":[  
-                    
-                    
-                ],
                 "children":{
                     "nodesList":[
                         "tableChairNearPiece1",
@@ -722,6 +753,240 @@
                     "lodsList": []
                 }
             },
+            "susHead": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitSphere"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susBody":{
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.0,
+                            "y": 2.0,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCylinderNear"
+                    ],
+                    "lodsList": []
+                }
+
+            },
+            "bottomCapsule":{
+                "type": "node",
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -1.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitSphere"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "capsule":{
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "susBody",
+                        "susHead",
+                        "bottomCapsule"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susVisor":{
+                "type": "node",
+                "materialref":{
+                    "materialId": "visorGlass"
+                },
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 90.0
+                        }
+
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.45,
+                            "y": 0.30,
+                            "z": 0.35
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "capsule"
+                    ],
+                    "lodsList":[]
+                }
+            },
+            "susBackpack":{
+                "type": "node",
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -1.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.0,
+                            "y": 1.5,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "unitCube"
+                    ],
+                    "lodsList":[]
+                }
+            },
+            "susLeg1":{
+                "type": "node",
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -0.55,
+                            "y": -1.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.45,
+                            "y": 0.35,
+                            "z": 0.5
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "capsule"
+                    ],
+                    "lodsList":[]
+                }
+            },
+            "susLeg2":{
+                "type": "node",
+                "transforms":[
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.1,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "susLeg1"
+                    ],
+                    "lodsList":[]
+                }
+            },
+            "sus": {
+                "type": "node",
+                "materialref":{
+                    "materialId": "carBody"
+                },
+                "children": {
+                    "nodesList": [
+                        "susBody",
+                        "susHead",
+                        "susLeg1",
+                        "susLeg2",
+                        "susVisor",
+                        "susBackpack"
+                   ],
+                    "lodsList": []
+                }
+            },
+            "susFar":{
+                "type": "node",
+                "materialref": {
+                    "materialId": "carBody"
+                },
+                "children": {
+                    "nodesList": [
+                        "susBody",
+                        "susHead",
+                        "susLeg1",
+                        "susLeg2"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susLod":{
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar",
+                        "mindist": 10
+                    }
+                ]
+            },
             "tableLod": {
                 "type": "lod",
                 "lodNodes": [
@@ -741,7 +1006,7 @@
                     "nodesList": [
                     ],
                     "lodsList": [
-                        "tableLod"
+                        "susLod"
                     ],
                     "pointLight": {
                         "type": "pointlight",
