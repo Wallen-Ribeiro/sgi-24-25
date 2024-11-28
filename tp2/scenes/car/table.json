@@ -166,7 +166,7 @@
                         "type": "cylinder",
                         "radius": 1.0,
                         "height": 1.0,
-                        "slices": 10,
+                        "slices": 6,
                         "stacks": 10,
                         "cap" : true
 
@@ -194,14 +194,6 @@
                 "type": "node",
                 "transforms": [
                     {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    {
                         "type": "scale",
                         "amount": {
                             "x": 4.0,
@@ -220,14 +212,7 @@
             "tableTopNear":{
                 "type": "node",
                 "transforms": [
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
+                    
                     {
                         "type": "scale",
                         "amount": {
@@ -247,22 +232,8 @@
             "tableChairFarPiece1":{
                 "type" : "node",
                 "transforms":[
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "rotate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
+                    
+                    
                     {
                         "type": "scale",
                         "amount": {
@@ -352,22 +323,8 @@
             "tableChairFar":{
                 "type" : "node",
                 "transforms":[  
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    }
+                    
+                    
                 ],
                 "children":{
                     "nodesList":[
@@ -398,14 +355,6 @@
                             "z": 0.0
                         }
 
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
                     }
                 ],
                 "children":{
@@ -419,28 +368,13 @@
             "tableChairFar2":{
                 "type" : "node",
                 "transforms":[  
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
+                    
                     {
                         "type":"rotate",
                         "amount": {
                             "x": 0.0,
                             "y": 90.0,
                             "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
                         }
                     }
                 ],
@@ -456,27 +390,11 @@
                 "type" : "node",
                 "transforms":[  
                     {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    {
                         "type":"rotate",
                         "amount": {
                             "x": 0.0,
                             "y": 180.0,
                             "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
                         }
                     }
                 ],
@@ -492,27 +410,11 @@
                 "type" : "node",
                 "transforms":[  
                     {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    {
                         "type":"rotate",
                         "amount": {
                             "x": 0.0,
                             "y": 270.0,
                             "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
                         }
                     }
                 ],
@@ -527,22 +429,8 @@
             "tableChairNearPiece1":{
                 "type" : "node",
                 "transforms":[
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "rotate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
+                    
+                    
                     {
                         "type": "scale",
                         "amount": {
@@ -703,22 +591,8 @@
 
                 "type" : "node",
                 "transforms":[  
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    }
+                    
+                    
                 ],
                 "children":{
                     "nodesList":[
@@ -751,14 +625,6 @@
                             "y": 45.0,
                             "z": 0.0
                         }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
                     }
                 ],
                 "children":{
@@ -767,34 +633,16 @@
                     ],
                     "lodsList":[]
                 }
-              
             },
             "tableChairNear2":{
-                
                 "type" : "node",
                 "transforms":[  
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
                     {
                         "type":"rotate",
                         "amount":{
                             "x": 0.0,
                             "y": 90.0,
                             "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
                         }
                     }
                 ],
@@ -810,28 +658,13 @@
                 
                 "type" : "node",
                 "transforms":[  
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
+                    
                     {
                         "type":"rotate",
                         "amount":{
                             "x": 0.0,
                             "y": 180.0,
                             "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
                         }
                     }
                 ],
@@ -844,31 +677,14 @@
               
             },
             "tableChairNear4":{
-                
                 "type" : "node",
                 "transforms":[  
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
                     {
                         "type":"rotate",
                         "amount":{
                             "x": 0.0,
                             "y": 270.0,
                             "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
                         }
                     }
                 ],
@@ -882,24 +698,6 @@
             },
             "tableFar": {
                 "type": "node",
-                "transforms": [
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    }
-                ],
                 "children": {
                     "nodesList": [
                         "tableChairFar1",
@@ -913,24 +711,6 @@
             },
             "tableNear":{
                 "type": "node",
-                "transforms": [
-                    {
-                        "type": "translate",
-                        "amount": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    {
-                        "type": "scale",
-                        "amount": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    }
-                ],
                 "children": {
                     "nodesList": [
                         "tableChairNear1",
