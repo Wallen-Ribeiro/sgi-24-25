@@ -220,6 +220,17 @@ class SceneGraph {
         return node;
     }
 
+    buildLODRef(lodId, materialRef = null) {
+        let lod = null;
+        Object.keys(this.graph).forEach((graphChildId) => {
+            if (graphChildId === lodId) {
+                this.graph[graphChildId]['id'] = graphChildId;
+                lod = this.buildLOD(this.graph[graphChildId], materialRef);
+            }
+        });
+        return lod;
+    }
+
     buildNode(node, materialRef = null) {
         const type = node['type'];
 
@@ -257,6 +268,14 @@ class SceneGraph {
                     }
                     break;
                 case 'lodsList':
+                    for (const lodId of child) {
+                        const newRef = this.buildLODRef(lodId, materialRef);
+                        if (!newRef) {
+                            console.error('Couldn\'t build reference to LOD ' + lodId);
+                            return null;
+                        }
+                        group.add(newRef);
+                    }
                     break;
                 default:
                     const primitive = this.createPrimitive(child, materialRef);
@@ -302,7 +321,33 @@ class SceneGraph {
         return group;
     }
 
+    buildLOD(lod, materialRef = null) {
+        const type = lod['type'];
 
+        if (type !== 'lod') {
+            console.error('Reference to a non-lod type');
+            return null;
+        }
+
+        const lodGroup = new THREE.LOD();
+        const lodNodes = lod['lodNodes'];
+
+        for (const lodNode of lodNodes) {
+            const nodeId = lodNode['nodeId'];
+            const minDist = lodNode['mindist'];
+
+            const newRef = this.buildNodeRef(nodeId, materialRef);
+            if (!newRef) {
+                console.error('Couldn\'t build reference to node ' + nodeId);
+                return null;
+            }
+
+            lodGroup.addLevel(newRef, minDist);
+        }
+
+        return lodGroup;
+
+    }
 
 
 

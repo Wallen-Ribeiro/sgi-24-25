@@ -55,6 +55,10 @@
             },
             "carChairTex": {
                 "filepath": "scenes/car/textures/car_chair.jpg"
+            },
+            "amogus": {
+                "filepath": "scenes/car/textures/amogus1.mp4",
+                "isVideo": true
             }
         },
         "materials": {
@@ -207,6 +211,28 @@
                 "opacity": 1.0,
                 "twosided": true,
                 "textureref": "carChairTex"
+            },
+            "amogusMat": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "wireframe": false,
+                "textureref": "amogus"
             }
         },
         "cameras": {
@@ -1449,6 +1475,55 @@
                     }
                 }
             },
+            "unitCube": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "amogusMat"
+                },
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "boxPrim": {
+                        "type": "box",
+                        "xyz1": {
+                            "x": -0.5,
+                            "y": -0.5,
+                            "z": -0.5
+                        },
+                        "xyz2": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
+                        }
+                    }
+                }
+            },
+            "unitSphere": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "spherePrim": {
+                        "type": "sphere",
+                        "radius": 0.8,
+                        "slices": 20,
+                        "stacks": 20
+                    }
+                }
+            },
+            "ballLod": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "unitSphere",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "unitCube",
+                        "mindist": 10
+                    }
+                ]
+            },
             "scene": {
                 "type": "node",
                 "children": {
@@ -1456,7 +1531,9 @@
                         "car",
                         "nurb"
                     ],
-                    "lodsList": [],
+                    "lodsList": [
+                        "ballLod"
+                    ],
                     "pointLight": {
                         "type": "pointlight",
                         "enabled": true,
