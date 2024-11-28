@@ -321,7 +321,7 @@
                         "degree_v": 3,
                         "parts_u": 20,
                         "parts_v": 20,
-                        "control_points": [
+                        "controlpoints": [
                             {
                                 "x": 0,
                                 "y": 0,
@@ -1545,7 +1545,7 @@
                         "degree_v": 3,
                         "parts_u": 20,
                         "parts_v": 20,
-                        "control_points": [
+                        "controlpoints": [
                             {
                                 "x": 0,
                                 "y": 0,

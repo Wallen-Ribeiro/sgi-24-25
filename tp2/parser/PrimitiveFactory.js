@@ -118,7 +118,7 @@ class PrimitiveFactory {
         for (let i = 0; i <= orderU; i++) {
             let temp_array = [];
             for (let j = 0; j <= orderV; j++) {
-                temp_array.push([nurbs['control_points'][index]['x'], nurbs['control_points'][index]['y'], nurbs['control_points'][index]['z'], 1]);
+                temp_array.push([nurbs['controlpoints'][index]['x'], nurbs['controlpoints'][index]['y'], nurbs['controlpoints'][index]['z'], 1]);
                 index++;
             }
             controlPoints.push(temp_array);
@@ -131,14 +131,13 @@ class PrimitiveFactory {
 
         const mesh = new THREE.Mesh(surfaceData, material);
 
-        console.log("lol",mesh);
+        console.log("lol", controlPoints);
 
         return mesh;
     }
 
 
     static createPolygonFromYASF(polygon, material) {
-
         const radius = polygon['radius'];
         const stacks = polygon['stacks'];
         const slices = polygon['slices'];
@@ -170,7 +169,7 @@ class PrimitiveFactory {
                 vertices.push(x, y, 0);
     
                 const lerpColor = new THREE.Color();
-                colors.push(...lerpColor.lerpColors(colorC, colorP, 0).toArray());
+                colors.push(...lerpColor.lerpColors(colorC, colorP, alpha).toArray());
     
                 uvs.push(u, v);
             }
