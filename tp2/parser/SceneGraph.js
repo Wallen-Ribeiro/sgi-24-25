@@ -93,6 +93,7 @@ class SceneGraph {
             let texture = textureRef ? this.textures[textureRef] : null;
             const bumpRef = material['bumpref'];
             const bumpMap = bumpRef ? this.textures[bumpRef] : null;
+            const bumpScale = material['bumpscale']?? 1.0;
             const specularRef = material['specularref'];
             const specularMap = specularRef ? this.textures[specularRef] : null;
             const texLengthS = material['texlength_s'] ?? 1;
@@ -100,7 +101,7 @@ class SceneGraph {
             const color = new THREE.Color(material['color']['r'], material['color']['g'], material['color']['b']);
             const specular = new THREE.Color(material['specular']['r'], material['specular']['g'], material['specular']['b']);
             const emissive = new THREE.Color(material['emissive']['r'], material['emissive']['g'], material['emissive']['b']);
-
+        
             if (texture) {
                 texture = texture.clone();
                 texture.wrapS = THREE.RepeatWrapping;
@@ -121,6 +122,7 @@ class SceneGraph {
                 map: texture,
                 bumpMap: bumpMap,
                 specularMap: specularMap,
+                bumpScale: bumpScale
             });
 
             this.materials[materialId].name = materialId;
@@ -189,7 +191,7 @@ class SceneGraph {
             case 'nurbs':
                 return PrimitiveFactory.createNurbsCurveFromYASF(node, material);
             case 'polygon':
-                return PrimitiveFactory.createPolygonFromYASF(node, material);
+                return PrimitiveFactory.createPolygonFromYASF(node, this.materials[materialref]);
             case 'pointlight':
                 return PrimitiveFactory.createPointLightFromYASF(node);
             case 'spotlight':

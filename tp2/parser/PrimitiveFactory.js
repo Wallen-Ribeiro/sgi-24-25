@@ -138,6 +138,7 @@ class PrimitiveFactory {
 
 
     static createPolygonFromYASF(polygon, material) {
+
         const radius = polygon['radius'];
         const stacks = polygon['stacks'];
         const slices = polygon['slices'];
@@ -145,69 +146,64 @@ class PrimitiveFactory {
         const color_p = polygon['color_p'];
         const colorC = new THREE.Color(color_c['r'], color_c['g'], color_c['b']);
         const colorP = new THREE.Color(color_p['r'], color_p['g'], color_p['b']);
-
+    
         const rStep = radius / stacks;
         const angleStep = 2 * Math.PI / slices;
-
+    
         let vertices = [];
-        const indices = [];
-        const colors = [];
-
-        vertices.push(0, 0, 0);
-        for (let stack = 1; stack <= stacks; stack++) {
+        let colors = [];
+        let indices = [];
+        let uvs = [];
+    
+    
+        for (let stack = 0; stack <= stacks; stack++) {
             const r = stack * rStep;
-            for (let slice = 0; slice < slices; slice++) {
+            const alpha = stack / stacks;
+    
+            for (let slice = 0; slice <= slices; slice++) {
                 const angle = slice * angleStep;
                 const x = r * Math.cos(angle);
                 const y = r * Math.sin(angle);
+                const u = 0.5 + (x / (2 * radius)); 
+                const v = 0.5 - (y / (2 * radius)); 
 
+                //console.log("u is ",u);
+                console.log("v is ",v);
+    
                 vertices.push(x, y, 0);
+    
+                const lerpColor = new THREE.Color();
+                colors.push(...lerpColor.lerpColors(colorC, colorP, 0).toArray());
+    
+                uvs.push(u, v);
             }
         }
-
-        const lerpColor = new THREE.Color();
-        colors.push(...lerpColor.lerpColors(colorC, colorP, 0).toArray());
-        for (let stack = 1; stack <= stacks; stack++) {
-            const alpha = stack / stacks;
+    
+        for (let stack = 0; stack < stacks; stack++) {
             for (let slice = 0; slice < slices; slice++) {
-                colors.push(...lerpColor.lerpColors(colorC, colorP, alpha).toArray());
+                const first = stack * (slices + 1) + slice;
+                const second = first + slices + 1;
+    
+                indices.push(first, second + 1, second);
+    
+                indices.push(first, first + 1, second + 1);
             }
         }
-
-        for (let slice = 0; slice < slices - 1; slice++) {
-            indices.push(0, slice + 2, slice + 1);
-        }
-        indices.push(0, 1, slices);
-
-        for (let stack = 1; stack < stacks; stack++) {
-            let k1 = (stack - 1) * slices + 1;
-            let k2 = k1 + slices;
-            for (let slice = 0; slice < slices - 1; slice++) {
-
-                indices.push(k1, k2 + 1, k2);
-                indices.push(k1 + 1, k2 + 1, k1);
-
-                k1++;
-                k2++;
-            }
-            indices.push(k1, k1 + 1, k2);
-            indices.push((stack - 1) * slices + 1, k1 + 1, k1);
-        }
-
+    
+        // Create geometry
         const geometry = new THREE.BufferGeometry();
-
         geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
         geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3));
+        geometry.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(uvs), 2));
         geometry.setIndex(indices);
         geometry.computeVertexNormals();
 
-        material = new THREE.MeshPhongMaterial({
-            vertexColors: true,
-            side: THREE.DoubleSide,
-        });
-
-        return new THREE.Mesh(geometry, material);
+        const material1 = material || new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, vertexColors: true });
+    
+        return new THREE.Mesh(geometry, material1);
     }
+    
+    
 
     static createPointLightFromYASF(pointlight) {
         const enabled = pointlight['enabled'] ?? true;
