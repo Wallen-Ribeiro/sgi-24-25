@@ -1,0 +1,912 @@
+{
+    "yasf": {
+        "globals": {
+            "background": {
+                "r": 0.0,
+                "g": 0.0,
+                "b": 0.0
+            },
+            "ambient": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0,
+                "intensity": 0.5
+            },
+            "fog": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "near": 1.0,
+                "far": 100.0
+            },
+            "skybox": {
+                "size": {
+                    "x": 500,
+                    "y": 500,
+                    "z": 500
+                },
+                "center": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "intensity": 0.0,
+                "front": "scenes/amongus/textures/pz.png",
+                "back": "scenes/amongus/textures/nz.png",
+                "left": "scenes/amongus/textures/nx.png",
+                "right": "scenes/amongus/textures/px.png",
+                "up": "scenes/amongus/textures/py.png",
+                "down": "scenes/amongus/textures/ny.png"
+            }
+        },
+        "textures": {
+            "cafeteriaFloorTex": {
+                "filepath": "scenes/amongus/textures/cafeteria_floor.png",
+                "isVideo": false
+            }
+        },
+        "materials": {
+            "amogusMat": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "wireframe": false
+            },
+            "cafeteriaFloorMat": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "wireframe": false,
+                "textureref": "cafeteriaFloorTex",
+                "texlength_s": 1.0,
+                "texlength_t": 0.5
+            },
+            "cafeteriaWallMat": {
+                "color": {
+                    "r": 0.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "wireframe": false
+            },
+            "blackMat": {
+                "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "wireframe": false
+            },
+            "glassMat": {
+                "color": {
+                    "r": 0.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": true,
+                "opacity": 0.2,
+                "wireframe": false
+            },
+            "metalicMat": {
+                "color": {
+                    "r": 0.8,
+                    "g": 0.8,
+                    "b": 0.8
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "wireframe": false
+            }
+        },
+        "cameras": {
+            "initial": "cam2",
+            "cam1": {
+                "type": "perspective",
+                "angle": 75,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": -25,
+                    "y": 50,
+                    "z": 200
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            "cam2": {
+                "type": "perspective",
+                "angle": 75,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": 3,
+                    "y": 3,
+                    "z": 5
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            }
+        },
+        "graph": {
+            "rootid": "scene",
+            "scene": {
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "pointLight1",
+                        "cafeteriaFloor",
+                        "cafeteriaWalls",
+                        "windowFrame",
+                        "vent"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "unitPlane": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "rectanglePrim": {
+                        "type": "rectangle",
+                        "xy1": {
+                            "x": -0.5,
+                            "y": -0.5
+                        },
+                        "xy2": {
+                            "x": 0.5,
+                            "y": 0.5
+                        }
+                    }
+                }
+            },
+            "unitCube": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "boxPrim": {
+                        "type": "box",
+                        "xyz1": {
+                            "x": -0.5,
+                            "y": -0.5,
+                            "z": -0.5
+                        },
+                        "xyz2": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
+                        }
+                    }
+                }
+            },
+            "unitSphere": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "spherePrim": {
+                        "type": "sphere",
+                        "radius": 0.8,
+                        "slices": 20,
+                        "stacks": 20
+                    }
+                }
+            },
+            "pointLight1": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "pointLight": {
+                        "type": "pointlight",
+                        "enabled": true,
+                        "color": {
+                            "r": 1.0,
+                            "g": 1.0,
+                            "b": 1.0
+                        },
+                        "intensity": 10.0,
+                        "distance": 1000,
+                        "decay": 2.0,
+                        "castshadow": false,
+                        "position": {
+                            "x": 5.0,
+                            "y": 5.0,
+                            "z": 5.0
+                        }
+                    }
+                }
+            },
+            "unitOctagon": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 22.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "polygon": {
+                        "type": "polygon",
+                        "radius": 1.0,
+                        "stacks": 10,
+                        "slices": 8,
+                        "color_c": {
+                            "r": 1.0,
+                            "g": 1.0,
+                            "b": 1.0
+                        },
+                        "color_p": {
+                            "r": 1.0,
+                            "g": 1.0,
+                            "b": 1.0
+                        }
+                    }
+                }
+            },
+            "cafeteriaFloor": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaFloorMat"
+                },
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 10.0,
+                            "y": 10.0,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitOctagon"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallNZ": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallMat"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.5,
+                            "z": -9.15
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 7.7,
+                            "y": 3.0,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallPXNZ": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallMat"
+                },
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 45.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "cafeteriaWallNZ"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallNX": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallMat"
+                },
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "cafeteriaWallNZ"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallNXPZ": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallMat"
+                },
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 135.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "cafeteriaWallNZ"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallPZ": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallMat"
+                },
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "cafeteriaWallNZ"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallPXPZ": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallMat"
+                },
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 225.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "cafeteriaWallNZ"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallPX": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallMat"
+                },
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "cafeteriaWallNZ"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallNXNZ": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallMat"
+                },
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 315.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "cafeteriaWallNZ"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallPartL": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.10,
+                            "y": 1.5,
+                            "z": -9.15
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.4,
+                            "y": 3.0,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallPartR": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3.10,
+                            "y": 1.5,
+                            "z": -9.15
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.4,
+                            "y": 3.0,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallPartB": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.25,
+                            "z": -9.15
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 5.0,
+                            "y": 0.5,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWallPartT": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 2.75,
+                            "z": -9.15
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 5.0,
+                            "y": 0.5,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWindowWall": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallMat"
+                },
+                "children": {
+                    "nodesList": [
+                        "cafeteriaWallPartL",
+                        "cafeteriaWallPartR",
+                        "cafeteriaWallPartB",
+                        "cafeteriaWallPartT"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaWalls": {
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "cafeteriaWindowWall",
+                        "cafeteriaWallPZ",
+                        "cafeteriaWallNX",
+                        "cafeteriaWallPX",
+                        "cafeteriaWallPXNZ",
+                        "cafeteriaWallPXPZ",
+                        "cafeteriaWallNXPZ",
+                        "cafeteriaWallNXNZ"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "windowFrameH": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "blackMat"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 5.0,
+                            "y": 0.1,
+                            "z": 0.1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "windowFrameHB": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -1.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "windowFrameH"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "windowFrameHT": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 2.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "windowFrameHB"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "windowFrameV": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "blackMat"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.1,
+                            "y": 2.0,
+                            "z": 0.1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "windowFrameVL": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -2.45,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "windowFrameV"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "windowFrameVR": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 2.45,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "windowFrameV"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "glassPane": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "glassMat"
+                },
+                "transforms": [
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 5.0,
+                            "y": 2.0,
+                            "z": 0.1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "windowFrame": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.5,
+                            "z": -9.15
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "windowFrameHB",
+                        "windowFrameHT",
+                        "windowFrameVL",
+                        "windowFrameV",
+                        "windowFrameVR",
+                        "glassPane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "vent": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "metalicMat"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 8.0,
+                            "y": 0.0,
+                            "z": 3.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.0,
+                            "y": 0.1,
+                            "z": 0.8
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            }
+        }
+    }
+}
