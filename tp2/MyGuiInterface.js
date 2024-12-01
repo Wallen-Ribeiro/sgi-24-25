@@ -34,6 +34,12 @@ class MyGuiInterface {
         cameraFolder.add(this.app, 'activeCameraName', cameraNames).name("active camera").onChange((value) => {
             this.app.setActiveCamera(value);
         });
+
+        const sceneFolder = this.datgui.addFolder('Scene');
+        const wireframeButton = sceneFolder.add(this.app, 'wireframe').name('wireframe').listen();
+        wireframeButton.onChange((value) => {
+            this.app.setWireframe(value);
+        });
     }
 }
 

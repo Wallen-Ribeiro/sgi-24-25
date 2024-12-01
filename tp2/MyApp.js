@@ -28,6 +28,7 @@ class MyApp {
         this.gui = null
         this.axis = null
         this.contents == null
+        this.wireframe = false
     }
     /**
      * initializes the application
@@ -139,6 +140,20 @@ class MyApp {
      */
     setGui(gui) {
         this.gui = gui
+    }
+
+    toggleWireframe() {
+        this.wireframe = !this.wireframe
+        this.setWireframe(this.wireframe)
+    }
+
+    setWireframe(value) {
+        // set wireframe for all materials
+        this.scene.traverse(function (child) {
+            if (child.isMesh) {
+                child.material.wireframe = value
+            }
+        });
     }
 
     /**
