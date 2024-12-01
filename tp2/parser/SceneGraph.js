@@ -125,6 +125,7 @@ class SceneGraph {
                 video.setAttribute('autoplay', true);
                 video.setAttribute('loop', true);
                 video.setAttribute('type', 'video/mp4');
+                video.muted = true;
                 body.appendChild(video);
 
                 this.textures[textureId] = new THREE.VideoTexture(video);
