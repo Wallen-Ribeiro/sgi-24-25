@@ -40,6 +40,5 @@ This project builds upon the foundational structure provided by our teachers. We
 - **Random Objects** - The scene also includes various objects like an emergency button, cups, and plates, each with applied textures.
 
 ## Issues/Problems
-- Difficulty configuring the camera target, specifically with the ```lookAt``` parameter not functioning as expected.
-
+- The wireframe toggle in the GUI does not account for objects that are wireframes by default. Toggling wireframes on and off causes all objects to be displayed as filled.
 
