@@ -24,7 +24,7 @@ This project builds upon the foundational structure provided by our teachers. We
 - **Camera 1** - Provides a distant, high-level overview of the entire scene. 
 - **Camera 2** -  A close-up view situated within the cafeteria and its elements.
 - **Laptop Camera**- Allows a closer look on the video playing on the laptop screen. 
-- **Toggle wireframe** - Allows the user to switch between the ```fill``` and ```wireframe" modes```.
+- **Toggle wireframe** - Allows the user to switch between the ```fill``` and ```wireframe modes```.
 
 
 ### Main Objects in scene / scene composition
