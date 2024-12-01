@@ -132,6 +132,7 @@ class PrimitiveFactory {
         const samplesU = nurbs['parts_u'];
         const samplesV = nurbs['parts_v'];
         const controlPoints = [];
+    
         let index = 0;
         for (let i = 0; i <= orderU; i++) {
             let temp_array = [];
@@ -141,18 +142,23 @@ class PrimitiveFactory {
             }
             controlPoints.push(temp_array);
         }
-
-        const surfaceData = build(
-            controlPoints, orderU, orderV, samplesU, samplesV, material
-        );
-
+    
+        const surfaceData = build(controlPoints, orderU, orderV, samplesU, samplesV);
+    
+        const uvData = [];
+        for (let u = 0; u <= samplesU; u++) {
+            for (let v = 0; v <= samplesV; v++) {
+                uvData.push(u / samplesU, v / samplesV);
+            }
+        }
+        surfaceData.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(uvData), 2));
+        surfaceData.computeVertexNormals(); 
 
         const mesh = new THREE.Mesh(surfaceData, material);
-
-        console.log("lol", controlPoints);
-
+    
         return mesh;
     }
+    
 
 
     static createPolygonFromYASF(polygon, material) {
@@ -306,8 +312,6 @@ class PrimitiveFactory {
 
         return [light, helper];
     }
-
-
 }
 
 export { PrimitiveFactory };
