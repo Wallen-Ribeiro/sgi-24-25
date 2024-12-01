@@ -106,7 +106,7 @@ class SceneGraph {
                 texture = texture.clone();
                 texture.wrapS = THREE.RepeatWrapping;
                 texture.wrapT = THREE.RepeatWrapping;
-                texture.repeat.set(texLengthS, texLengthT);
+                texture.repeat.set(1/texLengthS, 1/texLengthT);
             }
 
             this.materials[materialId] = new THREE.MeshPhongMaterial({

@@ -50,6 +50,19 @@
             "cafeteriaFloorTex": {
                 "filepath": "scenes/amongus/textures/cafeteria_floor.png",
                 "isVideo": false
+            },
+            "licensePlateTex": {
+                "filepath": "scenes/car/textures/license_plate.jpg"
+            },
+            "carBottomTex": {
+                "filepath": "scenes/car/textures/car_bottom.jpg"
+            },
+            "carChairTex": {
+                "filepath": "scenes/car/textures/car_chair.jpg"
+            },
+            "amogus": {
+                "filepath": "scenes/car/textures/amogus1.mp4",
+                "isVideo": true
             }
         },
         "materials": {
@@ -181,6 +194,367 @@
                 "transparent": false,
                 "opacity": 1.0,
                 "wireframe": false
+            },
+            "redSus": {
+                "color": {
+                    "r": 0.8,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "visorGlass": {
+                "color": {
+                    "r": 0.3,
+                    "g": 0.5,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 0.3,
+                    "g": 0.5,
+                    "b": 1.0
+                },
+                "shininess": 100,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 0.5,
+                "twosided": true
+            },
+            "tableColor": {
+                "color": {
+                    "r": 0.0,
+                    "g": 0.5,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 0.5,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "twosided": true
+            },
+            "greenSus": {
+                "color": {
+                    "r": 0.0,
+                    "g": 0.8,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "whiteSus": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "brownSus": {
+                "color": {
+                    "r": 0.5,
+                    "g": 0.25,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "pinkSus": {
+                "color": {
+                    "r": 1.0,
+                    "g": 0.4,
+                    "b": 0.65
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "orangeSus": {
+                "color": {
+                    "r": 1.0,
+                    "g": 0.5,
+                    "b": 0.1
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "blueSus": {
+                "color": {
+                    "r": 0.0,
+                    "g": 0.3,
+                    "b": 0.8
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "yellowSus": {
+                "color": {
+                    "r": 0.8,
+                    "g": 0.8,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "carBody": {
+                "color": {
+                    "r": 0.8,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "carBottom": {
+                "color": {
+                    "r": 0.4,
+                    "g": 0.4,
+                    "b": 0.4
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "carBottomTex"
+            },
+            "carWheel": {
+                "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "carLight": {
+                "color": {
+                    "r": 1.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 0.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "carWindow": {
+                "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": true,
+                "opacity": 0.5,
+                "twosided": true
+            },
+            "licensePlate": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "licensePlateTex",
+                "texlength_s": 1,
+                "texlength_t": 1
+            },
+            "carChair": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "carChairTex"
             }
         },
         "cameras": {
@@ -228,9 +602,24 @@
                         "cafeteriaFloor",
                         "cafeteriaWalls",
                         "windowFrame",
-                        "vent"
+                        "vent", 
+                        "car"
                     ],
-                    "lodsList": []
+                    "lodsList": [
+                        "tableLod1",
+                        "tableLod2",
+                        "tableLod3",
+                        "tableLod4",
+                        "tableLod5",
+                        "susLod1",
+                        "susLod2",
+                        "susLod3",
+                        "susLod4",
+                        "susLod5",
+                        "susLod6",
+                        "susLod7",
+                        "susLod8"
+                    ]
                 }
             },
             "unitPlane": {
@@ -278,7 +667,7 @@
                     "lodsList": [],
                     "spherePrim": {
                         "type": "sphere",
-                        "radius": 0.8,
+                        "radius": 1.0,
                         "slices": 20,
                         "stacks": 20
                     }
@@ -906,6 +1295,2801 @@
                     ],
                     "lodsList": []
                 }
+            },
+            "unitCylinderFar": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "radius": 1.0,
+                        "height": 1.0,
+                        "slices": 6,
+                        "stacks": 10,
+                        "cap": true
+                    }
+                }
+            },
+            "unitCylinderNear": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "radius": 1.0,
+                        "height": 1.0,
+                        "slices": 20,
+                        "stacks": 10,
+                        "cap": true
+                    }
+                }
+            },
+            "tableTopFar": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 4.0,
+                            "y": 2.0,
+                            "z": 4.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCylinderFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableTopNear": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 4.0,
+                            "y": 2.0,
+                            "z": 4.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCylinderNear"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairFarPiece1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairFarPiece2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 2.05,
+                            "y": 0.0,
+                            "z": 0.55
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -30.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairFarPiece3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -2.05,
+                            "y": 0.0,
+                            "z": 0.55
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 30.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairFar": {
+                "type": "node",
+                "transforms": [],
+                "children": {
+                    "nodesList": [
+                        "tableChairFarPiece1",
+                        "tableChairFarPiece2",
+                        "tableChairFarPiece3"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairFar1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.9,
+                            "y": 0.0,
+                            "z": -4
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 45.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairFar2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairFar1"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairFar3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairFar1"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairFar4": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairFar1"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNearPiece1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 1,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNearPiece2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.3,
+                            "y": 0.0,
+                            "z": 0.17
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -15.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 1,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNearPiece3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.3,
+                            "y": 0.0,
+                            "z": 0.17
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 15.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 1,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNearPiece4": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 2.30,
+                            "y": 0.0,
+                            "z": 0.55
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -30.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1,
+                            "y": 1,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNearPiece5": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -2.30,
+                            "y": 0.0,
+                            "z": 0.55
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 30.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.0,
+                            "y": 1,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNear": {
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "tableChairNearPiece1",
+                        "tableChairNearPiece2",
+                        "tableChairNearPiece3",
+                        "tableChairNearPiece4",
+                        "tableChairNearPiece5"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNear1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.0,
+                            "y": 0.0,
+                            "z": -4.0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 45.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairNear"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNear2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairNear1"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNear3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairNear1"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableChairNear4": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairNear1"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableFar": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "tableColor"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.35,
+                            "y": 0.35,
+                            "z": 0.35
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairFar1",
+                        "tableChairFar2",
+                        "tableChairFar3",
+                        "tableChairFar4",
+                        "tableTopFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableFar1": {
+                "type": "node",
+                "transforms": [],
+                "children": {
+                    "nodesList": [
+                        "tableFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableFar2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.5,
+                            "y": 0.0,
+                            "z": -4.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableFar3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.5,
+                            "y": 0.0,
+                            "z": 4.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableFar4": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4.5,
+                            "y": 0.0,
+                            "z": -4.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableFar5": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4.5,
+                            "y": 0.0,
+                            "z": 4.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableNear": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "tableColor"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.35,
+                            "y": 0.35,
+                            "z": 0.35
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableChairNear1",
+                        "tableChairNear2",
+                        "tableChairNear3",
+                        "tableChairNear4",
+                        "tableTopNear"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableNear1": {
+                "type": "node",
+                "transforms": [],
+                "children": {
+                    "nodesList": [
+                        "tableNear"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableNear2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.5,
+                            "y": 0.0,
+                            "z": -4.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableNear"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableNear3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.5,
+                            "y": 0.0,
+                            "z": 4.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableNear"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableNear4": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4.5,
+                            "y": 0.0,
+                            "z": -4.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableNear"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "tableNear5": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4.5,
+                            "y": 0.0,
+                            "z": 4.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "tableNear"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susHead": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitSphere"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susBody": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.0,
+                            "y": 2.0,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCylinderNear"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "bottomCapsule": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -1.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitSphere"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "capsule": {
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "susBody",
+                        "susHead",
+                        "bottomCapsule"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susVisor": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "visorGlass"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 90.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.45,
+                            "y": 0.30,
+                            "z": 0.40
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "capsule"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susBackpack": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -1.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susLeg1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -0.55,
+                            "y": -1.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.45,
+                            "y": 0.40,
+                            "z": 0.5
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "capsule"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susLeg2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.1,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susLeg1"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "sus": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0.45,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.25,
+                            "y": 0.25,
+                            "z": 0.25
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susBody",
+                        "susHead",
+                        "susLeg1",
+                        "susLeg2",
+                        "susVisor",
+                        "susBackpack"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "sus1": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "redSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 2,
+                            "y": 0,
+                            "z": 2
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "sus"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "sus2": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "blueSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4,
+                            "y": 0,
+                            "z": 2
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 122.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "sus"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "sus3": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "greenSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4,
+                            "y": 0,
+                            "z": -2
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 122.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "sus"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "sus4": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "yellowSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4,
+                            "y": 0,
+                            "z": 2
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 100.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "sus"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "sus5": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "orangeSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3,
+                            "y": 0,
+                            "z": -7
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -30.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "sus"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "sus6": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "pinkSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4,
+                            "y": 0,
+                            "z": 7
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -30.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "sus"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "sus7": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "whiteSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4,
+                            "y": 0,
+                            "z": 7
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 80.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "sus"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "sus8": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "brownSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -6,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 80.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "sus"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susFar": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 0.45,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.25,
+                            "y": 0.25,
+                            "z": 0.25
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susBody",
+                        "susHead",
+                        "susLeg1",
+                        "susLeg2"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susFar1": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "redSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 2,
+                            "y": 0,
+                            "z": 2
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susFar2": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "blueSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4,
+                            "y": 0,
+                            "z": 2
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 122.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susFar3": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "greenSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4,
+                            "y": 0,
+                            "z": -2
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 122.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susFar4": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "yellowSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4,
+                            "y": 0,
+                            "z": 2
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 100.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susFar5": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "orangeSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 3,
+                            "y": 0,
+                            "z": -7
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -30.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susFar6": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "pinkSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4,
+                            "y": 0,
+                            "z": 7
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -30.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susFar7": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "whiteSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4,
+                            "y": 0,
+                            "z": 7
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 80.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susFar8": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "brownSus"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -6,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 80.0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "susFar"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWheel": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carWheel"
+                },
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "top": 0.75,
+                        "base": 0.75,
+                        "height": 0.375,
+                        "slices": 20,
+                        "stacks": 20,
+                        "cap": true
+                    }
+                }
+            },
+            "carWheel1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.425,
+                            "y": -0.75,
+                            "z": 2.15
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 90
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carWheel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWheel2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.425,
+                            "y": -0.75,
+                            "z": 2.15
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 90
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carWheel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWheel3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.425,
+                            "y": -0.75,
+                            "z": -2.15
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 90
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carWheel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWheel4": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.425,
+                            "y": -0.75,
+                            "z": -2.15
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 90
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carWheel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carFloor": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carBottom"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -1.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 3.0,
+                            "y": 6.0,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBottom": {
+                "type": "node",
+                "transforms": [],
+                "children": {
+                    "nodesList": [
+                        "carWheel1",
+                        "carWheel2",
+                        "carWheel3",
+                        "carWheel4",
+                        "carFloor"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carSide": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 6,
+                            "y": 2,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carLeft": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.5,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carSide"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carRight": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carSide"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carEnd": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 3,
+                            "y": 2,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carFront": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 3.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carEnd"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carMiddle": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carEnd"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBack": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -3.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carEnd"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carHood": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.0,
+                            "z": 1.5
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 3,
+                            "y": 3,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carTop": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 2.5,
+                            "z": -1.5
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 3,
+                            "y": 3,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezel": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0,
+                            "y": 1.5,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.25,
+                            "y": 2,
+                            "z": 1
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezel1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.375,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezel2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.375,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezel3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.375,
+                            "y": 0.0,
+                            "z": -3.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezel4": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.375,
+                            "y": 0.0,
+                            "z": -3.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezel5": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 0.0,
+                            "z": -0.125
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezel6": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 0.0,
+                            "z": -2.875
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezel7": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.5,
+                            "y": 0.0,
+                            "z": -0.125
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezel8": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.5,
+                            "y": 0.0,
+                            "z": -2.875
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carBezel"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "frontCarLight": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carLight"
+                },
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "cylinderPrim": {
+                        "type": "cylinder",
+                        "top": 0.35,
+                        "base": 0.35,
+                        "height": 0.375,
+                        "slices": 20,
+                        "stacks": 20,
+                        "cap": true
+                    }
+                }
+            },
+            "frontCarLight1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1,
+                            "y": 0,
+                            "z": 3
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "frontCarLight"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "frontCarLight2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1,
+                            "y": 0,
+                            "z": 3
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 90,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "frontCarLight"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "backCarLight": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carLight"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -3.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 0.25,
+                            "z": 0.25
+                        }
+                    }
+                ],
+                "children": {
+                    "boxPrim": {
+                        "type": "box",
+                        "xyz1": {
+                            "x": -0.5,
+                            "y": -0.5,
+                            "z": -0.5
+                        },
+                        "xyz2": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
+                        }
+                    }
+                }
+            },
+            "carLights": {
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "frontCarLight1",
+                        "frontCarLight2",
+                        "backCarLight"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWindow": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carWindow"
+                },
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWindow1": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.75,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1.5,
+                            "z": 0.8
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carWindow"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWindow2": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 1.5,
+                            "y": 1.75,
+                            "z": -1.5
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1.5,
+                            "z": 0.8
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carWindow"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWindow3": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -1.5,
+                            "y": 1.75,
+                            "z": -1.5
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 90,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1.5,
+                            "z": 0.8
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carWindow"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWindow4": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 1.75,
+                            "z": -3.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 1.5,
+                            "z": 0.8
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carWindow"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carWindows": {
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "carWindow1",
+                        "carWindow2",
+                        "carWindow3",
+                        "carWindow4"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBezels": {
+                "type": "node",
+                "transforms": [],
+                "children": {
+                    "nodesList": [
+                        "carBezel1",
+                        "carBezel2",
+                        "carBezel3",
+                        "carBezel4",
+                        "carBezel5",
+                        "carBezel6",
+                        "carBezel7",
+                        "carBezel8"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "licensePlate": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "licensePlate"
+                },
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "frontLicensePlate": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -0.5,
+                            "z": 3.01
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 180,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.0,
+                            "y": 0.5,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "licensePlate"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "backLicensePlate": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -0.25,
+                            "z": -3.01
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0,
+                            "y": 180,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.0,
+                            "y": 0.5,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "licensePlate"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "licensePlates": {
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "frontLicensePlate",
+                        "backLicensePlate"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "chairTop": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carChair"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 2.0,
+                            "z": 0.5
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 2.5,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "chairBottom": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carChair"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": 1.5
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 2.5,
+                            "y": 0.5,
+                            "z": 2.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carChair": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "carChair"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": -1.0,
+                            "z": -2.8
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "chairTop",
+                        "chairBottom"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carInterior": {
+                "type": "node",
+                "children": {
+                    "nodesList": [
+                        "carChair"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "carBody": {
+                "type": "node",
+                "transforms": [],
+                "materialref": {
+                    "materialId": "carBody"
+                },
+                "children": {
+                    "nodesList": [
+                        "carLeft",
+                        "carRight",
+                        "carTop",
+                        "carFront",
+                        "carHood",
+                        "carMiddle",
+                        "carBack",
+                        "carBezels",
+                        "carLights",
+                        "licensePlates",
+                        "carWindows",
+                        "carInterior"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "car": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 2.0,
+                            "y": 5.0,
+                            "z": -14.0
+                        }
+                    },
+                    {
+                        "type" : "rotate",
+                        "amount":{
+                            "x": 60.0,
+                            "y" : 30.0,
+                            "z" : 80.0
+
+                        }
+
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.8,
+                            "y": 0.8,
+                            "z": 0.8
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "carBody",
+                        "carBottom"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "susLod": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "tableLod1": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "tableNear1",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "tableFar1",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "tableLod2": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "tableNear2",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "tableFar2",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "tableLod3": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "tableNear3",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "tableFar3",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "tableLod4": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "tableNear4",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "tableFar4",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "tableLod5": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "tableNear5",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "tableFar5",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "susLod1": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus1",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar1",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "susLod2": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus2",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar2",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "susLod3": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus3",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar3",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "susLod4": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus4",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar4",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "susLod5": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus5",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar5",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "susLod6": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus6",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar6",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "susLod7": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus7",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar7",
+                        "mindist": 15
+                    }
+                ]
+            },
+            "susLod8": {
+                "type": "lod",
+                "lodNodes": [
+                    {
+                        "nodeId": "sus8",
+                        "mindist": 0
+                    },
+                    {
+                        "nodeId": "susFar8",
+                        "mindist": 15
+                    }
+                ]
             }
         }
     }
