@@ -2,12 +2,18 @@ import * as THREE from 'three';
 import { PrimitiveFactory } from './PrimitiveFactory.js';
 
 class SceneGraph {
-
+    /**
+     * Constructs the SceneGraph object.
+     */
     constructor() {
         this.backgroundColor = null;
         this.ambientLight = null;
     }
 
+    /**
+     * Parses the YASF data and initializes the scene graph.
+     * @param {Object} data - The YASF data.
+     */
     parse(data) {
         const yasf = data['yasf'];
         this.parseGlobals(yasf['globals']); // globals, fog and skybox
@@ -17,6 +23,10 @@ class SceneGraph {
         this.parseGraph(yasf['graph']);
     }
 
+    /**
+     * Parses the global settings from the YASF data.
+     * @param {Object} globals - The global settings.
+     */
     parseGlobals(globals) {
         const background = globals['background'];
         this.backgroundColor = new THREE.Color(background['r'], background['g'], background['b']);
@@ -31,6 +41,10 @@ class SceneGraph {
         this.parseSkyBox(skybox);
     }
 
+    /**
+     * Parses the cameras from the YASF data.
+     * @param {Object} cameras - The camera settings.
+     */
     parseCameras(cameras) {
 
         this.cameras = {};
@@ -53,14 +67,12 @@ class SceneGraph {
     }
 
     /**
-     * load an image and create a mipmap to be added to a texture at the defined level.
-     * In between, add the image some text and control squares. These items become part of the picture
-     * 
-     * @param {*} parentTexture the texture to which the mipmap is added
-     * @param {*} level the level of the mipmap
-     * @param {*} path the path for the mipmap image
-     * @param {*} size if size not null inscribe the value in the mipmap. null by default
-     * @param {*} color a color to be used for demo
+     * Loads an image and creates a mipmap to be added to a texture at the defined level.
+     * @param {THREE.Texture} parentTexture - The texture to which the mipmap is added.
+     * @param {number} level - The level of the mipmap.
+     * @param {string} path - The path for the mipmap image.
+     * @param {number} [size] - If size is not null, inscribe the value in the mipmap. Null by default.
+     * @param {string} [color] - A color to be used for demo.
      */
     loadMipmap(parentTexture, level, path)
     {
@@ -90,6 +102,10 @@ class SceneGraph {
         )
     }
 
+    /**
+     * Parses the textures from the YASF data.
+     * @param {Object} textures - The texture settings.
+     */
     parseTextures(textures) {
         this.textures = {};
         const mipmapKeys = ['mipmap0', 'mipmap1', 'mipmap2', 'mipmap3', 'mipmap4', 'mipmap5', 'mipmap6', 'mipmap7'];
@@ -125,6 +141,10 @@ class SceneGraph {
         });
     }
 
+    /**
+     * Parses the materials from the YASF data.
+     * @param {Object} materials - The material settings.
+     */
     parseMaterials(materials) {
         this.materials = {};
 
@@ -170,6 +190,10 @@ class SceneGraph {
         });
     }
 
+    /**
+     * Parses the skybox from the YASF data.
+     * @param {Object} skybox - The skybox settings.
+     */
     parseSkyBox(skybox) {
         const geometry = new THREE.BoxGeometry(skybox['size']['x'], skybox['size']['y'], skybox['size']['z']);
 
@@ -197,6 +221,11 @@ class SceneGraph {
 
     }
 
+    /**
+     * Parses the graph from the YASF data and builds the scene graph.
+     * @param {Object} graph - The graph data.
+     * @returns {THREE.Group} The root node of the scene graph.
+     */
     parseGraph(graph) {
         this.graph = graph;
         const rootId = graph['rootid']
@@ -208,9 +237,17 @@ class SceneGraph {
         this.scene = this.buildNode(graph[rootId]);
 
         return this.nodes[rootId];
-
     }
 
+
+    /**
+     * Creates a primitive from YASF data.
+     * @param {Object} node - The node data.
+     * @param {string} materialref - The material reference.
+     * @param {boolean} castShadow - Whether the mesh casts shadows.
+     * @param {boolean} receiveShadow - Whether the mesh receives shadows.
+     * @returns {THREE.Mesh|Array} The created primitive or an array of primitives (for lights).
+     */
     createPrimitive(node, materialref, castShadow, receiveShadow) {
         let material = null;
         if (materialref && this.materials[materialref]) {
@@ -245,11 +282,24 @@ class SceneGraph {
         }
     }
 
+    /**
+     * Converts degrees to radians.
+     * @param {number} degree - The degree value.
+     * @returns {number} The radian value.
+     */
     degreeToRad(degree) {
         const rad = degree * Math.PI / 180;
         return rad;
     }
 
+    /**
+     * Builds a node reference from the graph.
+     * @param {string} nodeId - The node ID.
+     * @param {string} [materialRef=null] - The material reference.
+     * @param {boolean} [castShadow=false] - Whether the mesh casts shadows.
+     * @param {boolean} [receiveShadow=false] - Whether the mesh receives shadows.
+     * @returns {THREE.Group} The built node.
+     */
     buildNodeRef(nodeId, materialRef = null, castShadow = false, receiveShadow = false) {
         let node = null;
 
@@ -263,6 +313,14 @@ class SceneGraph {
         return node;
     }
 
+    /**
+     * Builds a LOD reference from the graph.
+     * @param {string} lodId - The LOD ID.
+     * @param {string} [materialRef=null] - The material reference.
+     * @param {boolean} [castShadow=false] - Whether the mesh casts shadows.
+     * @param {boolean} [receiveShadow=false] - Whether the mesh receives shadows.
+     * @returns {THREE.LOD} The built LOD.
+     */
     buildLODRef(lodId, materialRef = null, castShadow = false, receiveShadow = false) {
         let lod = null;
         Object.keys(this.graph).forEach((graphChildId) => {
@@ -274,6 +332,14 @@ class SceneGraph {
         return lod;
     }
 
+    /**
+     * Builds a node from the graph.
+     * @param {Object} node - The node data.
+     * @param {string} [materialRef=null] - The material reference.
+     * @param {boolean} [castShadow=false] - Whether the mesh casts shadows.
+     * @param {boolean} [receiveShadow=false] - Whether the mesh receives shadows.
+     * @returns {THREE.Group} The built node.
+     */
     buildNode(node, materialRef = null, castShadow = false, receiveShadow = false) {
         const type = node['type'];
 
@@ -362,6 +428,14 @@ class SceneGraph {
         return group;
     }
 
+    /**
+     * Builds a LOD from the graph.
+     * @param {Object} lod - The LOD data.
+     * @param {string} [materialRef=null] - The material reference.
+     * @param {boolean} [castShadow=false] - Whether the mesh casts shadows.
+     * @param {boolean} [receiveShadow=false] - Whether the mesh receives shadows.
+     * @returns {THREE.LOD} The built LOD.
+     **/
     buildLOD(lod, materialRef = null, castShadow = false, receiveShadow = false) {
         const type = lod['type'];
 
