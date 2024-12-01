@@ -81,6 +81,15 @@
             },
             "emergencyTapeTex": {
                 "filepath": "scenes/amongus/textures/emergency_tape.jpg"
+            },
+            "pizzaTex" : {
+                "filepath" : "scenes/amongus/textures/pizza.jpg"
+            },
+            "cupTex": {
+                "filepath" : "scenes/amongus/textures/cupFoam.jpg"
+            },
+            "plateTex":{
+                "filepath" : "scenes/amongus/textures/plate.jpg"
             }
         },
         "materials": {
@@ -705,6 +714,74 @@
                 "opacity": 1.0,
                 "twosided": false,
                 "textureref": "emergencyTapeTex"
+            },
+            "pizza": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 50,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "pizzaTex"
+            },
+            "cup" : {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "cupTex"
+            },
+            "plate" : {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "plateTex",
+                "texlength_s": 1.0,
+                "texlength_t": 1.0
             }
         },
         "cameras": {
@@ -757,7 +834,10 @@
                         "vase",
                         "newspaper",
                         "newspaper2",
-                        "emergencyButton"
+                        "emergencyButton",
+                        "pizza",
+                        "cups",
+                        "plates"
                     ],
                     "lodsList": [
                         "tableLod1",
@@ -774,6 +854,31 @@
                         "susLod7",
                         "susLod8"
                     ]
+                }
+            },
+            "unitTriangle":{
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "trianglePrim": {
+                        "type": "triangle",
+                        "xyz1": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "xyz2": {
+                            "x": 2.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "xyz3": {
+                            "x": 1.0,
+                            "y": 2.0,
+                            "z": 0.0
+                        }
+                    }
                 }
             },
             "unitPlane": {
@@ -4403,7 +4508,350 @@
                     ],
                     "lodsList": []
                 }
-            },          
+            },       
+            "pizza":{
+                "type" : "node",
+                "materialref" : {
+                    "materialId" : "pizza"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.3,
+                            "y": 0.46,
+                            "z": -4.5
+                        }
+                    },
+                    {
+                        "type" : "rotate",
+                        "amount":{
+                            "x": 90.0,
+                            "y" : 0.0,
+                            "z" : -30.0
+
+                        }
+                    },
+                    {
+                        "type" : "scale",
+                        "amount":{
+                            "x" : 0.35,
+                            "y" : 0.35,
+                            "z" : 0.35
+                        }
+
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "unitTriangle"
+                    ],
+                    "lodsList" : []
+                }
+            },   
+            "cup":{
+                "type" : "node",
+                "materialref" : {
+                    "materialId" : "cup"
+                },
+                "transforms": [
+                    {
+                        "type" : "scale",
+                        "amount":{
+                            "x" : 0.15,
+                            "y" : 0.3,
+                            "z" : 0.15
+                        }
+
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "unitCylinderNear"
+                    ],
+                    "lodsList" : []
+                }
+
+            },  
+            "cup1":{
+                "type" : "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.5,
+                            "y": 0.36,
+                            "z": -4.0
+                        }
+                    },
+                    {
+                        "type" : "rotate",
+                        "amount":{
+                            "x": 0.0,
+                            "y" : 0.0,
+                            "z" : 0.0
+
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "cup"
+                    ],
+                    "lodsList" : []
+                }
+            },
+            "cup2":{
+                "type" : "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 5.2,
+                            "y": 0.36,
+                            "z": -4.0
+                        }
+                    },
+                    {
+                        "type" : "rotate",
+                        "amount":{
+                            "x": 0.0,
+                            "y" : 0.0,
+                            "z" : 0.0
+
+                        }
+                    },
+                    {
+                        "type" : "scale",
+                        "amount":{
+                            "x" : 0.8,
+                            "y" : 1.2,
+                            "z" : 0.8
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "cup"
+                    ],
+                    "lodsList" : []
+                }
+            },
+            "cup3":{
+                "type" : "node",
+                "materialref" : {
+                    "materialId" : "cup"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 5.2,
+                            "y": 0.48,
+                            "z": 4.0
+                        }
+                    },
+                    {
+                        "type" : "rotate",
+                        "amount":{
+                            "x": 90.0,
+                            "y" : 0.0,
+                            "z" : 0.0
+
+                        }
+                    },
+                    {
+                        "type" : "scale",
+                        "amount":{
+                            "x" : 0.8,
+                            "y" : 1.2,
+                            "z" : 0.8
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "cup"
+                    ],
+                    "lodsList" : []
+                }
+            },
+            "cup4":{
+                "type" : "node",
+                "materialref" : {
+                    "materialId" : "cup"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -5.2,
+                            "y": 0.48,
+                            "z": 4.0
+                        }
+                    },
+                    {
+                        "type" : "rotate",
+                        "amount":{
+                            "x": 0.0,
+                            "y" : 0.0,
+                            "z" : 0.0
+
+                        }
+                    },
+                    {
+                        "type" : "scale",
+                        "amount":{
+                            "x" : 0.8,
+                            "y" : 1.2,
+                            "z" : 0.8
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList":[
+                        "cup"
+                    ],
+                    "lodsList" : []
+                }
+            },
+            "newspapers":{
+                "type" : "node",
+                "children":{
+                    "nodesList":[
+                        "newspaper", "newspaper2"
+                    ],
+                    "lodsList" : []
+                }
+            },
+            "cups":{
+                "type" : "node",
+                "materialref" : {
+                    "materialId" : "cup"
+                },
+                "children":{
+                    "nodesList":[
+                        "cup1", "cup2", "cup3", "cup4"
+                    ],
+                    "lodsList" : []
+                }
+            },
+            "plate1": {
+                "type" : "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.2,
+                            "y": 0.38,
+                            "z": 5.0
+                        }
+                    },
+                    {
+                        "type" : "scale",
+                        "amount":{
+                            "x" : 0.4,
+                            "y" : 0.02,
+                            "z" : 0.4
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList": [
+                        "unitCylinderNear"
+                    ]
+                }
+            },
+            "plate2": {
+                "type" : "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -4.0,
+                            "y": 0.40,
+                            "z": 5.0
+                        }
+                    },
+                    {
+                        "type" : "scale",
+                        "amount":{
+                            "x" : 0.4,
+                            "y" : 0.02,
+                            "z" : 0.4
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList": [
+                        "unitCylinderNear"
+                    ]
+                }
+            },
+            "plate3": {
+                "type" : "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.9,
+                            "y": 0.4,
+                            "z": -4.5
+                        }
+                    },
+                    {
+                        "type" : "scale",
+                        "amount":{
+                            "x" : 0.55,
+                            "y" : 0.02,
+                            "z" : 0.55
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList": [
+                        "unitCylinderNear"
+                    ]
+                }
+            },
+            "plate4": {
+                "type" : "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 5.2,
+                            "y": 0.38,
+                            "z": 5.0
+                        }
+                    },
+                    {
+                        "type" : "scale",
+                        "amount":{
+                            "x" : 0.4,
+                            "y" : 0.02,
+                            "z" : 0.4
+                        }
+                    }
+                ],
+                "children":{
+                    "nodesList": [
+                        "unitCylinderNear"
+                    ]
+                }
+            },
+            "plates":{
+                "type" : "node",
+                "materialref" : {
+                    "materialId" : "plate"
+                },
+                "children":{
+                    "nodesList":[
+                        "plate1", "plate2", "plate3", "plate4"
+                    ],
+                    "lodsList" : []
+                }
+            },   
             "susLod": {
                 "type": "lod",
                 "lodNodes": [
