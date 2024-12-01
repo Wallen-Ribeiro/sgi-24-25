@@ -60,7 +60,7 @@
             "carChairTex": {
                 "filepath": "scenes/car/textures/car_chair.jpg"
             },
-            "amogus": {
+            "amogusTex": {
                 "filepath": "scenes/car/textures/amogus1.mp4",
                 "isVideo": true
             },
@@ -81,6 +81,12 @@
             },
             "emergencyTapeTex": {
                 "filepath": "scenes/amongus/textures/emergency_tape.jpg"
+            },
+            "keyboardTex": {
+                "filepath": "scenes/amongus/textures/keyboard.png"
+            },
+            "keyboardBumpTex": {
+                "filepath": "scenes/amongus/textures/keyboard_bump.jpg"
             }
         },
         "materials": {
@@ -103,7 +109,8 @@
                 },
                 "transparent": false,
                 "opacity": 1.0,
-                "wireframe": false
+                "wireframe": false,
+                "textureref": "amogusTex"
             },
             "cafeteriaFloorMat": {
                 "color": {
@@ -127,7 +134,7 @@
                 "wireframe": false,
                 "textureref": "cafeteriaFloorTex",
                 "texlength_s": 1.0,
-                "texlength_t": 0.5
+                "texlength_t": 1.0
             },
             "cafeteriaWallMat": {
                 "color": {
@@ -705,6 +712,72 @@
                 "opacity": 1.0,
                 "twosided": false,
                 "textureref": "emergencyTapeTex"
+            },
+            "laptopMat": {
+                "color": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true
+            },
+            "keyboardMat": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "keyboardTex",
+                "bumpref": "keyboardBumpTex",
+                "bumpscale": 1.0
+            },
+            "cafeteriaCeilingMat": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": false
             }
         },
         "cameras": {
@@ -740,6 +813,22 @@
                     "y": 0,
                     "z": 0
                 }
+            },
+            "laptop": {
+                "type": "perspective",
+                "angle": 75,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": -3,
+                    "y": 2,
+                    "z": -3
+                },
+                "target": {
+                    "x": -4,
+                    "y": 0,
+                    "z": -4
+                }
             }
         },
         "graph": {
@@ -750,6 +839,7 @@
                     "nodesList": [
                         "pointLight1",
                         "cafeteriaFloor",
+                        "cafeteriaCeiling",
                         "cafeteriaWalls",
                         "windowFrame",
                         "vent", 
@@ -757,7 +847,8 @@
                         "vase",
                         "newspaper",
                         "newspaper2",
-                        "emergencyButton"
+                        "emergencyButton",
+                        "laptop"
                     ],
                     "lodsList": [
                         "tableLod1",
@@ -4762,6 +4853,216 @@
                 "children": {
                     "nodesList": [
                         "emergencyTape1"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "laptop": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "laptopMat"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.8,
+                            "y": 0.37,
+                            "z": 3.8
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 130.0,
+                            "z": 0.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "laptopBase",
+                        "laptopScreenFrame",
+                        "laptopScreen",
+                        "laptopKeyboard"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "laptopBase": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.6,
+                            "y": 0.05,
+                            "z": 0.4
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitCube"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "laptopScreenFrame": {
+                "type": "node",
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.20,
+                            "z": -0.25
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": 60.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 1.0,
+                            "y": 0.4,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "laptopBase"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "laptopScreen": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "amogusMat"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.205,
+                            "z": -0.241
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": -30.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.59,
+                            "y": 0.39,
+                            "z": 1.0
+                    }
+                }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "laptopKeyboard": {
+                "type": "node",
+                "materialref": {
+                    "materialId": "keyboardMat"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 0.026,
+                            "z": 0.03
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": -90.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.5,
+                            "y": 0.3,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitPlane"
+                    ],
+                    "lodsList": []
+                }
+            },
+            "cafeteriaCeiling": {
+                "type": "node",
+                "receiveshadows": true,
+                "materialref": {
+                    "materialId": "cafeteriaCeilingMat"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 0.0,
+                            "y": 3.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "rotate",
+                        "amount": {
+                            "x": -90.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 10.0,
+                            "y": 10.0,
+                            "z": 1.0
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "unitOctagon"
                     ],
                     "lodsList": []
                 }
