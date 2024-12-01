@@ -114,14 +114,9 @@ class MyApp {
             else {
                 this.controls.object = this.activeCamera
             }
-            
-            const cameraDirection = new THREE.Vector3();
-            this.activeCamera.getWorldDirection(cameraDirection);
-            const newTarget = new THREE.Vector3()
-                .copy(this.activeCamera.position)
-                .add(cameraDirection);
-            this.controls.target.copy(newTarget);
-            this.controls.update();
+
+            let lookAtVector = this.activeCamera.lookAtVector ?? new THREE.Vector3(0, 0, 0);
+            this.controls.target.set(lookAtVector.x, lookAtVector.y, lookAtVector.z);
         }
     }
 

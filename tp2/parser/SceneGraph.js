@@ -40,12 +40,16 @@ class SceneGraph {
                 const orthogonalCamera = new THREE.OrthographicCamera(camera.left, camera.right, camera.top, camera.bottom, camera.near, camera.far);
                 orthogonalCamera.position.set(camera.location.x, camera.location.y, camera.location.z);
                 orthogonalCamera.lookAt(camera.target.x, camera.target.y, camera.target.z);
+                orthogonalCamera.name = id;
+                orthogonalCamera.lookAtVector = new THREE.Vector3(camera.target.x, camera.target.y, camera.target.z);
                 this.cameras[id] = orthogonalCamera;
             }
             else if (camera.type === 'perspective') {
                 const perspectiveCamera = new THREE.PerspectiveCamera(camera.angle, 1, camera.near, camera.far);
                 perspectiveCamera.position.set(camera.location.x, camera.location.y, camera.location.z);
                 perspectiveCamera.lookAt(camera.target.x, camera.target.y, camera.target.z);
+                perspectiveCamera.name = id;
+                perspectiveCamera.lookAtVector = new THREE.Vector3(camera.target.x, camera.target.y, camera.target.z);
                 this.cameras[id] = perspectiveCamera;
             }
         }
