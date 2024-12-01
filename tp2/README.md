@@ -25,6 +25,7 @@ This project builds upon the foundational structure provided by our teachers. We
 - **Camera 2** -  A close-up view situated within the cafeteria and its elements.
 - **Laptop Camera**- Allows a closer look on the video playing on the laptop screen. 
 - **Toggle wireframe** - Allows the user to switch between the ```fill``` and ```wireframe modes```.
+- **Orthographic Cameras** - Present a view without perspective distortion, allowing the user to observe the scene from different sides (up, down left, right, front, back)
 
 
 ### Main Objects in scene / scene composition
