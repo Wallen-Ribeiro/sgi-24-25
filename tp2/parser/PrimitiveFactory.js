@@ -3,6 +3,14 @@ import { build } from './NURBSBuilder.js';
 
 class PrimitiveFactory {
 
+    /**
+     * Creates a rectangle from YASF data.
+     * @param {Object} rectangle - The rectangle data.
+     * @param {THREE.Material} material - The material to apply.
+     * @param {boolean} castShadow - Whether the mesh casts shadows.
+     * @param {boolean} receiveShadow - Whether the mesh receives shadows.
+     * @returns {THREE.Mesh} The created rectangle mesh.
+     */
     static createRectangleFromYASF(rectangle, material, castShadow, receiveShadow) {
         const x1 = rectangle['xy1']['x'];
         const y1 = rectangle['xy1']['y'];
@@ -14,7 +22,6 @@ class PrimitiveFactory {
         const width = x2 - x1;
         const height = y2 - y1;
 
-        // console.log(material)
         const geometry = new THREE.PlaneGeometry(width, height, wSegments, hSegments);
 
         const uvAttribute = geometry.attributes.uv;
@@ -34,6 +41,15 @@ class PrimitiveFactory {
         return mesh;
     }
 
+
+    /**
+     * Creates a triangle from YASF data.
+     * @param {Object} triangle - The triangle data.
+     * @param {THREE.Material} material - The material to apply.
+     * @param {boolean} castShadow - Whether the mesh casts shadows.
+     * @param {boolean} receiveShadow - Whether the mesh receives shadows.
+     * @returns {THREE.Mesh} The created triangle mesh.
+     */
     static createTriangleFromYASF(triangle, material, castShadow, receiveShadow) {
         const x1 = triangle['xyz1']['x'];
         const y1 = triangle['xyz1']['y'];
@@ -77,6 +93,15 @@ class PrimitiveFactory {
         return mesh;
     }
 
+
+    /**
+     * Creates a box from YASF data.
+     * @param {Object} box - The box data.
+     * @param {THREE.Material} material - The material to apply.
+     * @param {boolean} castShadow - Whether the mesh casts shadows.
+     * @param {boolean} receiveShadow - Whether the mesh receives shadows.
+     * @returns {THREE.Mesh} The created box mesh.
+     */
     static createBoxFromYASF(box, material, castShadow, receiveShadow) {
         const x1 = box['xyz1']['x'];
         const y1 = box['xyz1']['y'];
@@ -102,6 +127,14 @@ class PrimitiveFactory {
         return mesh;
     }
 
+    /**
+     * Creates a cylinder from YASF data.
+     * @param {Object} cylinder - The cylinder data.
+     * @param {THREE.Material} material - The material to apply.
+     * @param {boolean} castShadow - Whether the mesh casts shadows.
+     * @param {boolean} receiveShadow - Whether the mesh receives shadows.
+     * @returns {THREE.Mesh} The created cylinder mesh.
+     */
     static createCylinderFromYASF(cylinder, material, castShadow, receiveShadow) {
         const base = cylinder['base'];
         const top = cylinder['top'];
@@ -121,6 +154,15 @@ class PrimitiveFactory {
         return mesh;
     }
 
+
+    /**
+     * Creates a sphere from YASF data.
+     * @param {Object} sphere - The sphere data.
+     * @param {THREE.Material} material - The material to apply.
+     * @param {boolean} castShadow - Whether the mesh casts shadows.
+     * @param {boolean} receiveShadow - Whether the mesh receives shadows.
+     * @returns {THREE.Mesh} The created sphere mesh.
+     */
     static createSphereFromYASF(sphere, material, castShadow, receiveShadow) {
         const radius = sphere['radius'];
         const slices = sphere['slices'];
@@ -139,6 +181,15 @@ class PrimitiveFactory {
         return mesh;
     }
 
+
+    /**
+     * Creates a NURBS curve from YASF data.
+     * @param {Object} nurbs - The NURBS data.
+     * @param {THREE.Material} material - The material to apply.
+     * @param {boolean} castShadow - Whether the mesh casts shadows.
+     * @param {boolean} receiveShadow - Whether the mesh receives shadows.
+     * @returns {THREE.Mesh} The created NURBS curve mesh.
+     */
     static createNurbsCurveFromYASF(nurbs, material, castShadow, receiveShadow) {
         const orderU = nurbs['degree_u'];
         const orderV = nurbs['degree_v'];
@@ -176,6 +227,14 @@ class PrimitiveFactory {
     
 
 
+    /**
+     * Creates a polygon from YASF data.
+     * @param {Object} polygon - The polygon data.
+     * @param {THREE.Material} material - The material to apply.
+     * @param {boolean} castShadow - Whether the mesh casts shadows.
+     * @param {boolean} receiveShadow - Whether the mesh receives shadows.
+     * @returns {THREE.Mesh} The created polygon mesh.
+     */
     static createPolygonFromYASF(polygon, material, castShadow, receiveShadow) {
         const radius = polygon['radius'];
         const stacks = polygon['stacks'];
@@ -243,7 +302,11 @@ class PrimitiveFactory {
     }
     
     
-
+    /**
+     * Creates a point light from YASF data.
+     * @param {Object} pointlight - The point light data.
+     * @returns {[THREE.PointLight, THREE.PointLightHelper]} The created point light and its helper.
+     */
     static createPointLightFromYASF(pointlight) {
         const enabled = pointlight['enabled'] ?? true;
         const color = new THREE.Color(pointlight['color']['r'], pointlight['color']['g'], pointlight['color']['b']);
@@ -270,6 +333,11 @@ class PrimitiveFactory {
         return [light, helper];
     }
 
+    /**
+     * Creates a spot light from YASF data.
+     * @param {Object} spotlight - The spot light data.
+     * @returns {[THREE.SpotLight, THREE.SpotLightHelper]} The created spot light and its helper.
+     */
     static createSpotLightFromYASF(spotlight) {
         const enabled = spotlight['enabled'] ?? true;
         const color = new THREE.Color(spotlight['color']['r'], spotlight['color']['g'], spotlight['color']['b']);
@@ -299,7 +367,12 @@ class PrimitiveFactory {
         light.enabled = enabled;
         return [light, helper];
     }
-
+    
+    /**
+     * Creates a directional light from YASF data.
+     * @param {Object} directionallight - The directional light data.
+     * @returns {[THREE.DirectionalLight, THREE.DirectionalLightHelper]} The created directional light and its helper.
+     */
     static createDirectionalLightFromYASF(directionallight) {
         const enabled = directionallight['enabled'] ?? true;
         const color = new THREE.Color(directionallight['color']['r'], directionallight['color']['g'], directionallight['color']['b']);
