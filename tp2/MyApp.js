@@ -114,6 +114,14 @@ class MyApp {
             else {
                 this.controls.object = this.activeCamera
             }
+            
+            const cameraDirection = new THREE.Vector3();
+            this.activeCamera.getWorldDirection(cameraDirection);
+            const newTarget = new THREE.Vector3()
+                .copy(this.activeCamera.position)
+                .add(cameraDirection);
+            this.controls.target.copy(newTarget);
+            this.controls.update();
         }
     }
 
