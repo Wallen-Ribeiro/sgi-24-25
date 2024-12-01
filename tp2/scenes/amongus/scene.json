@@ -72,6 +72,9 @@
             },
             "cafeteriaWallBTex": {
                 "filepath": "scenes/amongus/textures/cafeteria_wall_b.jpg"
+            },
+            "vaseTex": {
+                "filepath": "scenes/amongus/textures/vase.jpg"
             }
         },
         "materials": {
@@ -609,6 +612,28 @@
                 "opacity": 1.0,
                 "twosided": true,
                 "textureref": "carChairTex"
+            },
+            "vase":{
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 100,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "vaseTex"
             }
         },
         "cameras": {
@@ -657,7 +682,8 @@
                         "cafeteriaWalls",
                         "windowFrame",
                         "vent", 
-                        "car"
+                        "car", 
+                        "vase"
                     ],
                     "lodsList": [
                         "tableLod1",
@@ -3969,6 +3995,202 @@
                         "carBottom"
                     ],
                     "lodsList": []
+                }
+            },
+            "nurb1": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "nurbs": {
+                        "type": "nurbs",
+                        "degree_u": 2,
+                        "degree_v": 3,
+                        "parts_u": 20,
+                        "parts_v": 20,
+                        "controlpoints": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "z": -2
+                            },
+                            {
+                                "x": 0,
+                                "y": 2,
+                                "z": -3
+                            },
+                            {
+                                "x": 0,
+                                "y": 4,
+                                "z": -0.25
+                            },
+                            {
+                                "x": 0,
+                                "y": 5,
+                                "z": -1.5
+                            },
+                            {
+                                "x": 4,
+                                "y": 0,
+                                "z": 0
+                            },
+                            {
+                                "x": 6,
+                                "y": 2,
+                                "z": 0
+                            },
+                            {
+                                "x": 0.5,
+                                "y": 4,
+                                "z": 0
+                            },
+                            {
+                                "x": 2.5,
+                                "y": 5,
+                                "z": 0
+                            },
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "z": 2
+                            },
+                            {
+                                "x": 0,
+                                "y": 2,
+                                "z": 3
+                            },
+                            {
+                                "x": 0,
+                                "y": 4,
+                                "z": 0.25
+                            },
+                            {
+                                "x": 0,
+                                "y": 5,
+                                "z": 1.5
+                            }
+                        ]
+                    }
+                }
+            },
+            "nurb2": {
+                "type": "node",
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "nurbs": {
+                        "type": "nurbs",
+                        "degree_u": 2,
+                        "degree_v": 3,
+                        "parts_u": 20,
+                        "parts_v": 20,
+                        "controlpoints": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "z": 2
+                            },
+                            {
+                                "x": 0,
+                                "y": 2,
+                                "z": 3
+                            },
+                            {
+                                "x": 0,
+                                "y": 4,
+                                "z": 0.25
+                            },
+                            {
+                                "x": 0,
+                                "y": 5,
+                                "z": 1.5
+                            },
+                            {
+                                "x": -4,
+                                "y": 0,
+                                "z": 0
+                            },
+                            {
+                                "x": -6,
+                                "y": 2,
+                                "z": 0
+                            },
+                            {
+                                "x": -0.5,
+                                "y": 4,
+                                "z": 0
+                            },
+                            {
+                                "x": -2.5,
+                                "y": 5,
+                                "z": 0
+                            },
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "z": -2
+                            },
+                            {
+                                "x": 0,
+                                "y": 2,
+                                "z": -3
+                            },
+                            {
+                                "x": 0,
+                                "y": 4,
+                                "z": -0.25
+                            },
+                            {
+                                "x": 0,
+                                "y": 5,
+                                "z": -1.5
+                            }
+                        ]
+                    }
+                }
+            },
+            "vase": {
+                "type" : "node",
+                "materialref":{
+                    "materialId": "vase"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": 4.0,
+                            "y": 0.25,
+                            "z": -4.0
+                        }
+                    },
+                    {
+                        "type" : "rotate",
+                        "amount":{
+                            "x": 0.0,
+                            "y" : 0.0,
+                            "z" : 0.0
+
+                        }
+
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.2,
+                            "y": 0.2,
+                            "z": 0.2
+                        }
+                    }
+                ],
+                "children": {
+
+                    "nodesList":[
+                        "nurb1", "nurb2"
+
+                    ],
+                    "lodsList":[
+
+                    ]
                 }
             },
             "susLod": {
