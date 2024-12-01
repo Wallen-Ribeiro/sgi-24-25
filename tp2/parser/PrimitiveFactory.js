@@ -17,6 +17,14 @@ class PrimitiveFactory {
         // console.log(material)
         const geometry = new THREE.PlaneGeometry(width, height, wSegments, hSegments);
 
+        const uvAttribute = geometry.attributes.uv;
+        for (let i = 0; i < uvAttribute.count; i++) {
+            const u = uvAttribute.getX(i);
+            const v = uvAttribute.getY(i);
+            uvAttribute.setXY(i, u * width, v * height);
+        }
+        uvAttribute.needsUpdate = true;
+
         const mesh = new THREE.Mesh(geometry, material);
         mesh.position.set(x1 + width / 2, y1 + height / 2, 0);
 
@@ -46,8 +54,18 @@ class PrimitiveFactory {
             0, 1, 2
         ];
 
+        const uvs = new Float32Array([
+            0, 0, 
+            1, 0, 
+            0.5, 1 
+        ]);
+
         geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
         geometry.setIndex(indices);
+        geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2)); 
+
+        geometry.computeVertexNormals();
+
 
         return new THREE.Mesh(geometry, material);
     }
