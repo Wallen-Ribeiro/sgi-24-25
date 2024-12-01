@@ -40,6 +40,12 @@ class MyGuiInterface {
         wireframeButton.onChange((value) => {
             this.app.setWireframe(value);
         });
+
+        const lightHelpersButton = sceneFolder.add(this.app, 'lightHelpers').name('light helpers').listen();
+        lightHelpersButton.onChange((value) => {
+            this.app.setLightHelpers(value);
+        });
+
     }
 }
 

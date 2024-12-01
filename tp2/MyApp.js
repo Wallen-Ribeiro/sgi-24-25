@@ -29,6 +29,7 @@ class MyApp {
         this.axis = null
         this.contents == null
         this.wireframe = false
+        this.lightHelpers = true
     }
     /**
      * initializes the application
@@ -151,11 +152,23 @@ class MyApp {
     }
 
     setWireframe(value) {
-        // set wireframe for all materials
         this.scene.traverse(function (child) {
             if (child.isMesh) {
                 child.material.wireframe = value
             }
+        });
+    }
+
+    toggleLightHelpers() {
+        this.lightHelpers = !this.lightHelpers
+        this.setLightHelpers(this.lightHelpers)
+    }
+
+    setLightHelpers(value) {
+        this.scene.traverse(function (child) {
+            if (child.type === 'PointLightHelper' || child.type === 'SpotLightHelper' || child.type === 'DirectionalLightHelper') {
+                    child.visible = value
+            } 
         });
     }
 
