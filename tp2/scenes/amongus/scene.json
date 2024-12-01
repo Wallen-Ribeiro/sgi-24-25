@@ -49,7 +49,8 @@
         "textures": {
             "cafeteriaFloorTex": {
                 "filepath": "scenes/amongus/textures/cafeteria_floor.png",
-                "isVideo": false
+                "mipmap0": "scenes/amongus/textures/cafeteria_floor_mip0.png",
+                "mipmap1": "scenes/amongus/textures/cafeteria_floor_mip1.png"
             },
             "licensePlateTex": {
                 "filepath": "scenes/car/textures/license_plate.jpg"

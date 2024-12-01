@@ -52,6 +52,44 @@ class SceneGraph {
         this.activeCamera = cameras.initial; // cameras.inital = inital id    
     }
 
+    /**
+     * load an image and create a mipmap to be added to a texture at the defined level.
+     * In between, add the image some text and control squares. These items become part of the picture
+     * 
+     * @param {*} parentTexture the texture to which the mipmap is added
+     * @param {*} level the level of the mipmap
+     * @param {*} path the path for the mipmap image
+     * @param {*} size if size not null inscribe the value in the mipmap. null by default
+     * @param {*} color a color to be used for demo
+     */
+    loadMipmap(parentTexture, level, path)
+    {
+        // load texture. On loaded call the function to create the mipmap for the specified level 
+        new THREE.TextureLoader().load(path, 
+            function(mipmapTexture)  // onLoad callback
+            {
+                const canvas = document.createElement('canvas')
+                const ctx = canvas.getContext('2d')
+                ctx.scale(1, 1);
+                
+                // const fontSize = 48
+                const img = mipmapTexture.image         
+                canvas.width = img.width;
+                canvas.height = img.height
+
+                // first draw the image
+                ctx.drawImage(img, 0, 0 )
+                             
+                // set the mipmap image in the parent texture in the appropriate level
+                parentTexture.mipmaps[level] = canvas
+            },
+            undefined, // onProgress callback currently not supported
+            function(err) {
+                console.error('Unable to load the image ' + path + ' as mipmap level ' + level + ".", err)
+            }
+        )
+    }
+
     parseTextures(textures) {
         this.textures = {};
         const mipmapKeys = ['mipmap0', 'mipmap1', 'mipmap2', 'mipmap3', 'mipmap4', 'mipmap5', 'mipmap6', 'mipmap7'];
@@ -79,8 +117,11 @@ class SceneGraph {
             }
 
             for (let i = 0; i <= 7 && texture[mipmapKeys[i]]; i++) {
-                this.textures[textureId].mipmaps.push(texture[mipmapKeys[i]]);
+                this.textures[textureId].generateMipmaps = false;
+                let mipmap = texture[mipmapKeys[i]];
+                this.loadMipmap(this.textures[textureId], i, mipmap);
             }
+            this.textures[textureId].needsUpdate = true;
         });
     }
 
@@ -103,7 +144,7 @@ class SceneGraph {
             const emissive = new THREE.Color(material['emissive']['r'], material['emissive']['g'], material['emissive']['b']);
         
             if (texture) {
-                texture = texture.clone();
+                texture = texture;
                 texture.wrapS = THREE.RepeatWrapping;
                 texture.wrapT = THREE.RepeatWrapping;
                 texture.repeat.set(1/texLengthS, 1/texLengthT);
@@ -266,7 +307,7 @@ class SceneGraph {
                     for (const nodeId of child) {
                         const newRef = this.buildNodeRef(nodeId, materialRef, castShadow, receiveShadow);
                         if (!newRef) {
-                            console.error('Couldn\'t build reference to node ' + childId);
+                            console.error('Couldn\'t build reference to node ' + nodeId);
                             return null;
                         }
                         group.add(newRef);
