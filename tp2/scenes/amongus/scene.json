@@ -75,6 +75,9 @@
             },
             "vaseTex": {
                 "filepath": "scenes/amongus/textures/vase.jpg"
+            },
+            "newspaperTex": {
+                "filepath" : "scenes/amongus/textures/newspaper.jpg"
             }
         },
         "materials": {
@@ -634,6 +637,28 @@
                 "opacity": 1.0,
                 "twosided": true,
                 "textureref": "vaseTex"
+            },
+            "newspaper":{
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 100,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "twosided": true,
+                "textureref": "newspaperTex"
             }
         },
         "cameras": {
@@ -683,7 +708,9 @@
                         "windowFrame",
                         "vent", 
                         "car", 
-                        "vase"
+                        "vase",
+                        "newspaper",
+                        "newspaper2"
                     ],
                     "lodsList": [
                         "tableLod1",
@@ -4193,6 +4220,143 @@
                     ]
                 }
             },
+            "newspaper": {
+                "type": "node",
+                "materialref":{
+                    "materialId" : "newspaper"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -3.0,
+                            "y": 0.1,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type" : "rotate",
+                        "amount":{
+                            "x": 90.0,
+                            "y" : 30.0,
+                            "z" : 0.0
+
+                        }
+                    },
+                    {
+                        "type": "scale",
+                        "amount": {
+                            "x": 0.6,
+                            "y": 0.6,
+                            "z": 0.6
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [],
+                    "lodsList": [],
+                    "nurbs": {
+                        "type": "nurbs",
+                        "degree_u": 3,
+                        "degree_v": 2,
+                        "parts_u": 20,
+                        "parts_v": 20,
+                        "controlpoints": [
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            },
+                            {
+                                "x": 0.3,
+                                "y": 1,
+                                "z": 0
+                            },
+                            {
+                                "x": 0,
+                                "y": 2,
+                                "z": 0
+                            },
+                            {
+                                "x": 1,
+                                "y": 0,
+                                "z": 1
+                            },
+                            {
+                                "x": 0.7,
+                                "y": 1,
+                                "z": 0.7
+                            },
+                            {
+                                "x": 1,
+                                "y": 2,
+                                "z": 1
+                            },
+                            {
+                                "x": 1,
+                                "y": 0,
+                                "z": -1
+                            },
+                            {
+                                "x": 0.7,
+                                "y": 1,
+                                "z": -0.7
+                            },
+                            {
+                                "x": 1,
+                                "y": 2,
+                                "z": -1
+                            },
+                            {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            },
+                            {
+                                "x": 0.3,
+                                "y": 1,
+                                "z": 0
+                            },
+                            {
+                                "x": 0,
+                                "y": 2,
+                                "z": 0
+                            }
+                        ]
+                    }
+                }
+            },
+            "newspaper2": {
+                "type": "node",
+                "materialref":{
+                    "materialId" : "newspaper"
+                },
+                "transforms": [
+                    {
+                        "type": "translate",
+                        "amount": {
+                            "x": -0.05,
+                            "y": 0.0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type" : "rotate",
+                        "amount":{
+                            "x": 0.0,
+                            "y" : 0.0,
+                            "z" : 0.0
+
+                        }
+                    }
+                ],
+                "children": {
+                    "nodesList": [
+                        "newspaper"
+                    ],
+                    "lodsList": []
+                }
+            },          
             "susLod": {
                 "type": "lod",
                 "lodNodes": [
