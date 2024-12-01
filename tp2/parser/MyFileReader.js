@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { YASFParser } from './YASFParser.js';
 import { SceneGraph } from './SceneGraph.js';
 
 /**

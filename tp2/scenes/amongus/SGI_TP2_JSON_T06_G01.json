@@ -38,19 +38,19 @@
                     "b": 0.0
                 },
                 "intensity": 0.0,
-                "front": "scenes/amongus/textures/pz.png",
-                "back": "scenes/amongus/textures/nz.png",
-                "left": "scenes/amongus/textures/nx.png",
-                "right": "scenes/amongus/textures/px.png",
-                "up": "scenes/amongus/textures/py.png",
-                "down": "scenes/amongus/textures/ny.png"
+                "front": "scenes/amongus/textures/pz.jpg",
+                "back": "scenes/amongus/textures/nz.jpg",
+                "left": "scenes/amongus/textures/nx.jpg",
+                "right": "scenes/amongus/textures/px.jpg",
+                "up": "scenes/amongus/textures/py.jpg",
+                "down": "scenes/amongus/textures/ny.jpg"
             }
         },
         "textures": {
             "cafeteriaFloorTex": {
-                "filepath": "scenes/amongus/textures/cafeteria_floor.png",
-                "mipmap0": "scenes/amongus/textures/cafeteria_floor_mip0.png",
-                "mipmap1": "scenes/amongus/textures/cafeteria_floor_mip1.png"
+                "filepath": "scenes/amongus/textures/cafeteria_floor.jpg",
+                "mipmap0": "scenes/amongus/textures/cafeteria_floor_mip0.jpg",
+                "mipmap1": "scenes/amongus/textures/cafeteria_floor_mip1.jpg"
             },
             "licensePlateTex": {
                 "filepath": "scenes/car/textures/license_plate.jpg"
@@ -62,7 +62,7 @@
                 "filepath": "scenes/car/textures/car_chair.jpg"
             },
             "amogusTex": {
-                "filepath": "scenes/car/textures/amogus1.mp4",
+                "filepath": "scenes/amongus/textures/amogus1.mp4",
                 "isVideo": true
             },
             "cafeteriaWallTex": {
@@ -93,7 +93,7 @@
                 "filepath" : "scenes/amongus/textures/plate.jpg"
             },
             "keyboardTex": {
-                "filepath": "scenes/amongus/textures/keyboard.png"
+                "filepath": "scenes/amongus/textures/keyboard.jpg"
             },
             "keyboardBumpTex": {
                 "filepath": "scenes/amongus/textures/keyboard_bump.jpg"
