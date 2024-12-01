@@ -923,6 +923,120 @@
                     "y": 0,
                     "z": 4
                 }
+            },
+            "front": {
+                "type": "orthogonal",
+                "left": -10,
+                "right": 10,
+                "top": 10,
+                "bottom": -10,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 10
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            "back": {
+                "type": "orthogonal",
+                "left": -10,
+                "right": 10,
+                "top": 10,
+                "bottom": -10,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -10
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            "left": {
+                "type": "orthogonal",
+                "left": -10,
+                "right": 10,
+                "top": 10,
+                "bottom": -10,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": -10,
+                    "y": 0,
+                    "z": 0
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            "right": {
+                "type": "orthogonal",
+                "left": -10,
+                "right": 10,
+                "top": 10,
+                "bottom": -10,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": 10,
+                    "y": 0,
+                    "z": 0
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            "up": {
+                "type": "orthogonal",
+                "left": -10,
+                "right": 10,
+                "top": 10,
+                "bottom": -10,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": 0,
+                    "y": 10,
+                    "z": 0
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            "down": {
+                "type": "orthogonal",
+                "left": -10,
+                "right": 10,
+                "top": 10,
+                "bottom": -10,
+                "near": 0.1,
+                "far": 1000,
+                "location": {
+                    "x": 0,
+                    "y": -10,
+                    "z": 0
+                },
+                "target": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
             }
         },
         "graph": {
