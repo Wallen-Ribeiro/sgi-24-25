@@ -348,9 +348,6 @@ class SceneGraph {
         return lodGroup;
 
     }
-
-
-
 }
 
 export { SceneGraph };
