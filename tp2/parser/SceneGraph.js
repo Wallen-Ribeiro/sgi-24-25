@@ -170,7 +170,7 @@ class SceneGraph {
 
     }
 
-    createPrimitive(node, materialref) {
+    createPrimitive(node, materialref, castShadow, receiveShadow) {
         let material = null;
         if (materialref && this.materials[materialref]) {
             material = this.materials[materialref];
@@ -179,19 +179,19 @@ class SceneGraph {
         }
         switch (node['type']) {
             case 'rectangle':
-                return PrimitiveFactory.createRectangleFromYASF(node, material);
+                return PrimitiveFactory.createRectangleFromYASF(node, material, castShadow, receiveShadow);
             case 'triangle':
-                return PrimitiveFactory.createTriangleFromYASF(node, material);
+                return PrimitiveFactory.createTriangleFromYASF(node, material, castShadow, receiveShadow);
             case 'box':
-                return PrimitiveFactory.createBoxFromYASF(node, material);
+                return PrimitiveFactory.createBoxFromYASF(node, material, castShadow, receiveShadow);
             case 'cylinder':
-                return PrimitiveFactory.createCylinderFromYASF(node, material);
+                return PrimitiveFactory.createCylinderFromYASF(node, material, castShadow, receiveShadow);
             case 'sphere':
-                return PrimitiveFactory.createSphereFromYASF(node, material);
+                return PrimitiveFactory.createSphereFromYASF(node, material, castShadow, receiveShadow);
             case 'nurbs':
-                return PrimitiveFactory.createNurbsCurveFromYASF(node, material);
+                return PrimitiveFactory.createNurbsCurveFromYASF(node, material, castShadow, receiveShadow);
             case 'polygon':
-                return PrimitiveFactory.createPolygonFromYASF(node, this.materials[materialref]);
+                return PrimitiveFactory.createPolygonFromYASF(node, this.materials[materialref], castShadow, receiveShadow);
             case 'pointlight':
                 return PrimitiveFactory.createPointLightFromYASF(node);
             case 'spotlight':
@@ -209,31 +209,31 @@ class SceneGraph {
         return rad;
     }
 
-    buildNodeRef(nodeId, materialRef = null) {
+    buildNodeRef(nodeId, materialRef = null, castShadow = false, receiveShadow = false) {
         let node = null;
 
         Object.keys(this.graph).forEach((graphChildId) => {
             if (graphChildId === nodeId) {
                 this.graph[graphChildId]['id'] = graphChildId;
-                node = this.buildNode(this.graph[graphChildId], materialRef);
+                node = this.buildNode(this.graph[graphChildId], materialRef, castShadow, receiveShadow);
             }
         });
 
         return node;
     }
 
-    buildLODRef(lodId, materialRef = null) {
+    buildLODRef(lodId, materialRef = null, castShadow = false, receiveShadow = false) {
         let lod = null;
         Object.keys(this.graph).forEach((graphChildId) => {
             if (graphChildId === lodId) {
                 this.graph[graphChildId]['id'] = graphChildId;
-                lod = this.buildLOD(this.graph[graphChildId], materialRef);
+                lod = this.buildLOD(this.graph[graphChildId], materialRef, castShadow, receiveShadow);
             }
         });
         return lod;
     }
 
-    buildNode(node, materialRef = null) {
+    buildNode(node, materialRef = null, castShadow = false, receiveShadow = false) {
         const type = node['type'];
 
         if (type !== 'node') {
@@ -248,6 +248,9 @@ class SceneGraph {
             materialRef = node['materialref']['materialId'];
         }
 
+        castShadow = node['castshadows'] ?? castShadow;
+        receiveShadow = node['receiveshadows'] ?? receiveShadow;
+
         Object.keys(children).forEach((childId) => {
             const child = children[childId];
             child['id'] = childId;
@@ -261,7 +264,7 @@ class SceneGraph {
             switch (childId) {
                 case 'nodesList':
                     for (const nodeId of child) {
-                        const newRef = this.buildNodeRef(nodeId, materialRef);
+                        const newRef = this.buildNodeRef(nodeId, materialRef, castShadow, receiveShadow);
                         if (!newRef) {
                             console.error('Couldn\'t build reference to node ' + childId);
                             return null;
@@ -271,7 +274,7 @@ class SceneGraph {
                     break;
                 case 'lodsList':
                     for (const lodId of child) {
-                        const newRef = this.buildLODRef(lodId, materialRef);
+                        const newRef = this.buildLODRef(lodId, materialRef, castShadow, receiveShadow);
                         if (!newRef) {
                             console.error('Couldn\'t build reference to LOD ' + lodId);
                             return null;
@@ -280,7 +283,7 @@ class SceneGraph {
                     }
                     break;
                 default:
-                    const primitive = this.createPrimitive(child, materialRef);
+                    const primitive = this.createPrimitive(child, materialRef, castShadow, receiveShadow);
                     if (!primitive) {
                         return null;
                     }
@@ -297,11 +300,6 @@ class SceneGraph {
             };
         });
 
-        const castShadow = node['castShadow'];
-        const receiveShadow = node['receiveShadow'];
-
-        group.castShadow = castShadow ?? false;
-        group.receiveShadow = receiveShadow ?? false;
 
         const tranformationsArray = node['transforms'];
         tranformationsArray?.forEach((transformation) => {
@@ -323,7 +321,7 @@ class SceneGraph {
         return group;
     }
 
-    buildLOD(lod, materialRef = null) {
+    buildLOD(lod, materialRef = null, castShadow = false, receiveShadow = false) {
         const type = lod['type'];
 
         if (type !== 'lod') {
@@ -338,7 +336,7 @@ class SceneGraph {
             const nodeId = lodNode['nodeId'];
             const minDist = lodNode['mindist'];
 
-            const newRef = this.buildNodeRef(nodeId, materialRef);
+            const newRef = this.buildNodeRef(nodeId, materialRef, castShadow, receiveShadow);
             if (!newRef) {
                 console.error('Couldn\'t build reference to node ' + nodeId);
                 return null;

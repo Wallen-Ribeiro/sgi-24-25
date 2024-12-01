@@ -3,7 +3,7 @@ import { build } from './NURBSBuilder.js';
 
 class PrimitiveFactory {
 
-    static createRectangleFromYASF(rectangle, material) {
+    static createRectangleFromYASF(rectangle, material, castShadow, receiveShadow) {
         const x1 = rectangle['xy1']['x'];
         const y1 = rectangle['xy1']['y'];
         const x2 = rectangle['xy2']['x'];
@@ -28,10 +28,13 @@ class PrimitiveFactory {
         const mesh = new THREE.Mesh(geometry, material);
         mesh.position.set(x1 + width / 2, y1 + height / 2, 0);
 
+        mesh.castShadow = castShadow;
+        mesh.receiveShadow = receiveShadow;
+
         return mesh;
     }
 
-    static createTriangleFromYASF(triangle, material) {
+    static createTriangleFromYASF(triangle, material, castShadow, receiveShadow) {
         const x1 = triangle['xyz1']['x'];
         const y1 = triangle['xyz1']['y'];
         const z1 = triangle['xyz1']['z'];
@@ -66,11 +69,15 @@ class PrimitiveFactory {
 
         geometry.computeVertexNormals();
 
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.castShadow = castShadow;
+        mesh.receiveShadow = receiveShadow;
 
-        return new THREE.Mesh(geometry, material);
+
+        return mesh;
     }
 
-    static createBoxFromYASF(box, material) {
+    static createBoxFromYASF(box, material, castShadow, receiveShadow) {
         const x1 = box['xyz1']['x'];
         const y1 = box['xyz1']['y'];
         const z1 = box['xyz1']['z'];
@@ -89,11 +96,13 @@ class PrimitiveFactory {
 
         const mesh = new THREE.Mesh(geometry, material);
         mesh.position.set(x1 + width / 2, y1 + height / 2, z1 + depth / 2);
+        mesh.castShadow = castShadow;
+        mesh.receiveShadow = receiveShadow;
 
         return mesh;
     }
 
-    static createCylinderFromYASF(cylinder, material) {
+    static createCylinderFromYASF(cylinder, material, castShadow, receiveShadow) {
         const base = cylinder['base'];
         const top = cylinder['top'];
         const height = cylinder['height'];
@@ -106,11 +115,13 @@ class PrimitiveFactory {
         const geometry = new THREE.CylinderGeometry(top, base, height, slices, stacks, !cap, thetaStart, thetaLength);
 
         const mesh = new THREE.Mesh(geometry, material);
+        mesh.castShadow = castShadow;
+        mesh.receiveShadow = receiveShadow;
 
         return mesh;
     }
 
-    static createSphereFromYASF(sphere, material) {
+    static createSphereFromYASF(sphere, material, castShadow, receiveShadow) {
         const radius = sphere['radius'];
         const slices = sphere['slices'];
         const stacks = sphere['stacks'];
@@ -122,11 +133,13 @@ class PrimitiveFactory {
         const geometry = new THREE.SphereGeometry(radius, slices, stacks, phiStart, phiLength, thetaStart, thetaLength);
 
         const mesh = new THREE.Mesh(geometry, material);
+        mesh.castShadow = castShadow;
+        mesh.receiveShadow = receiveShadow;
 
         return mesh;
     }
 
-    static createNurbsCurveFromYASF(nurbs, material) {
+    static createNurbsCurveFromYASF(nurbs, material, castShadow, receiveShadow) {
         const orderU = nurbs['degree_u'];
         const orderV = nurbs['degree_v'];
         const samplesU = nurbs['parts_u'];
@@ -148,14 +161,14 @@ class PrimitiveFactory {
 
 
         const mesh = new THREE.Mesh(surfaceData, material);
-
-        console.log("lol", controlPoints);
+        mesh.castShadow = castShadow;
+        mesh.receiveShadow = receiveShadow;
 
         return mesh;
     }
 
 
-    static createPolygonFromYASF(polygon, material) {
+    static createPolygonFromYASF(polygon, material, castShadow, receiveShadow) {
         const radius = polygon['radius'];
         const stacks = polygon['stacks'];
         const slices = polygon['slices'];
@@ -213,8 +226,12 @@ class PrimitiveFactory {
         geometry.computeVertexNormals();
 
         const material1 = material || new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, vertexColors: true });
+
+        const mesh = new THREE.Mesh(geometry, material1);
+        mesh.castShadow = castShadow;
+        mesh.receiveShadow = receiveShadow;
     
-        return new THREE.Mesh(geometry, material1);
+        return mesh;
     }
     
     

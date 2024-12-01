@@ -63,6 +63,15 @@
             "amogus": {
                 "filepath": "scenes/car/textures/amogus1.mp4",
                 "isVideo": true
+            },
+            "cafeteriaWallTex": {
+                "filepath": "scenes/amongus/textures/cafeteria_wall.jpg"
+            },
+            "cafeteriaWallTTex": {
+                "filepath": "scenes/amongus/textures/cafeteria_wall_t.jpg"
+            },
+            "cafeteriaWallBTex": {
+                "filepath": "scenes/amongus/textures/cafeteria_wall_b.jpg"
             }
         },
         "materials": {
@@ -113,12 +122,12 @@
             },
             "cafeteriaWallMat": {
                 "color": {
-                    "r": 0.0,
+                    "r": 1.0,
                     "g": 1.0,
                     "b": 1.0
                 },
                 "specular": {
-                    "r": 0.0,
+                    "r": 1.0,
                     "g": 1.0,
                     "b": 1.0
                 },
@@ -130,7 +139,52 @@
                 },
                 "transparent": false,
                 "opacity": 1.0,
-                "wireframe": false
+                "wireframe": false,
+                "textureref": "cafeteriaWallTex"
+            },
+            "cafeteriaWallTMat": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "wireframe": false,
+                "textureref": "cafeteriaWallTTex"
+            },
+            "cafeteriaWallBMat": {
+                "color": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "specular": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0
+                },
+                "shininess": 10,
+                "emissive": {
+                    "r": 0.0,
+                    "g": 0.0,
+                    "b": 0.0
+                },
+                "transparent": false,
+                "opacity": 1.0,
+                "wireframe": false,
+                "textureref": "cafeteriaWallBTex"
             },
             "blackMat": {
                 "color": {
@@ -689,7 +743,7 @@
                         "intensity": 10.0,
                         "distance": 1000,
                         "decay": 2.0,
-                        "castshadow": false,
+                        "castshadow": true,
                         "position": {
                             "x": 5.0,
                             "y": 5.0,
@@ -733,6 +787,7 @@
             },
             "cafeteriaFloor": {
                 "type": "node",
+                "receiveshadows": true,
                 "materialref": {
                     "materialId": "cafeteriaFloorMat"
                 },
@@ -1001,6 +1056,9 @@
             },
             "cafeteriaWallPartB": {
                 "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallBMat"
+                },
                 "transforms": [
                     {
                         "type": "translate",
@@ -1028,6 +1086,9 @@
             },
             "cafeteriaWallPartT": {
                 "type": "node",
+                "materialref": {
+                    "materialId": "cafeteriaWallTMat"
+                },
                 "transforms": [
                     {
                         "type": "translate",
@@ -2250,6 +2311,7 @@
             },
             "sus": {
                 "type": "node",
+                "castshadows": true,
                 "transforms": [
                     {
                         "type": "translate",
