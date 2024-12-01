@@ -141,7 +141,7 @@ class PrimitiveFactory {
         const height = cylinder['height'];
         const slices = cylinder['slices'];
         const stacks = cylinder['stacks'];
-        const cap = cylinder['cap'] ?? false;
+        const cap = cylinder['capsclose'] ?? false;
         const thetaStart = cylinder['theta_start'] ?? 0;
         const thetaLength = cylinder['theta_length'] ?? Math.PI * 2;
 
