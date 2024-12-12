@@ -18,6 +18,7 @@ class Ballon extends THREE.Object3D {
         this.currentTime = 0;
         this.currentEase = null;
         this.xAccel = 0;
+        this.radius = 10; // collision radius
 
         // animation 
         this.clock = new THREE.Clock();

@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
 import { Ballon } from './models/Ballon.js';
+import { PowerUp } from './models/PowerUp.js';
+
 /**
  *  This class contains the contents of out application
  */
@@ -30,8 +32,13 @@ class MyContents {
             this.app.scene.add(this.axis)
         }
 
+        // clock
+        this.clock = new THREE.Clock();
 
-        // piont light
+        // colidable objects
+        this.collidableObjects = [];
+
+        // point light
         const pointLight = new THREE.PointLight(0xffffff, 100);
         const pointLightHelper = new THREE.PointLightHelper(pointLight);
         pointLight.position.set(8, 5, 8);
@@ -41,6 +48,12 @@ class MyContents {
         // testing ballon
         this.ballon = new Ballon();
         this.app.scene.add(this.ballon);
+
+        // testing power up
+        const powerUp = new PowerUp();
+        this.collidableObjects.push(powerUp);
+        powerUp.position.set(15, 4, 0);
+        this.app.scene.add(powerUp);
 
     }
 
@@ -61,6 +74,15 @@ class MyContents {
 
     update() {
         this.ballon.update();
+        this.collidableObjects.forEach(obj => {
+            // check collision of ballon with collidable objects
+            const distance = this.ballon.position.distanceTo(obj.position);
+            const sumRadius = this.ballon.radius + obj.radius;
+
+            if (distance < sumRadius) {
+                console.log("Collision detected");
+            }
+        });
     }
 }
 

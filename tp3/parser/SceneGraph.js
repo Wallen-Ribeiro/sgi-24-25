@@ -78,29 +78,28 @@ class SceneGraph {
      * @param {number} [size] - If size is not null, inscribe the value in the mipmap. Null by default.
      * @param {string} [color] - A color to be used for demo.
      */
-    loadMipmap(parentTexture, level, path)
-    {
+    loadMipmap(parentTexture, level, path) {
         // load texture. On loaded call the function to create the mipmap for the specified level 
-        new THREE.TextureLoader().load(path, 
-            function(mipmapTexture)  // onLoad callback
+        new THREE.TextureLoader().load(path,
+            function (mipmapTexture)  // onLoad callback
             {
                 const canvas = document.createElement('canvas')
                 const ctx = canvas.getContext('2d')
                 ctx.scale(1, 1);
-                
+
                 // const fontSize = 48
-                const img = mipmapTexture.image         
+                const img = mipmapTexture.image
                 canvas.width = img.width;
                 canvas.height = img.height
 
                 // first draw the image
-                ctx.drawImage(img, 0, 0 )
-                             
+                ctx.drawImage(img, 0, 0)
+
                 // set the mipmap image in the parent texture in the appropriate level
                 parentTexture.mipmaps[level] = canvas
             },
             undefined, // onProgress callback currently not supported
-            function(err) {
+            function (err) {
                 console.error('Unable to load the image ' + path + ' as mipmap level ' + level + ".", err)
             }
         )
@@ -159,7 +158,7 @@ class SceneGraph {
             let texture = textureRef ? this.textures[textureRef] : null;
             const bumpRef = material['bumpref'];
             const bumpMap = bumpRef ? this.textures[bumpRef] : null;
-            const bumpScale = material['bumpscale']?? 1.0;
+            const bumpScale = material['bumpscale'] ?? 1.0;
             const specularRef = material['specularref'];
             const specularMap = specularRef ? this.textures[specularRef] : null;
             const texLengthS = material['texlength_s'] ?? 1;
@@ -167,12 +166,12 @@ class SceneGraph {
             const color = new THREE.Color(material['color']['r'], material['color']['g'], material['color']['b']);
             const specular = new THREE.Color(material['specular']['r'], material['specular']['g'], material['specular']['b']);
             const emissive = new THREE.Color(material['emissive']['r'], material['emissive']['g'], material['emissive']['b']);
-        
+
             if (texture) {
                 texture = texture;
                 texture.wrapS = THREE.RepeatWrapping;
                 texture.wrapT = THREE.RepeatWrapping;
-                texture.repeat.set(1/texLengthS, 1/texLengthT);
+                texture.repeat.set(1 / texLengthS, 1 / texLengthT);
             }
 
             this.materials[materialId] = new THREE.MeshPhongMaterial({
@@ -202,12 +201,21 @@ class SceneGraph {
     parseSkyBox(skybox) {
         const geometry = new THREE.BoxGeometry(skybox['size']['x'], skybox['size']['y'], skybox['size']['z']);
 
+
         const ft = new THREE.TextureLoader().load(skybox['front']);
+        ft.repeat.set(0.25, 1);
         const bk = new THREE.TextureLoader().load(skybox['back']);
+        bk.repeat.set(0.25, 1);
+        bk.offset.set(0.50, 0);
         const up = new THREE.TextureLoader().load(skybox['up']);
         const dn = new THREE.TextureLoader().load(skybox['down']);
         const rt = new THREE.TextureLoader().load(skybox['right']);
+        rt.repeat.set(0.25, 1);
+        rt.offset.set(0.25, 0);
         const lf = new THREE.TextureLoader().load(skybox['left']);
+        lf.repeat.set(0.25, 1);
+        lf.offset.set(0.75, 0);
+
 
         const eColor = new THREE.Color(skybox['emissive']['r'], skybox['emissive']['g'], skybox['emissive']['b']).getHex();
         const eIntensity = skybox['intensity'];
