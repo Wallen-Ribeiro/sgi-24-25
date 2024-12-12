@@ -16,7 +16,7 @@ class MyContents {
         this.axis = null
 
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
-        this.reader.open("scenes/demo/demo.json");
+        this.reader.open("scene/scene.json");
     }
 
     /**
@@ -30,10 +30,6 @@ class MyContents {
             this.app.scene.add(this.axis)
         }
 
-        // REMOVE
-        // ambient light
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        this.app.scene.add(ambientLight);
 
         // piont light
         const pointLight = new THREE.PointLight(0xffffff, 100);
@@ -43,9 +39,8 @@ class MyContents {
         this.app.scene.add(pointLightHelper);
 
         // testing ballon
-        const ballon = new Ballon();
-        this.app.scene.add(ballon);
-        //
+        this.ballon = new Ballon();
+        this.app.scene.add(this.ballon);
 
     }
 
@@ -54,26 +49,18 @@ class MyContents {
      * @param {Object} data with the entire scene object
      */
     onSceneLoaded(data) {
-        console.info("YASF loaded.")
         this.onAfterSceneLoadedAndBeforeRender(data);
     }
 
-    printYASF(data, indent = '') {
-        for (let key in data) {
-            if (typeof data[key] === 'object' && data[key] !== null) {
-                console.log(`${indent}${key}:`);
-                this.printYASF(data[key], indent + '\t');
-            } else {
-                console.log(`${indent}${key}: ${data[key]}`);
-            }
-        }
-    }
-
     onAfterSceneLoadedAndBeforeRender(data) {
-        this.printYASF(data)
+        console.log(data);
+        this.app.scene.add(data.scene);
+        this.app.scene.add(data.skybox);
+        this.app.scene.add(data.ambientLight);
     }
 
     update() {
+        this.ballon.update();
     }
 }
 
