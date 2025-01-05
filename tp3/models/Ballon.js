@@ -23,8 +23,8 @@ class Ballon extends THREE.Object3D {
         // animation 
         this.clock = new THREE.Clock();
 
-        const sphere = new THREE.SphereGeometry(10);
-        const cube = new THREE.BoxGeometry(2, 2, 2);
+        const sphere = new THREE.SphereGeometry(5);
+        const cube = new THREE.BoxGeometry(1, 1, 1);
 
         const ballonMaterial = new THREE.MeshToonMaterial(
             {
@@ -40,7 +40,7 @@ class Ballon extends THREE.Object3D {
 
         const ballon = new THREE.Mesh(sphere, ballonMaterial);
         const casket = new THREE.Mesh(cube, casketMaterial);
-        casket.position.y = -11;
+        casket.position.y = -5.5;
 
         this.add(ballon);
         this.add(casket);

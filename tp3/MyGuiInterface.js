@@ -29,6 +29,16 @@ class MyGuiInterface  {
      * Initialize the gui interface
      */
     init() {
+
+        const trackFolder = this.datgui.addFolder('Track');
+        trackFolder
+            .add(this.contents, "trackWidth", 10, 15)
+            .step(0.5)
+            .name("track width")
+            .onChange(value => {
+                this.contents.track.updateWidth(value);
+                this.contents.track.update();
+            });
     }
 }
 

@@ -3,6 +3,8 @@ import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
 import { Ballon } from './models/Ballon.js';
 import { PowerUp } from './models/PowerUp.js';
+import { Track } from './models/Track.js';
+import { Opponent } from './player/Opponent.js';
 
 /**
  *  This class contains the contents of out application
@@ -16,6 +18,8 @@ class MyContents {
     constructor(app) {
         this.app = app
         this.axis = null
+
+        this.trackWidth = 10;
 
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
         this.reader.open("scene/scene.json");
@@ -49,6 +53,15 @@ class MyContents {
         this.ballon = new Ballon();
         this.app.scene.add(this.ballon);
 
+        // testing opponent
+        this.opponent = new Opponent();
+        this.opponent.init(); // Ensure init is called
+        this.app.scene.add(this.opponent);
+
+        this.track = new Track(this.trackWidth);
+        this.track.scale.set(1, 1, 1);
+        this.app.scene.add(this.track);
+
         // testing power up
         const powerUp = new PowerUp();
         this.collidableObjects.push(powerUp);
@@ -74,6 +87,7 @@ class MyContents {
 
     update() {
         this.ballon.update();
+        this.opponent.update(); // Ensure update is called
         this.collidableObjects.forEach(obj => {
             // check collision of ballon with collidable objects
             const distance = this.ballon.position.distanceTo(obj.position);
