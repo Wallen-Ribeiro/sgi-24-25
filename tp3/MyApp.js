@@ -27,7 +27,7 @@ class MyApp  {
         this.controls = null
         this.gui = null
         this.axis = null
-        this.contents == null
+        this.contents = null
     }
     /**
      * initializes the application
@@ -163,8 +163,10 @@ class MyApp  {
      */
     setContents(contents) {
         this.contents = contents;
-        this.contents.ballon.setFirstPersonCamera(this.cameras['FirstPerson']);
-        this.contents.ballon.setThirdPersonCamera(this.cameras['ThirdPerson']);
+        if (this.contents.ballon) {
+            this.contents.ballon.setFirstPersonCamera(this.cameras['FirstPerson']);
+            this.contents.ballon.setThirdPersonCamera(this.cameras['ThirdPerson']);
+        }
     }
 
     /**
@@ -199,6 +201,5 @@ class MyApp  {
         this.stats.end()
     }
 }
-
 
 export { MyApp };

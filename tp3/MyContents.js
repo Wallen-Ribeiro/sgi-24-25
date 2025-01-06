@@ -8,9 +8,10 @@ import { Opponent } from './player/Opponent.js';
 import { SpikeBall } from './models/SpikeBall.js';
 import { Outdoor } from './models/Outdoor.js';
 import { MyShader } from './MyShader.js';
+import { Game } from './modes/Game.js';
 
 /**
- *  This class contains the contents of out application
+ *  This class contains the contents of our application
  */
 class MyContents {
 
@@ -19,13 +20,12 @@ class MyContents {
        @param {MyApp} app The application object
     */
     constructor(app) {
-        this.app = app
-        this.axis = null
-
+        this.app = app;
+        this.axis = null;
         this.trackWidth = 10;
-
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
         this.reader.open("scene/scene.json");
+        this.currentMode = null;
     }
 
     /**
@@ -35,15 +35,12 @@ class MyContents {
         // create once 
         if (this.axis === null) {
             // create and attach the axis to the scene
-            this.axis = new MyAxis(this)
-            this.app.scene.add(this.axis)
+            this.axis = new MyAxis(this);
+            this.app.scene.add(this.axis);
         }
 
         // clock
         this.clock = new THREE.Clock();
-
-        // colidable objects
-        this.collidableObjects = [];
 
         // point light
         const pointLight = new THREE.PointLight(0xffffff, 100);
@@ -52,41 +49,25 @@ class MyContents {
         this.app.scene.add(pointLight);
         this.app.scene.add(pointLightHelper);
 
-        // testing ballon
-        this.ballon = new Ballon();
-        this.app.scene.add(this.ballon);
-        this.app.scene.add(this.ballon.shadow);
-
-        // testing opponent
-        this.opponent = new Opponent();
-        this.opponent.init(); // Ensure init is called
-        this.app.scene.add(this.opponent);
-
-        this.track = new Track(this.trackWidth);
-        this.track.scale.set(1, 1, 1);
-        this.app.scene.add(this.track);
-
-        // testing power up
-        const powerUp = new PowerUp();
-        this.collidableObjects.push(powerUp);
-        powerUp.position.set(20, 4, 0);
-        this.app.scene.add(powerUp);
-
-        // testing spikeball
-        const spikeBall = new SpikeBall();
-        this.collidableObjects.push(spikeBall);
-        spikeBall.position.set(40, 4, 0);
-        this.app.scene.add(spikeBall);
-        const spikeBall1 = new SpikeBall();
-        this.collidableObjects.push(spikeBall1);
-        spikeBall1.position.set(60, 4, 0);
-        this.app.scene.add(spikeBall1);
-
         // testing background
         const outdoor = new Outdoor();
         outdoor.position.set(-50, 10, -50);
         this.app.scene.add(outdoor);
 
+        // Initialize the default mode (Game mode)
+        this.switchMode(new Game(this));
+    }
+
+    /**
+     * Switches the current mode
+     * @param {Mode} newMode The new mode to switch to
+     */
+    switchMode(newMode) {
+        if (this.currentMode) {
+            this.currentMode.cleanup();
+        }
+        this.currentMode = newMode;
+        this.currentMode.init();
     }
 
     /**
@@ -105,49 +86,9 @@ class MyContents {
     }
 
     update() {
-        this.ballon.update();
-        this.opponent.update(); 
-
-        if(this.ballon.invencible) { // invencible -> dont check collisions
-            return;
+        if (this.currentMode) {
+            this.currentMode.update();
         }
-
-        this.collidableObjects.forEach(collidable => {
-            // check collision of ballon with collidable objects
-            const distance = this.ballon.position.distanceTo(collidable.position);
-            const sumRadius = this.ballon.radius + collidable.radius;
-
-            if (distance < sumRadius) {
-                console.log("collsion");
-                this.handleCollision(this.ballon, collidable);
-            }
-        });
-    }
-
-    handleCollision(ballon, collidable) {
-        const type = collidable.type ?? "";
-        console.log(type)
-
-        switch (type) {
-            case "POWERUP":
-                this.ballon.vouchers += 1;
-                this.ballon.setInvencible();
-                console.log(this.ballon.vouchers);
-
-                break;
-            case "OBSTACLE":
-                if(this.ballon.vouchers > 0) {
-                    this.ballon.vouchers -= 1;
-                    this.ballon.setInvencible();
-                } else {
-                    this.ballon.setStunned();
-                }
-                console.log(this.ballon.vouchers);
-                break;
-            default:
-                break;
-        }
-
     }
 }
 
