@@ -166,7 +166,7 @@ class MyApp  {
         this.contents = contents;
         const gameMode = this.contents.getCurrentMode();
 
-        if (gameMode instanceof Game) {
+        if (gameMode instanceof Game && gameMode.ballon) {
             gameMode.ballon.setFirstPersonCamera(this.cameras['FirstPerson']);
             gameMode.ballon.setThirdPersonCamera(this.cameras['ThirdPerson']);
         }

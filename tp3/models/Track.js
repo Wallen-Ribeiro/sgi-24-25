@@ -14,15 +14,15 @@ class Track extends THREE.Object3D{
     this.width = trackWidth;
 
     this.path = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-90, 0, 0),
-      new THREE.Vector3(80, 0, 0),
-      new THREE.Vector3(80, 0, -100),
-      new THREE.Vector3(20, 0, -100),
-      new THREE.Vector3(20, 0 , -30),
-      new THREE.Vector3(-20, 0 , -30),
-      new THREE.Vector3(-20, 0, -150),
-      new THREE.Vector3(-90, 0, -150),
-      new THREE.Vector3(-90, 0, 0)
+      new THREE.Vector3(-120, 0, 120),
+      new THREE.Vector3(110, 0, 120),
+      new THREE.Vector3(110, 0, -120),
+      new THREE.Vector3(50, 0, -120),
+      new THREE.Vector3(50, 0 , -50),
+      new THREE.Vector3(-50, 0 , -50),
+      new THREE.Vector3(-50, 0, -170),
+      new THREE.Vector3(-120, 0, -170),
+      new THREE.Vector3(-120, 0, 120)
     ]);
 
     this.buildCurve();
@@ -50,12 +50,6 @@ class Track extends THREE.Object3D{
   
     this.material = new THREE.MeshBasicMaterial({ map: texture });
     
-    this.wireframeMaterial = new THREE.MeshBasicMaterial({
-      color: 0x0000ff,
-      opacity: 0.3,
-      wireframe: true,
-      transparent: true,
-    });
   
     this.lineMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 });
   }
@@ -73,7 +67,6 @@ class Track extends THREE.Object3D{
     );
   
     this.mesh = new THREE.Mesh(geometry, this.material);
-    this.wireframe = new THREE.Mesh(geometry, this.wireframeMaterial);
   
     let points = this.path.getPoints(this.segments);
     let bGeometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -84,7 +77,6 @@ class Track extends THREE.Object3D{
     this.curve = new THREE.Group();
   
     this.mesh.visible = true;
-    this.wireframe.visible = true;
     this.line.visible = true;
   
     this.curve.add(this.mesh);

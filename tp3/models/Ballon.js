@@ -64,7 +64,7 @@ class Ballon extends THREE.Object3D {
         const casket = new THREE.Mesh(cube, casketMaterial);
         this.shadow = new THREE.Mesh(circle, shadowMaterial);
         casket.position.y = -11;
-        this.shadow.position.y = 1.01;
+        this.shadow.position.y = 4.1;
         this.shadow.rotateX(- Math.PI / 2);
 
         this.add(ballon);

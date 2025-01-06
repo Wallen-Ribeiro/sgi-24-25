@@ -1,14 +1,10 @@
 import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
-import { Ballon } from './models/Ballon.js';
-import { PowerUp } from './models/PowerUp.js';
-import { Track } from './models/Track.js';
-import { Opponent } from './player/Opponent.js';
-import { SpikeBall } from './models/SpikeBall.js';
 import { Outdoor } from './models/Outdoor.js';
-import { MyShader } from './MyShader.js';
 import { Game } from './modes/Game.js';
+import { Garage } from './modes/Garage.js';
+import { Menu } from './modes/Menu.js';
 import { TextRender } from './models/Text.js';
 
 /**
@@ -23,7 +19,7 @@ class MyContents {
     constructor(app) {
         this.app = app;
         this.axis = null;
-        this.trackWidth = 10;
+        this.trackWidth = 30;
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
         this.reader.open("scene/scene.json");
         this.currentMode = null;
@@ -47,11 +43,11 @@ class MyContents {
         this.app.scene.add(pointLightHelper);
 
         this.outdoor = new Outdoor();
-        this.outdoor.position.set(-50, 10, -50);
+        this.outdoor.position.set(-70, 10, 10);
         this.app.scene.add(this.outdoor);
 
         // Initialize the default mode (Game mode)
-        this.switchMode(new Game(this));
+        this.switchMode(new Garage(this));
     }
 
     /**
@@ -64,6 +60,9 @@ class MyContents {
         }
         this.currentMode = newMode;
         this.currentMode.init();
+        if (this.onModeChange) {
+            this.onModeChange();
+        }
     }
 
     /**

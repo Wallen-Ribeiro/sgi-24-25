@@ -4,6 +4,7 @@ import { Opponent } from '../player/Opponent.js';
 import { PowerUp } from '../models/PowerUp.js';
 import { SpikeBall } from '../models/SpikeBall.js';
 import { Track } from '../models/Track.js';
+
 import * as THREE from 'three';
 import { FireworkBox } from '../models/FireworkBox.js';
 
@@ -22,6 +23,7 @@ class Game extends Mode {
 
     init() {
         console.log("Game mode initialized.");
+        
 
         this.ballon = new Ballon();
         this.contents.app.scene.add(this.ballon);
@@ -29,7 +31,6 @@ class Game extends Mode {
         this.ballon.position.set(0, 30, 0);
 
         this.opponent = new Opponent();
-        this.opponent.init();
         this.contents.app.scene.add(this.opponent);
 
         this.track = new Track(this.contents.trackWidth);
@@ -41,17 +42,20 @@ class Game extends Mode {
         } 
 
         const powerUp = new PowerUp();
-        powerUp.position.set(20, 30, 0);
+        powerUp.position.set(20, 30, -25);
+        powerUp.scale.set(1.5, 1.5, 1.5);
         this.collidableObjects.push(powerUp);
         this.contents.app.scene.add(powerUp);
 
         const spikeBall1 = new SpikeBall();
-        spikeBall1.position.set(40, 30, 0);
+        spikeBall1.position.set(40, 30, -70);
+        spikeBall1.scale.set(2.5, 2.5, 2.5);
         this.collidableObjects.push(spikeBall1);
         this.contents.app.scene.add(spikeBall1);
 
         const spikeBall2 = new SpikeBall();
-        spikeBall2.position.set(60, 4, 0);
+        spikeBall2.scale.set(2.5, 2.5, 2.5);
+        spikeBall2.position.set(60, 10, -100);
         this.collidableObjects.push(spikeBall2);
         this.contents.app.scene.add(spikeBall2);
 
