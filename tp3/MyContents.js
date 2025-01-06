@@ -1,13 +1,7 @@
 import * as THREE from 'three';
 import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
-import { Ballon } from './models/Ballon.js';
-import { PowerUp } from './models/PowerUp.js';
-import { Track } from './models/Track.js';
-import { Opponent } from './player/Opponent.js';
-import { SpikeBall } from './models/SpikeBall.js';
 import { Outdoor } from './models/Outdoor.js';
-import { MyShader } from './MyShader.js';
 import { Game } from './modes/Game.js';
 import { TextRender } from './models/Text.js';
 

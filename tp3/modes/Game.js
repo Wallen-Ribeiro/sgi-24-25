@@ -26,7 +26,6 @@ class Game extends Mode {
         this.contents.app.scene.add(this.ballon.shadow);
 
         this.opponent = new Opponent();
-        this.opponent.init();
         this.contents.app.scene.add(this.opponent);
 
         this.track = new Track(this.contents.trackWidth);
