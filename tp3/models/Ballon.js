@@ -25,7 +25,6 @@ class Ballon extends THREE.Object3D {
 
         // animation 
         this.clock = new THREE.Clock();
-
         // vouchers
         this.vouchers = 0;
         this.invencible = false;
@@ -69,6 +68,32 @@ class Ballon extends THREE.Object3D {
 
         this.add(ballon);
         this.add(casket);
+    }
+
+    setFirstPersonCamera(camera) {
+        this.firstPersonCamera = camera;
+    }
+
+    setThirdPersonCamera(camera) {
+        this.thirdPersonCamera = camera;
+    }
+
+    updateCameras() {
+        if (this.firstPersonCamera) {
+            this.firstPersonCamera.position.copy(this.position);
+            this.firstPersonCamera.position.y += 2; 
+            this.firstPersonCamera.lookAt(this.position.x, this.position.y, this.position.z + 1);
+            console.log(this.position.x, this.position.y, this.position.z + 1)
+        }
+
+        if (this.thirdPersonCamera) {
+            this.thirdPersonCamera.position.copy(this.position);
+            this.thirdPersonCamera.position.x += 10; 
+            this.thirdPersonCamera.position.y += 20;
+            this.thirdPersonCamera.lookAt(this.position);
+            console.log(this.position)
+
+        }
     }
 
     onDocumentKeyDown(event) {
@@ -117,6 +142,7 @@ class Ballon extends THREE.Object3D {
     }
 
     update() {
+        console.log(this.clock);
         const delta = this.clock.getDelta();
         this.shadow.position.setX(this.position.x);
         this.shadow.position.setZ(this.position.z);
@@ -145,6 +171,7 @@ class Ballon extends THREE.Object3D {
             this.position.y = this.currentEase(this.currentTime);
         }
         this.applyWind();
+        this.updateCameras();
     }
 
     setStunned() {

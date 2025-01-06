@@ -29,6 +29,32 @@ class MyGuiInterface  {
      * Initialize the gui interface
      */
     init() {
+        const trackFolder = this.datgui.addFolder('Track');
+        trackFolder
+            .add(this.contents, "trackWidth", 10, 15)
+            .step(0.5)
+            .name("track width")
+            .onChange(value => {
+                this.contents.track.updateWidth(value);
+                this.contents.track.update();
+            });
+
+        const cameraFolder = this.datgui.addFolder('Camera');
+        const cameraOptions = {
+            'Perspective': 'Perspective',
+            'First Person': 'FirstPerson',
+            'Third Person': 'ThirdPerson',
+            'Left': 'Left',
+            'Top': 'Top',
+            'Front': 'Front'
+        };
+
+        cameraFolder
+            .add(this.app, 'activeCameraName', cameraOptions)
+            .name('Camera Mode')
+            .onChange(value => {
+                this.app.setActiveCamera(value);
+            });
     }
 }
 
