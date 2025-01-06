@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
 
 /**
  * This class contains a 3D Opponent representation
@@ -8,6 +10,7 @@ class Opponent extends THREE.Object3D {
     constructor() {
         super();        
         this.boxMesh = null
+        this.model = null
         this.boxMeshSize = 5.0
         this.boxEnabled = false
         this.boxDisplacement = new THREE.Vector3(0, 5, 0)
@@ -57,6 +60,46 @@ class Opponent extends THREE.Object3D {
         this.boxMesh.position.y = this.boxDisplacement.y;
 
         this.add(this.boxMesh)
+
+        this.initModel().then(() => {
+            this.init(); 
+        });
+    }
+
+    async loadModel(path) {
+        return new Promise((resolve, reject) => {
+            const loader = new GLTFLoader();
+            loader.load(
+                path,
+                (gltf) => {
+                    resolve(gltf.scene);
+                },
+                undefined,
+                (error) => {
+                    reject(error);
+                }
+            );
+        });
+    }
+
+    async initModel() {
+        try {
+            this.model = await this.loadModel('./assets/air6.glb');
+    
+            this.model.position.set(4, 0, 0);
+            this.model.scale.set(1, 1, 1);
+            this.model.rotateY(-Math.PI / 2);
+    
+            this.add(this.model);
+
+            this.mixer = new THREE.AnimationMixer(this.model);
+
+            console.log("Model loaded successfully", this.model);
+
+    
+        } catch (error) {
+            console.error("Failed to load model:", error);
+        }
     }
 
 
@@ -97,7 +140,6 @@ class Opponent extends THREE.Object3D {
         const positionClip = new THREE.AnimationClip('positionAnimation', 16, [positionKF]);
         const rotationClip = new THREE.AnimationClip('rotationAnimation', 3, [quaternionKF]);
 
-        this.mixer = new THREE.AnimationMixer(this.boxMesh);
 
         const positionAction = this.mixer.clipAction(positionClip);
         const rotationAction = this.mixer.clipAction(rotationClip);
@@ -228,10 +270,11 @@ class Opponent extends THREE.Object3D {
      */
     update() {
         const delta = this.clock.getDelta();
-        this.mixer.update(delta);
-
-        this.checkAnimationStateIsPause();
-        this.checkTracksEnabled();
+        if (this.mixer){
+            this.mixer.update(delta);
+            this.checkAnimationStateIsPause();
+            this.checkTracksEnabled();
+        }
     }
 
 }
