@@ -9,6 +9,7 @@ import { SpikeBall } from './models/SpikeBall.js';
 import { Outdoor } from './models/Outdoor.js';
 import { MyShader } from './MyShader.js';
 import { Game } from './modes/Game.js';
+import { TextRender } from './models/Text.js';
 
 /**
  *  This class contains the contents of our application
@@ -49,6 +50,12 @@ class MyContents {
         outdoor.position.set(-50, 10, -50);
         this.app.scene.add(outdoor);
 
+        // testing text
+        const text1 = new TextRender("Hello", 10, 15);
+        text1.position.set(10, 10, 0);
+        this.app.scene.add(text1);
+
+        // Initialize the default mode (Game mode)
         this.switchMode(new Game(this));
     }
 
