@@ -80,7 +80,6 @@ class Track extends THREE.Object3D{
     this.line.visible = true;
   
     this.curve.add(this.mesh);
-    this.curve.add(this.wireframe);
     this.curve.add(this.line);
   
     this.curve.rotateZ(Math.PI);

@@ -12,9 +12,10 @@ class Ballon extends THREE.Object3D {
     /**
      * 
      */
-    constructor() {
+    constructor(modelpath) {
         super();
 
+        this.modelpath = modelpath;
         this.layer = 0;
         this.moving = false;
         this.currentDuration = 0;
@@ -69,6 +70,42 @@ class Ballon extends THREE.Object3D {
 
         this.add(ballon);
         this.add(casket);
+    }
+
+    async loadModel(path) {
+        return new Promise((resolve, reject) => {
+            const loader = new GLTFLoader();
+            loader.load(
+                path,
+                (gltf) => {
+                    resolve(gltf.scene);
+                },
+                undefined,
+                (error) => {
+                    reject(error);
+                }
+            );
+        });
+    }
+
+    async initModel() {
+        try {
+            this.model = await this.loadModel(this.modelpath);
+    
+            this.model.position.set(4, 0, 0);
+            this.model.scale.set(1, 1, 1);
+            this.model.rotateY(-Math.PI / 2);
+    
+            this.add(this.model);
+
+            this.mixer = new THREE.AnimationMixer(this.model);
+
+            console.log("Model loaded successfully", this.model);
+
+    
+        } catch (error) {
+            console.error("Failed to load model:", error);
+        }
     }
 
     setFirstPersonCamera(camera) {
