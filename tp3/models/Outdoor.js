@@ -137,7 +137,6 @@ class Outdoor extends THREE.Object3D {
     updateTime(delta) {
         this.timeSecs += delta;
         const rounded = Math.floor(this.timeSecs);
-        console.log(delta, this.timeSecs, this.timeSec, this.timeMin);
         if(rounded > this.timeSec) {
             if(rounded < 60) {
                 this.timeSec = rounded;

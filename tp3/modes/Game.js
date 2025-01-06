@@ -5,6 +5,7 @@ import { PowerUp } from '../models/PowerUp.js';
 import { SpikeBall } from '../models/SpikeBall.js';
 import { Track } from '../models/Track.js';
 import * as THREE from 'three';
+import { FireworkBox } from '../models/FireworkBox.js';
 
 class Game extends Mode {
     constructor(contents) {
@@ -54,11 +55,16 @@ class Game extends Mode {
         this.collidableObjects.push(spikeBall2);
         this.contents.app.scene.add(spikeBall2);
 
+        this.firework = new FireworkBox(this.contents.app, this.contents.app.scene);
+        this.contents.app.scene.add(this.firework);
+
+
         console.log("Game mode setup complete.");
     }
 
     update(delta) {
         if (this.contents.outdoor) this.contents.outdoor.update(delta, this.ballon.layer, this.ballon.vouchers, 0, 1);
+        if (this.firework) this.firework.update(delta);
         if (this.ballon) this.ballon.update();
         if (this.opponent) this.opponent.update();
 
