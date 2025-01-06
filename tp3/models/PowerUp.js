@@ -7,7 +7,7 @@ import * as THREE from 'three';
 class PowerUp extends THREE.Object3D {
 
     /**
-     * 
+     * builds the PowerUp object
      */
     constructor() {
         super();
@@ -21,6 +21,10 @@ class PowerUp extends THREE.Object3D {
         this.buildModel();
     }
 
+    /**
+     * Builds the PowerUp model
+     * @returns {THREE.Object3D} The PowerUp model
+     */
     buildModel() {
         const teleSize = 3;
         const screenSize = 2.5;

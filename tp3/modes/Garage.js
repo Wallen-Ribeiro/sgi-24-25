@@ -6,6 +6,11 @@ import { Game } from './Game.js';
 
 
 class Garage extends Mode {
+    
+    /**
+     * Builds the garage mode
+     * @param {MyContents} contents The contents of the application
+     */
     constructor(contents) {
         super(contents);
         this.chosen1 = null;
@@ -30,6 +35,11 @@ class Garage extends Mode {
         console.log("Event listener registered for pointerdown");
     }
 
+    /**
+     * Loads a model from a given path
+     * @param {string} path The path to the model
+     * @returns {Promise} The promise of the model 
+     */
     async loadModel(path) {
         return new Promise((resolve, reject) => {
             const loader = new GLTFLoader();
@@ -46,6 +56,11 @@ class Garage extends Mode {
         });
     }
 
+    /**
+     * Initializes a model at a given position
+     * @param {string} path The path to the model
+     * @param {Object} position The position of the model
+     */
     async initModel(path, position) {
         try {
             const model = await this.loadModel(path);
@@ -72,8 +87,10 @@ class Garage extends Mode {
         }
     }
     
-    
-
+    /**
+     * Initializes the garage mode
+     * @returns {Promise} The promise of the garage mode
+     */
     async init() {
         console.log("Garage mode initialized.");
 
@@ -92,6 +109,11 @@ class Garage extends Mode {
         console.log("Garage mode setup complete.");
     }
 
+    /**
+     * Handles the pointer down event
+     * @param {PointerEvent} event The pointer down event
+     * @returns {void}
+     */
     onPointerDown(event) {
         console.log("Pointer down event detected");
         this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -138,6 +160,11 @@ class Garage extends Mode {
         }
     }
 
+    /**
+     * Gets the balloon file for a given box name
+     * @param {string} boxName The name of the box
+     * @returns {string} The balloon file
+     */
     getBalloonFile(boxName) {
         console.log("Getting balloon file for box:", boxName);
         switch (boxName) {
@@ -154,6 +181,11 @@ class Garage extends Mode {
         }
     }
     
+    /**
+     * Highlights a box with a given color
+     * @param {THREE.Mesh} box The box to highlight
+     * @param {number} color The color to highlight
+     */
     highlightBox(box, color) {
         box.material.color.setHex(color); // Change color of the bounding box
     }
@@ -161,6 +193,10 @@ class Garage extends Mode {
 
     update() {}
 
+    /**
+     * Cleans up the garage mode
+     * @returns {void}
+     */
     cleanup() {
         document.removeEventListener('pointerdown', this.onPointerDown.bind(this));
 
@@ -181,6 +217,11 @@ class Garage extends Mode {
         if (this.button) {
             this.contents.app.scene.remove(this.button);
             this.button = null;
+        }
+
+        if (this.text1) {
+            this.contents.app.scene.remove(this.text1);
+            this.text1 = null;
         }
 
         const circlesToRemove = [];

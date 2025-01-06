@@ -4,7 +4,6 @@ import { MyFileReader } from './parser/MyFileReader.js';
 import { Outdoor } from './models/Outdoor.js';
 import { Game } from './modes/Game.js';
 import { Garage } from './modes/Garage.js';
-import { Menu } from './modes/Menu.js';
 import { TextRender } from './models/Text.js';
 
 /**
