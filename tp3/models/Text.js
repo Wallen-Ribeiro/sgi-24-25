@@ -12,8 +12,11 @@ class TextRender extends THREE.Object3D {
     constructor(text, letter_width, letter_height) {
         super();
 
+        this.texture = new THREE.TextureLoader().load('scene/textures/font_sheet.png');
         this.widthChar = 15;
         this.heightChar = 8;
+        this.letter_width = letter_width;
+        this.letter_height = letter_height;
         this.char_width = 1 / this.widthChar;
         this.char_heigth = 1 / this.heightChar;
         this.arrayChar = [[' ', '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '-'],
@@ -21,22 +24,21 @@ class TextRender extends THREE.Object3D {
                           ['>', '?', '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'],
                           ['M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[']];
         
-        this.buildText(text, letter_width, letter_height)
+        this.buildText(text)
     }
 
-    buildText(text, letter_width, letter_height) {
-        const test = "dkjfasfj";
+    buildText(text) {
         let displacement = 0.0;
         const upper_text = text.toUpperCase();
         for(let i = 0; i < upper_text.length; i++) {
-            const letter_mesh = this.buildLetter(upper_text[i], letter_width, letter_height);
+            const letter_mesh = this.buildLetter(upper_text[i], this.letter_width, this.letter_height);
             letter_mesh.translateX(displacement);
-            displacement += letter_width;
+            displacement += this.letter_width;
             this.add(letter_mesh)
         }
     }
 
-    buildLetter(letter, letter_width, letter_height) {
+    buildLetter(letter) {
         let m = 0;
         let n = 0;
         let found = false;
@@ -55,17 +57,23 @@ class TextRender extends THREE.Object3D {
         let u2 = u1 + this.char_width;
         let v2 = v1 - this.char_heigth;
  
-        const plane = new THREE.PlaneGeometry(letter_width, letter_height);
+        const plane = new THREE.PlaneGeometry(this.letter_width, this.letter_height);
         plane.attributes.uv.array.set([
             u1, v1, u2, v1, u1, v2, u2, v2
         ])
-        const texture = new THREE.TextureLoader().load('scene/textures/font_sheet.png');
         const material = new THREE.MeshBasicMaterial({
-            map: texture
+            map: this.texture
         });
         
         const mesh = new THREE.Mesh(plane, material);
         return mesh;
+    }
+    
+    updateText(new_text) {
+        this.children.forEach((child) => {
+            this.remove(child);
+        })
+        this.buildText(new_text);
     }
 
 }

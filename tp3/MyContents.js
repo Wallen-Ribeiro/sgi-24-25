@@ -46,14 +46,9 @@ class MyContents {
         this.app.scene.add(pointLight);
         this.app.scene.add(pointLightHelper);
 
-        const outdoor = new Outdoor();
-        outdoor.position.set(-50, 10, -50);
-        this.app.scene.add(outdoor);
-
-        // testing text
-        const text1 = new TextRender("Hello", 10, 15);
-        text1.position.set(10, 10, 0);
-        this.app.scene.add(text1);
+        this.outdoor = new Outdoor();
+        this.outdoor.position.set(-50, 10, -50);
+        this.app.scene.add(this.outdoor);
 
         // Initialize the default mode (Game mode)
         this.switchMode(new Game(this));
@@ -95,8 +90,9 @@ class MyContents {
     }
 
     update() {
+        const delta = this.clock.getDelta()
         if (this.currentMode) {
-            this.currentMode.update();
+            this.currentMode.update(delta);
         }
     }
 }

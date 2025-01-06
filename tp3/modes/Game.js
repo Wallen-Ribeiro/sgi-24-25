@@ -36,17 +36,16 @@ class Game extends Mode {
         const samplePoints = 300;
         this.trackPoints = this.track.path.getPoints(samplePoints);
         for(let i = 0; i < samplePoints; i++) {
-            console.log(this.trackPoints[i])
             this.trackPoints[i].setX(-this.trackPoints[i].x);
         } 
 
         const powerUp = new PowerUp();
-        powerUp.position.set(20, 4, 0);
+        powerUp.position.set(20, 30, 0);
         this.collidableObjects.push(powerUp);
         this.contents.app.scene.add(powerUp);
 
         const spikeBall1 = new SpikeBall();
-        spikeBall1.position.set(40, 4, 0);
+        spikeBall1.position.set(40, 30, 0);
         this.collidableObjects.push(spikeBall1);
         this.contents.app.scene.add(spikeBall1);
 
@@ -58,7 +57,8 @@ class Game extends Mode {
         console.log("Game mode setup complete.");
     }
 
-    update() {
+    update(delta) {
+        if (this.contents.outdoor) this.contents.outdoor.update(delta, this.ballon.layer, this.ballon.vouchers, 0, 1);
         if (this.ballon) this.ballon.update();
         if (this.opponent) this.opponent.update();
 
