@@ -8,6 +8,7 @@ import { Track } from '../models/Track.js';
 import * as THREE from 'three';
 import { FireworkBox } from '../models/FireworkBox.js';
 import { ShaderOutdoor } from '../models/ShaderOutdoor.js';
+import { Reader } from '../Reader.js';
 
 class Game extends Mode {
     constructor(contents, player1, player2) {
@@ -44,23 +45,14 @@ class Game extends Mode {
             this.trackPoints[i].setX(-this.trackPoints[i].x);
         } 
 
-        const powerUp = new PowerUp();
-        powerUp.position.set(20, 30, -25);
-        powerUp.scale.set(1.5, 1.5, 1.5);
-        this.collidableObjects.push(powerUp);
-        this.contents.app.scene.add(powerUp);
-
-        this.spikeBall1 = new SpikeBall();
-        this.spikeBall1.position.set(40, 30, -70);
-        this.spikeBall1.scale.set(2.5, 2.5, 2.5);
-        this.collidableObjects.push(this.spikeBall1);
-        this.contents.app.scene.add(this.spikeBall1);
-
-        const spikeBall2 = new SpikeBall();
-        spikeBall2.scale.set(2.5, 2.5, 2.5);
-        spikeBall2.position.set(60, 10, -100);
-        this.collidableObjects.push(spikeBall2);
-        this.contents.app.scene.add(spikeBall2);
+        const points = [
+            { type: 'PowerUp', position: { x: 20, y: 30, z: -25 }},
+            { type: 'SpikeBall', position: { x: 40, y: 30, z: -70 }},
+            { type: 'SpikeBall', position: { x: 60, y: 10, z: -100 }},
+        ];
+        const reader = new Reader(this.contents.app, this.contents.app.scene);
+        reader.readPoints(points)
+        this.collidableObjects = reader.collidableObjects;
 
         this.firework = new FireworkBox(this.contents.app, this.contents.app.scene);
         this.contents.app.scene.add(this.firework);
