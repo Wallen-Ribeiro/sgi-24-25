@@ -14,6 +14,10 @@ class Game extends Mode {
         this.track = null;
     }
 
+    getTrack() {
+        return this.track;
+    }
+
     init() {
         console.log("Game mode initialized.");
 
@@ -56,7 +60,6 @@ class Game extends Mode {
             const sumRadius = this.ballon.radius + collidable.radius;
 
             if (distance < sumRadius) {
-                console.log("Collision detected in game mode.");
                 this.handleCollision(this.ballon, collidable);
             }
         });
@@ -70,7 +73,6 @@ class Game extends Mode {
             case "POWERUP":
                 ballon.vouchers += 1;
                 ballon.setInvencible();
-                console.log(`Balloon vouchers: ${ballon.vouchers}`);
                 break;
 
             case "OBSTACLE":
@@ -80,7 +82,6 @@ class Game extends Mode {
                 } else {
                     ballon.setStunned();
                 }
-                console.log(`Balloon vouchers: ${ballon.vouchers}`);
                 break;
 
             default:

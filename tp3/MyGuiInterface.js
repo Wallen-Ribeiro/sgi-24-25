@@ -1,6 +1,7 @@
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { MyApp } from './MyApp.js';
 import { MyContents } from './MyContents.js';
+import { Game } from './modes/Game.js';
 
 /**
     This class customizes the gui interface for the app
@@ -30,15 +31,19 @@ class MyGuiInterface  {
      */
     init() {
         const trackFolder = this.datgui.addFolder('Track');
-        trackFolder
-            .add(this.contents, "trackWidth", 10, 15)
-            .step(0.5)
-            .name("track width")
-            .onChange(value => {
-                this.contents.track.updateWidth(value);
-                this.contents.track.update();
-            });
+        const gameMode = this.contents.getCurrentMode();
 
+        if (gameMode instanceof Game) {
+            trackFolder
+                .add(gameMode.track, "width", 10, 15)
+                .step(0.5)
+                .name("track width")
+                .onChange(value => {
+                    gameMode.track.updateWidth(value);
+                    gameMode.track.update();
+                });
+        }
+        
         const cameraFolder = this.datgui.addFolder('Camera');
         const cameraOptions = {
             'Perspective': 'Perspective',

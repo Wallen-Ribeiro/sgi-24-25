@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { MyContents } from './MyContents.js';
+import { Game } from './modes/Game.js';
 import { MyGuiInterface } from './MyGuiInterface.js';
 import Stats from 'three/addons/libs/stats.module.js'
 
@@ -163,10 +164,13 @@ class MyApp  {
      */
     setContents(contents) {
         this.contents = contents;
-        if (this.contents.ballon) {
-            this.contents.ballon.setFirstPersonCamera(this.cameras['FirstPerson']);
-            this.contents.ballon.setThirdPersonCamera(this.cameras['ThirdPerson']);
+        const gameMode = this.contents.getCurrentMode();
+
+        if (gameMode instanceof Game) {
+            gameMode.ballon.setFirstPersonCamera(this.cameras['FirstPerson']);
+            gameMode.ballon.setThirdPersonCamera(this.cameras['ThirdPerson']);
         }
+        
     }
 
     /**

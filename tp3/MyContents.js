@@ -32,29 +32,23 @@ class MyContents {
      * initializes the contents
      */
     init() {
-        // create once 
         if (this.axis === null) {
-            // create and attach the axis to the scene
             this.axis = new MyAxis(this);
             this.app.scene.add(this.axis);
         }
 
-        // clock
         this.clock = new THREE.Clock();
 
-        // point light
         const pointLight = new THREE.PointLight(0xffffff, 100);
         const pointLightHelper = new THREE.PointLightHelper(pointLight);
         pointLight.position.set(8, 5, 8);
         this.app.scene.add(pointLight);
         this.app.scene.add(pointLightHelper);
 
-        // testing background
         const outdoor = new Outdoor();
         outdoor.position.set(-50, 10, -50);
         this.app.scene.add(outdoor);
 
-        // Initialize the default mode (Game mode)
         this.switchMode(new Game(this));
     }
 
@@ -68,6 +62,14 @@ class MyContents {
         }
         this.currentMode = newMode;
         this.currentMode.init();
+    }
+
+    /**
+     * Returns the current mode
+     * @returns {Mode} The current mode
+     */
+    getCurrentMode() {
+        return this.currentMode;
     }
 
     /**
