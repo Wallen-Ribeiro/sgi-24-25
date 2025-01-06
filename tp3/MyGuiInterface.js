@@ -23,26 +23,15 @@ class MyGuiInterface  {
      * @param {MyContents} contents the contents objects 
      */
     setContents(contents) {
-        this.contents = contents
+        this.contents = contents;
+        this.contents.onModeChange = this.updateGui.bind(this);
     }
 
     /**
      * Initialize the gui interface
      */
     init() {
-        const trackFolder = this.datgui.addFolder('Track');
-        const gameMode = this.contents.getCurrentMode();
-
-        if (gameMode instanceof Game) {
-            trackFolder
-                .add(gameMode.track, "width", 30, 40)
-                .step(0.5)
-                .name("track width")
-                .onChange(value => {
-                    gameMode.track.updateWidth(value);
-                    gameMode.track.update();
-                });
-        }
+        this.updateGui();
         
         const cameraFolder = this.datgui.addFolder('Camera');
         const cameraOptions = {
@@ -60,6 +49,24 @@ class MyGuiInterface  {
             .onChange(value => {
                 this.app.setActiveCamera(value);
             });
+    }
+
+    /**
+     * Update the GUI based on the current mode
+     */
+    updateGui() {
+        const gameMode = this.contents.getCurrentMode();
+        if (gameMode instanceof Game) {
+            const trackFolder = this.datgui.addFolder('Track');
+            trackFolder
+                .add(gameMode.track, "width", 30, 40)
+                .step(0.5)
+                .name("track width")
+                .onChange(value => {
+                    gameMode.track.updateWidth(value);
+                    gameMode.track.update();
+                });
+        }
     }
 }
 

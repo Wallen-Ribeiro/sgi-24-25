@@ -47,7 +47,7 @@ class MyContents {
         this.app.scene.add(this.outdoor);
 
         // Initialize the default mode (Game mode)
-        this.switchMode(new Game(this));
+        this.switchMode(new Garage(this));
     }
 
     /**
@@ -60,6 +60,9 @@ class MyContents {
         }
         this.currentMode = newMode;
         this.currentMode.init();
+        if (this.onModeChange) {
+            this.onModeChange();
+        }
     }
 
     /**
