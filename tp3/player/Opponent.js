@@ -11,7 +11,6 @@ class Opponent extends THREE.Object3D {
      * builds the opponent ballon
      * @param {string} modelpath The path to the model
      */
-
     constructor(modelpath) {
         super();      
         this.modelpath = modelpath;  

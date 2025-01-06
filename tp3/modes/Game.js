@@ -7,6 +7,7 @@ import { Track } from '../models/Track.js';
 
 import * as THREE from 'three';
 import { FireworkBox } from '../models/FireworkBox.js';
+import { ShaderOutdoor } from '../models/ShaderOutdoor.js';
 
 class Game extends Mode {
     constructor(contents, player1, player2) {
@@ -67,6 +68,11 @@ class Game extends Mode {
 
         this.firework = new FireworkBox(this.contents.app, this.contents.app.scene);
         this.contents.app.scene.add(this.firework);
+
+        this.dmOutdoor = new ShaderOutdoor();
+        this.dmOutdoor.position.set(0, 10, -70)
+        this.dmOutdoor.scale.set(1, 1, 1);
+        this.contents.app.scene.add(this.dmOutdoor);
 
 
         console.log("Game mode setup complete.");
