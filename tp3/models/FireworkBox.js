@@ -2,6 +2,16 @@ import * as THREE from 'three';
 import { Firework } from './Firework.js';
 
 class FireworkBox extends THREE.Object3D {
+    /**
+     * Builds a firework box
+     * @param {THREE.Object3D} app The app object
+     * @param {THREE.Scene} scene The scene object
+     * @param {number} boxSize The size of the box
+     * @param {number} boxHeight The height of the box
+     * @param {number} numFireworks The number of fireworks
+     * @param {number} explodeTime The time to explode
+     * @returns {FireworkBox} The firework box object
+     */
     constructor(app, scene, boxSize = 5, boxHeight = 2, numFireworks = 5, explodeTime = 2) {
         super();
 
@@ -24,6 +34,9 @@ class FireworkBox extends THREE.Object3D {
         this.buildModel()
     }
 
+    /**
+     * Builds the firework box model
+     */
     buildModel() {
         const geometry = new THREE.BoxGeometry(this.boxSize, this.boxHeight, this.boxSize);
 
@@ -37,6 +50,10 @@ class FireworkBox extends THREE.Object3D {
         this.add(box);
     }
 
+    /**
+     * Updates the firework box object
+     * @param {number} delta The time delta
+     */
     update(delta) {
         this.fireworks.forEach(firework => {
             firework.update(delta);

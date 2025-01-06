@@ -23,6 +23,10 @@ class Game extends Mode {
         return this.track;
     }
 
+    /**
+     * Initializes the game mode
+     */
+
     init() {
         console.log("Game mode initialized.");
         
@@ -67,6 +71,11 @@ class Game extends Mode {
 
         console.log("Game mode setup complete.");
     }
+    
+    /**
+     * Updates the game mode
+     * @param {number} delta The time delta     * 
+     */
 
     update(delta) {
         if (this.contents.outdoor) this.contents.outdoor.update(delta, this.ballon.layer, this.ballon.vouchers, 0, 1);
@@ -95,6 +104,11 @@ class Game extends Mode {
         });
     }
 
+    /**
+     * Handles a collision between the ballon and a collidable object
+     * @param {Ballon} ballon The ballon object
+     * @param {THREE.Object3D} collidable The collidable object
+     */
     handleCollision(ballon, collidable) {
         const type = collidable.type ?? "";
         console.log(`Collision with: ${type}`);
@@ -120,6 +134,9 @@ class Game extends Mode {
         }
     }
 
+    /**
+     * Handles the ballon going out of track
+     */
     handleOutOfTrack() {
         const position = this.ballon.shadow.position;
 
@@ -146,6 +163,9 @@ class Game extends Mode {
 
     }
 
+    /**
+     * Cleans up the game mode
+     */
     cleanup() {
         console.log("Cleaning up game mode.");
 

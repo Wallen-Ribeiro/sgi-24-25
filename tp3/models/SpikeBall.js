@@ -34,6 +34,9 @@ void main() {
 `;
 
 class SpikeBall extends THREE.Object3D {
+    /**
+     * Builds a spike ball
+     */
     constructor() {
         super();
         this.type = "OBSTACLE";
@@ -50,6 +53,10 @@ class SpikeBall extends THREE.Object3D {
         this.buildModel();
     }
 
+    /**
+     * Builds the spike ball model
+     * @returns {THREE.Object3D} The spike ball model
+     */
     buildModel() {
         const ballRadius = this.radius * 0.6;
         const spikeRadius = 0.5;
@@ -95,6 +102,9 @@ class SpikeBall extends THREE.Object3D {
         }
     }
 
+    /**
+     * Updates the spike ball
+     */
     update() {
         const time = this.clock.getElapsedTime();
         this.uniforms.time.value = time;

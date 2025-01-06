@@ -7,6 +7,11 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
  */
 class Opponent extends THREE.Object3D {
 
+    /**
+     * builds the opponent ballon
+     * @param {string} modelpath The path to the model
+     */
+
     constructor(modelpath) {
         super();      
         this.modelpath = modelpath;  
@@ -64,6 +69,11 @@ class Opponent extends THREE.Object3D {
         });
     }
 
+    /**
+     * Load a model from a path
+     * @param {string} path The path to the model
+     * @returns {Promise} The promise that resolves with the model
+     */
     async loadModel(path) {
         return new Promise((resolve, reject) => {
             const loader = new GLTFLoader();
@@ -80,6 +90,11 @@ class Opponent extends THREE.Object3D {
         });
     }
 
+    /**
+     * Initialize the 3d .glb model
+     * @returns {Promise} The promise that resolves with the model
+     * @throws {Error} If the model fails to load
+     */
     async initModel() {
         try {
             this.model = await this.loadModel(this.modelpath);
@@ -103,6 +118,7 @@ class Opponent extends THREE.Object3D {
 
     /**
      * initializes the contents
+     * 
      */
     init() {
 
