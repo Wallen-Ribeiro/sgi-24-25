@@ -136,33 +136,41 @@ class Garage extends Mode {
 
     cleanup() {
         document.removeEventListener('pointerdown', this.onPointerDown.bind(this));
-        
+
+        const objectsToRemove = [];
         this.contents.app.scene.children.forEach(child => {
-            console.log("Child:", child);
-            if (child.name.startsWith('balloon_') || child.name.startsWith('box_')) {
-                this.contents.app.scene.remove(child);
-                if (child.name.startsWith('balloon_') && child.boundingBox) {
-                    this.contents.app.scene.remove(child.boundingBox);
+            if (child.name.startsWith('balloon_')) {
+                objectsToRemove.push(child);
+                if (child.boundingBox) {
+                    objectsToRemove.push(child.boundingBox);
                 }
             }
         });
-        
+
+        objectsToRemove.forEach(obj => {
+            this.contents.app.scene.remove(obj);
+        });
+
         if (this.button) {
             this.contents.app.scene.remove(this.button);
             this.button = null;
         }
-        
+
+        const circlesToRemove = [];
         this.contents.app.scene.children.forEach(child => {
             if (child instanceof THREE.Mesh && child.geometry instanceof THREE.CircleGeometry) {
-                this.contents.app.scene.remove(child); 
+                circlesToRemove.push(child);
             }
         });
-        
+
+        circlesToRemove.forEach(circle => {
+            this.contents.app.scene.remove(circle);
+        });
+
         this.chosen1 = null;
         this.chosen2 = null;
         this.selectedBalloons = [];
     }
-    
     
 }
 

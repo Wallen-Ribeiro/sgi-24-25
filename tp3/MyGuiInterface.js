@@ -35,7 +35,7 @@ class MyGuiInterface  {
 
         if (gameMode instanceof Game) {
             trackFolder
-                .add(gameMode.track, "width", 10, 15)
+                .add(gameMode.track, "width", 30, 40)
                 .step(0.5)
                 .name("track width")
                 .onChange(value => {

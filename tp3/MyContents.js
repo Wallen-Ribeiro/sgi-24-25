@@ -19,7 +19,7 @@ class MyContents {
     constructor(app) {
         this.app = app;
         this.axis = null;
-        this.trackWidth = 10;
+        this.trackWidth = 30;
         this.reader = new MyFileReader(this.onSceneLoaded.bind(this));
         this.reader.open("scene/scene.json");
         this.currentMode = null;
@@ -43,11 +43,11 @@ class MyContents {
         this.app.scene.add(pointLightHelper);
 
         this.outdoor = new Outdoor();
-        this.outdoor.position.set(-50, 10, -50);
+        this.outdoor.position.set(-70, 10, 10);
         this.app.scene.add(this.outdoor);
 
         // Initialize the default mode (Game mode)
-        this.switchMode(new Garage(this));
+        this.switchMode(new Game(this));
     }
 
     /**

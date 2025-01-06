@@ -27,16 +27,15 @@ class Opponent extends THREE.Object3D {
 
 
         this.keyPoints = [
-
-            new THREE.Vector3(90, 10, 0),
-            new THREE.Vector3(-80, 10, 0),
-            new THREE.Vector3(-80, 10, -100),
-            new THREE.Vector3(-20, 10, -100),
-            new THREE.Vector3(-20, 10 , -30),
-            new THREE.Vector3(20, 10 , -30),
-            new THREE.Vector3(20, 10, -150),
-            new THREE.Vector3(90, 10, -150),
-            new THREE.Vector3(90, 10, 0)
+            new THREE.Vector3(120, 5, 120),
+            new THREE.Vector3(-110, 5, 120),
+            new THREE.Vector3(-110, 5, -120),
+            new THREE.Vector3(-50, 5, -120),
+            new THREE.Vector3(-50, 5 , -50),
+            new THREE.Vector3(50, 5 , -50),
+            new THREE.Vector3(50, 5, -170),
+            new THREE.Vector3(120, 5, -170),
+            new THREE.Vector3(120, 5, 120)
         ];
 
         this.clock = new THREE.Clock()
@@ -58,8 +57,6 @@ class Opponent extends THREE.Object3D {
         this.boxMesh = new THREE.Mesh(box, boxMaterial);
         this.boxMesh.rotation.x = -Math.PI / 2;
         this.boxMesh.position.y = this.boxDisplacement.y;
-
-        this.add(this.boxMesh)
 
         this.initModel().then(() => {
             this.init(); 
