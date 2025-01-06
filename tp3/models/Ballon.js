@@ -31,6 +31,7 @@ class Ballon extends THREE.Object3D {
         this.invencibleTimout = 0.00;
         this.stunned = false;
         this.stunnedTimout = 0.00;
+        this.shadowRadius = 5;
 
         this.buildModel();
         document.addEventListener('keydown', this.onDocumentKeyDown.bind(this))
@@ -39,7 +40,7 @@ class Ballon extends THREE.Object3D {
     buildModel() {
         const sphere = new THREE.SphereGeometry(10);
         const cube = new THREE.BoxGeometry(2, 2, 2);
-        const circle = new THREE.CircleGeometry(5);
+        const circle = new THREE.CircleGeometry(this.shadowRadius);
 
         const ballonMaterial = new THREE.MeshToonMaterial(
             {
@@ -63,7 +64,7 @@ class Ballon extends THREE.Object3D {
         const casket = new THREE.Mesh(cube, casketMaterial);
         this.shadow = new THREE.Mesh(circle, shadowMaterial);
         casket.position.y = -11;
-        this.shadow.position.y = -30;
+        this.shadow.position.y = 1.01;
         this.shadow.rotateX(- Math.PI / 2);
 
         this.add(ballon);
@@ -99,13 +100,13 @@ class Ballon extends THREE.Object3D {
                 this.moving = true;
                 this.currentDuration = 1.0;
                 this.currentTime = 0.0;
-                this.currentEase = this.easeInOutCubic(this.position.y, this.position.y + 10.0, 1.0);
+                this.currentEase = this.easeInOutCubic(this.position.y, this.position.y + 10.0, this.currentDuration);
                 this.layer++;
             } else if (event.key === 's' && this.layer > 0) {
                 this.moving = true;
                 this.currentDuration = 1.0;
                 this.currentTime = 0.0;
-                this.currentEase = this.easeInOutCubic(this.position.y, this.position.y - 10.0, 1.0);
+                this.currentEase = this.easeInOutCubic(this.position.y, this.position.y - 10.0, this.currentDuration);
                 this.layer--;
             }
         }

@@ -42,9 +42,9 @@ class MyContents {
         this.app.scene.add(pointLight);
         this.app.scene.add(pointLightHelper);
 
-        const outdoor = new Outdoor();
-        outdoor.position.set(-50, 10, -50);
-        this.app.scene.add(outdoor);
+        this.outdoor = new Outdoor();
+        this.outdoor.position.set(-50, 10, -50);
+        this.app.scene.add(this.outdoor);
 
         // Initialize the default mode (Game mode)
         this.switchMode(new Garage(this));
@@ -86,8 +86,9 @@ class MyContents {
     }
 
     update() {
+        const delta = this.clock.getDelta()
         if (this.currentMode) {
-            this.currentMode.update();
+            this.currentMode.update(delta);
         }
     }
 }

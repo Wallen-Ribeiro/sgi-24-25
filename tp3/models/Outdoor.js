@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { TextRender } from './Text.js';
 
 /**
  * This class contains a 3D outdoor
@@ -13,11 +14,71 @@ class Outdoor extends THREE.Object3D {
         super();
 
         this.layer = 0;
-
-        // animation 
-        this.clock = new THREE.Clock();
+        this.layersText = [];
+        this.timeText = null;
+        this.time = null;
+        this.timeSecs = 0;
+        this.timeMin = 0;
+        this.timeSec = 0;
+        this.lapsText = null;
+        this.numLaps = null;
+        this.intLaps = 0;
+        this.airLayer = null;
+        this.voucherText = null;
+        this.numVouchers = null;
+        this.intVouchers = 0;
+        this.gameStatus = null;
+        this.statusText = [];
 
         this.buildModel();
+        this.init();
+    }
+
+    init()  {
+        const text_width = 2.0;
+        const text_heigth = 2.5;
+        this.layer = 0;
+        this.layersText.push(new TextRender('Layer: 0 (Stopped)', 2.0, 2.5));
+        this.layersText[0].position.set(-18, 12, 0.01);
+        this.layersText.push(new TextRender('Layer: 1 (North)', 2.0, 2.5));
+        this.layersText[1].position.set(-18, 12, 0.01);
+        this.layersText.push(new TextRender('Layer: 2 (South)', 2.0, 2.5));
+        this.layersText[2].position.set(-18, 12, 0.01);
+        this.layersText.push(new TextRender('Layer: 3 (East)', 2.0, 2.5));
+        this.layersText[3].position.set(-18, 12, 0.01);
+        this.layersText.push(new TextRender('Layer: 4 (West)', 2.0, 2.5));
+        this.layersText[4].position.set(-18, 12, 0.01);
+
+        this.voucherText = new TextRender('Vouchers:', 2.0, 2.5);
+        this.voucherText.position.set(-18, 9.5, 0.01);
+        this.numVouchers = new TextRender('0', 2.0, 2.5);
+        this.numVouchers.position.set(2, 9.5, 0.01);
+
+        this.lapsText = new TextRender('Laps:', 2.0, 2.5);
+        this.lapsText.position.set(-18, 7.0, 0.01);
+        this.numLaps = new TextRender('0', 2.0, 2.5);
+        this.numLaps.position.set(-6, 7.0, 0.01);
+
+        this.timeText = new TextRender('Time:', 2.0, 2.5);
+        this.timeText.position.set(-18, 4.5, 0.01);
+        this.time = new TextRender('00:00', 2.0, 2.5);
+        this.time.position.set(-6, 4.5, 0.01);
+
+        this.gameStatus = 1;
+        this.statusText.push(new TextRender('Paused!', 3.0, 4.5));
+        this.statusText[0].position.set(-8, 0, 0.01);
+        this.statusText.push(new TextRender('Running!', 3.0, 4.5));
+        this.statusText[1].position.set(-10, 0, 0.01);
+
+
+        this.add(this.layersText[this.layer]);
+        this.add(this.voucherText);
+        this.add(this.numVouchers);
+        this.add(this.lapsText);
+        this.add(this.numLaps);
+        this.add(this.timeText);
+        this.add(this.time);
+        this.add(this.statusText[this.gameStatus]);
     }
 
     buildModel() {
@@ -56,8 +117,65 @@ class Outdoor extends THREE.Object3D {
         this.add(bg);
     }
 
-    update() {
-        const delta = this.clock.getDelta();
+    update(delta, layer, vouchers, laps, status) {
+        if(status == 1)
+            this.updateTime(delta)
+
+        if(layer != this.layer)
+            this.updateLayer(layer)
+
+        if(vouchers != this.intVouchers)
+            this.updateVouchers(vouchers)
+
+        if(laps != this.intLaps)
+            this.updateLaps(laps)
+
+        if(status != this.status)
+            this.updateStatus(status)
+    }
+
+    updateTime(delta) {
+        this.timeSecs += delta;
+        const rounded = Math.floor(this.timeSecs);
+        console.log(delta, this.timeSecs, this.timeSec, this.timeMin);
+        if(rounded > this.timeSec) {
+            if(rounded < 60) {
+                this.timeSec = rounded;
+            } else {
+                this.timeSecs -= 60.0;
+                this.timeSec = 0;
+                this.timeMin += 1;
+            }
+            let a = this.numberToString(this.timeSec);
+            let b = this.numberToString(this.timeMin);
+            this.time.updateText(this.numberToString(b + ':' + a));
+        }
+    }
+
+    numberToString(number) {
+        if(number < 10)
+            return '0' + number;
+        return number.toString()
+    }
+
+    updateLayer(layer) {
+        this.remove(this.layersText[this.layer]);
+        this.layer = layer;
+        this.add(this.layersText[this.layer])
+    }
+
+    updateVouchers(vouchers) {
+        this.intVouchers = vouchers;
+        this.numVouchers.updateText(vouchers.toString());
+
+    }
+
+    updateLaps(laps) {
+        
+    }
+
+    updateStatus(status) {
+
     }
 
 }
