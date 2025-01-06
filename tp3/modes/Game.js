@@ -4,6 +4,7 @@ import { Opponent } from '../player/Opponent.js';
 import { PowerUp } from '../models/PowerUp.js';
 import { SpikeBall } from '../models/SpikeBall.js';
 import { Track } from '../models/Track.js';
+import * as THREE from 'three';
 
 class Game extends Mode {
     constructor(contents) {
@@ -24,6 +25,7 @@ class Game extends Mode {
         this.ballon = new Ballon();
         this.contents.app.scene.add(this.ballon);
         this.contents.app.scene.add(this.ballon.shadow);
+        this.ballon.position.set(0, 30, 0);
 
         this.opponent = new Opponent();
         this.opponent.init();
@@ -31,6 +33,12 @@ class Game extends Mode {
 
         this.track = new Track(this.contents.trackWidth);
         this.contents.app.scene.add(this.track);
+        const samplePoints = 300;
+        this.trackPoints = this.track.path.getPoints(samplePoints);
+        for(let i = 0; i < samplePoints; i++) {
+            console.log(this.trackPoints[i])
+            this.trackPoints[i].setX(-this.trackPoints[i].x);
+        } 
 
         const powerUp = new PowerUp();
         powerUp.position.set(20, 4, 0);
@@ -53,6 +61,12 @@ class Game extends Mode {
     update() {
         if (this.ballon) this.ballon.update();
         if (this.opponent) this.opponent.update();
+
+        this.handleOutOfTrack();
+
+        if(this.ballon.invencible) {
+            return;
+        }
 
         // Handle Collisions
         this.collidableObjects.forEach((collidable) => {
@@ -88,6 +102,32 @@ class Game extends Mode {
                 console.log("Unknown collision type.");
                 break;
         }
+    }
+
+    handleOutOfTrack() {
+        const position = this.ballon.shadow.position;
+
+        let minDistance = Infinity;
+        let closestPoint = null
+        this.trackPoints.forEach((point) => {
+            const distance = position.distanceTo(point);
+            if(distance < minDistance) {
+                minDistance = distance;
+                closestPoint = point;
+            }
+        });
+
+        if(minDistance > this.track.width + this.ballon.shadowRadius) {
+            if(this.ballon.vouchers > 0) {
+                this.ballon.vouchers -= 1;
+                this.ballon.setInvencible();
+            } else {
+                this.ballon.setStunned();
+            }
+            this.ballon.position.setX(closestPoint.x)
+            this.ballon.position.setZ(closestPoint.z)
+        }
+
     }
 
     cleanup() {
