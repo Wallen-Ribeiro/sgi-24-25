@@ -2,6 +2,11 @@ import * as THREE from "three";
 
 class Track extends THREE.Object3D{
 
+
+  /**
+   * Builds a track object
+   * @param {number} trackWidth The width of the track
+   */
   constructor(trackWidth) {
 
     super();
@@ -28,6 +33,9 @@ class Track extends THREE.Object3D{
     this.buildCurve();
   }
 
+  /**
+   * Builds the curve object
+   */
   buildCurve() {
     this.createCurveMaterialsTextures();
     this.createCurveObjects();

@@ -10,7 +10,9 @@ const INVENCIBLE_TIMOUT = 1.50;
 class Ballon extends THREE.Object3D {
 
     /**
-     * 
+     * builds the ballon object
+     * @param {string} modelpath The path to the model
+     * @returns {void}
      */
     constructor(modelpath) {
         super();
@@ -38,6 +40,10 @@ class Ballon extends THREE.Object3D {
         document.addEventListener('keydown', this.onDocumentKeyDown.bind(this))
     }
 
+    /**
+     * Builds the ballon model
+     * @returns {THREE.Object3D} The ballon model
+     */
     buildModel() {
         const sphere = new THREE.SphereGeometry(10);
         const cube = new THREE.BoxGeometry(2, 2, 2);
@@ -72,6 +78,11 @@ class Ballon extends THREE.Object3D {
         this.add(casket);
     }
 
+    /**
+     * Loads a model
+     * @param {string} path The path to the 3d model
+     * @returns {Promise} The promise of the .glb model
+     */
     async loadModel(path) {
         return new Promise((resolve, reject) => {
             const loader = new GLTFLoader();
@@ -88,6 +99,10 @@ class Ballon extends THREE.Object3D {
         });
     }
 
+    /**
+     * Initializes the model
+     * @returns {Promise} The promise of the model
+     */
     async initModel() {
         try {
             this.model = await this.loadModel(this.modelpath);
@@ -108,14 +123,25 @@ class Ballon extends THREE.Object3D {
         }
     }
 
+    /**
+     * Initializes the ballon first person camera
+     * @param {THREE.Camera} camera The camera to set
+     */
     setFirstPersonCamera(camera) {
         this.firstPersonCamera = camera;
     }
 
+    /**
+     * initializes the ballon third person camera
+     * @param {THREE.Camera} camera The camera to set
+     */
     setThirdPersonCamera(camera) {
         this.thirdPersonCamera = camera;
     }
 
+    /**
+     * Updates the cameras
+     */
     updateCameras() {
         if (this.firstPersonCamera) {
             this.firstPersonCamera.position.copy(this.position);
@@ -131,6 +157,10 @@ class Ballon extends THREE.Object3D {
         }
     }
 
+    /**
+     * Handles the key down event
+     * @param {KeyboardEvent} event The event object
+     */
     onDocumentKeyDown(event) {
         if (!this.moving) {
             if (event.key === 'w' && this.layer < 4) {
@@ -149,6 +179,13 @@ class Ballon extends THREE.Object3D {
         }
     }
 
+    /**
+     * Eases the movement of balloon
+     * @param {number} start The start position
+     * @param {number} end The end position
+     * @param {number} duration The duration of the movement
+     * @returns {function} The easing function
+     */
     easeInOutCubic(start, end, duration) {
         return function (t) {
             if (t < duration / 2)
@@ -157,6 +194,10 @@ class Ballon extends THREE.Object3D {
         };
     }
 
+    /**
+     * Applies wind
+     * @returns {void}
+     */
     applyWind() {
         switch (this.layer) {
             case 0:
@@ -176,6 +217,9 @@ class Ballon extends THREE.Object3D {
         }
     }
 
+    /**
+     * Updates the ballon object
+     */
     update() {
         const delta = this.clock.getDelta();
         this.shadow.position.setX(this.position.x);
@@ -207,7 +251,10 @@ class Ballon extends THREE.Object3D {
         this.applyWind();
         this.updateCameras();
     }
-
+    /**
+     * Sets the ballon as stunned, when it collides with a spike ball
+     * @returns {void}
+     */
     setStunned() {
         this.stunned = true;
         this.stunnedTimout = 0.00;
@@ -215,6 +262,10 @@ class Ballon extends THREE.Object3D {
         this.invencibleTimout = 0.00;
     }
 
+    /**
+     * Sets the ballon as invencible, when it collides with a powerup
+     * @returns {void}
+     */
     setInvencible() {
         this.invencible = true;
         this.invencibleTimout = 0.00;

@@ -1,6 +1,14 @@
 import * as THREE from 'three';
 
 class Firework {
+    /**
+     * Builds a firework
+     * @param {THREE.Object3D} app The app object
+     * @param {THREE.Scene} scene The scene object
+     * @param {number} explodeTime The time to explode
+     * @param {number} explosionDuration The duration of the explosion
+     * @returns {Firework} The firework object
+     */
     constructor(app, scene, explodeTime = 2, explosionDuration = 3) {
         this.scene = scene;
         this.explodeTime = explodeTime; 
@@ -33,6 +41,10 @@ class Firework {
         this.explosionStartTime = null;
     }
 
+    /**
+     * Explodes the firework
+     * @param {THREE.Vector3} position The position to explode
+     */
     explode(position) {
         const numParticles = 50;
         const explosionSpeed = 1;
@@ -76,6 +88,10 @@ class Firework {
         this.explosionStartTime = this.elapsedTime;
     }
 
+    /**
+     *  Updates the firework object
+     * @param {number} delta The time delta
+     */
     update(delta) {
         this.elapsedTime += delta;
 

@@ -8,7 +8,7 @@ import { TextRender } from './Text.js';
 class Outdoor extends THREE.Object3D {
 
     /**
-     * 
+     * builds the outdoor object
      */
     constructor() {
         super();
@@ -34,6 +34,10 @@ class Outdoor extends THREE.Object3D {
         this.init();
     }
 
+    /**
+     * Initializes the outdoor object
+     * @returns {void}
+     */
     init()  {
         const text_width = 2.0;
         const text_heigth = 2.5;
@@ -81,6 +85,10 @@ class Outdoor extends THREE.Object3D {
         this.add(this.statusText[this.gameStatus]);
     }
 
+    /**
+     * Builds the outdoor model
+     * @returns {void}
+     */
     buildModel() {
         const leg = new THREE.BoxGeometry(1, 30, 1);
         const bar = new THREE.BoxGeometry(40, 1, 1);
@@ -117,6 +125,14 @@ class Outdoor extends THREE.Object3D {
         this.add(bg);
     }
 
+    /**
+     * Updates the outdoor panel object
+     * @param {number} delta The time delta
+     * @param {number} layer The current layer
+     * @param {number} vouchers The number of vouchers
+     * @param {number} laps The number of laps
+     * @param {number} status The game status
+     */
     update(delta, layer, vouchers, laps, status) {
         if(status == 1)
             this.updateTime(delta)
@@ -134,6 +150,10 @@ class Outdoor extends THREE.Object3D {
             this.updateStatus(status)
     }
 
+    /**
+     * Updates the time
+     * @param {number} delta The time delta
+     */
     updateTime(delta) {
         this.timeSecs += delta;
         const rounded = Math.floor(this.timeSecs);
@@ -151,18 +171,31 @@ class Outdoor extends THREE.Object3D {
         }
     }
 
+    /**
+     * Converts a number to a string
+     * @param {number} number The number to convert
+     * @returns {string} The converted number
+     */
     numberToString(number) {
         if(number < 10)
             return '0' + number;
         return number.toString()
     }
 
+    /**
+     * Updates the layer
+     * @param {number} layer The current layer
+     */
     updateLayer(layer) {
         this.remove(this.layersText[this.layer]);
         this.layer = layer;
         this.add(this.layersText[this.layer])
     }
 
+    /**
+     * Updates the vouchers
+     * @param {number} vouchers The number of vouchers
+     */
     updateVouchers(vouchers) {
         this.intVouchers = vouchers;
         this.numVouchers.updateText(vouchers.toString());
