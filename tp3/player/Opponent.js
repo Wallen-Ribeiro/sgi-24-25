@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { Ballon } from '../models/Ballon.js';
 
 /**
  * This class contains a 3D Opponent representation
@@ -7,18 +6,12 @@ import { Ballon } from '../models/Ballon.js';
 class Opponent extends THREE.Object3D {
 
     constructor() {
-        super();
-
-        // Ballon instance
-        this.ballon = new Ballon();
-        
-        // box related attributes
+        super();        
         this.boxMesh = null
-        this.boxMeshSize = 1.0
+        this.boxMeshSize = 5.0
         this.boxEnabled = false
         this.boxDisplacement = new THREE.Vector3(0, 5, 0)
 
-        // plane related attributes
         this.diffusePlaneColor = "#00ffff"
         this.specularPlaneColor = "#777777"
         this.planeShininess = 30
@@ -29,7 +22,6 @@ class Opponent extends THREE.Object3D {
             shininess: this.planeShininess
         })
 
-        //animation parameters
 
         this.keyPoints = [
 
@@ -52,6 +44,19 @@ class Opponent extends THREE.Object3D {
         this.enableAnimationRotation = false
         this.enableAnimationPosition = true
 
+        let boxMaterial = new THREE.MeshPhongMaterial({
+            color: "#ffff77",
+            specular: "#000000",
+            emissive: "#000000",
+            shininess: 90
+        })
+
+        let box = new THREE.BoxGeometry(this.boxMeshSize, this.boxMeshSize, this.boxMeshSize);
+        this.boxMesh = new THREE.Mesh(box, boxMaterial);
+        this.boxMesh.rotation.x = -Math.PI / 2;
+        this.boxMesh.position.y = this.boxDisplacement.y;
+
+        this.add(this.boxMesh)
     }
 
 
@@ -59,7 +64,6 @@ class Opponent extends THREE.Object3D {
      * initializes the contents
      */
     init() {
-        this.add(this.ballon); // Add the ballon to the opponent
 
         // Visual debugging the path and the control points
         this.debugKeyFrames();
@@ -93,14 +97,11 @@ class Opponent extends THREE.Object3D {
         const positionClip = new THREE.AnimationClip('positionAnimation', 16, [positionKF]);
         const rotationClip = new THREE.AnimationClip('rotationAnimation', 3, [quaternionKF]);
 
-        // Create an AnimationMixer
-        this.mixer = new THREE.AnimationMixer(this.ballon);
+        this.mixer = new THREE.AnimationMixer(this.boxMesh);
 
-        // Create AnimationActions for each clip
         const positionAction = this.mixer.clipAction(positionClip);
         const rotationAction = this.mixer.clipAction(rotationClip);
 
-        // Play both animations
         positionAction.play();
         rotationAction.play();
     }

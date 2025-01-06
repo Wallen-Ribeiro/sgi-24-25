@@ -48,6 +48,32 @@ class Ballon extends THREE.Object3D {
         document.addEventListener('keydown', this.onDocumentKeyDown.bind(this))
     }
 
+    setFirstPersonCamera(camera) {
+        this.firstPersonCamera = camera;
+    }
+
+    setThirdPersonCamera(camera) {
+        this.thirdPersonCamera = camera;
+    }
+
+    updateCameras() {
+        if (this.firstPersonCamera) {
+            this.firstPersonCamera.position.copy(this.position);
+            this.firstPersonCamera.position.y += 2; 
+            this.firstPersonCamera.lookAt(this.position.x, this.position.y, this.position.z + 1);
+            console.log(this.position.x, this.position.y, this.position.z + 1)
+        }
+
+        if (this.thirdPersonCamera) {
+            this.thirdPersonCamera.position.copy(this.position);
+            this.thirdPersonCamera.position.x += 10; 
+            this.thirdPersonCamera.position.y += 20;
+            this.thirdPersonCamera.lookAt(this.position);
+            console.log(this.position)
+
+        }
+    }
+
     onDocumentKeyDown(event) {
         if (!this.moving) {
             if (event.key === 'w' && this.layer < 4) {
@@ -94,6 +120,7 @@ class Ballon extends THREE.Object3D {
     }
 
     update() {
+        console.log(this.clock);
         const delta = this.clock.getDelta();
         if (this.moving) {
             this.currentTime += delta;
@@ -103,6 +130,7 @@ class Ballon extends THREE.Object3D {
             this.position.y = this.currentEase(this.currentTime);
         }
         this.applyWind();
+        this.updateCameras();
     }
 }
 
