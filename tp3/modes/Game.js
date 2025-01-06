@@ -49,10 +49,16 @@ class Game extends Mode {
             this.trackPoints[i].setX(-this.trackPoints[i].x);
         } 
 
+        console.log(this.trackPoints)
+
         const points = [
             { type: 'PowerUp', position: { x: 20, y: 30, z: -25 }},
+            { type: 'PowerUp', position: { x: 50, y: 40, z: -85 }},
+            { type: 'PowerUp', position: { x: 120, y: 50, z: -175 }},
+            { type: 'SpikeBall', position: { x: 100, y: 30, z: -80 }},
+            { type: 'SpikeBall', position: { x: -100, y: 30, z: 120 }},
+            { type: 'SpikeBall', position: { x: 50, y: 30, z: -170 }},
             { type: 'SpikeBall', position: { x: 40, y: 30, z: -70 }},
-            { type: 'SpikeBall', position: { x: 60, y: 10, z: -100 }},
         ];
         const reader = new Reader(this.contents.app, this.contents.app.scene);
         reader.readPoints(points)
