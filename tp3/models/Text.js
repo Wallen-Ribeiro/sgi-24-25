@@ -7,7 +7,10 @@ import * as THREE from 'three';
 class TextRender extends THREE.Object3D {
 
     /**
-     * 
+     * Builds a text object
+     * @param {string} text The text to render
+     * @param {number} letter_width The width of each letter
+     * @param {number} letter_height The height of each letter
      */
     constructor(text, letter_width, letter_height) {
         super();
@@ -27,6 +30,11 @@ class TextRender extends THREE.Object3D {
         this.buildText(text)
     }
 
+    /**
+     * Builds the text object
+     * @param {string} text The text to render
+     * @returns {THREE.Object3D} The text object
+     */
     buildText(text) {
         let displacement = 0.0;
         const upper_text = text.toUpperCase();
@@ -38,6 +46,10 @@ class TextRender extends THREE.Object3D {
         }
     }
 
+    /**
+     * Builds a letter object
+     * @param {string} letter The letter to render
+     */
     buildLetter(letter) {
         let m = 0;
         let n = 0;
@@ -69,6 +81,11 @@ class TextRender extends THREE.Object3D {
         return mesh;
     }
     
+    /**
+     * Updates the text object
+     * @param {string} new_text The new text to render
+     * @returns {THREE.Object3D} The updated text object
+     */
     updateText(new_text) {
         this.children.forEach((child) => {
             this.remove(child);
