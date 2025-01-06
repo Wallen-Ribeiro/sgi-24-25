@@ -6,6 +6,7 @@ import { PowerUp } from './models/PowerUp.js';
 import { SpikeBall } from './models/SpikeBall.js';
 import { Outdoor } from './models/Outdoor.js';
 import { MyShader } from './MyShader.js';
+import { TextRender } from './models/Text.js';
 
 /**
  *  This class contains the contents of out application
@@ -73,6 +74,11 @@ class MyContents {
         const outdoor = new Outdoor();
         outdoor.position.set(-50, 10, -50);
         this.app.scene.add(outdoor);
+
+        // testing text
+        const text1 = new TextRender("Hello", 10, 15);
+        text1.position.set(10, 10, 0);
+        this.app.scene.add(text1);
 
     }
 
