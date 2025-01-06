@@ -3,6 +3,8 @@ import { MyAxis } from './MyAxis.js';
 import { MyFileReader } from './parser/MyFileReader.js';
 import { Outdoor } from './models/Outdoor.js';
 import { Game } from './modes/Game.js';
+import { Garage } from './modes/Garage.js';
+import { Menu } from './modes/Menu.js';
 import { TextRender } from './models/Text.js';
 
 /**
@@ -44,13 +46,8 @@ class MyContents {
         outdoor.position.set(-50, 10, -50);
         this.app.scene.add(outdoor);
 
-        // testing text
-        const text1 = new TextRender("Hello", 10, 15);
-        text1.position.set(10, 10, 0);
-        this.app.scene.add(text1);
-
         // Initialize the default mode (Game mode)
-        this.switchMode(new Game(this));
+        this.switchMode(new Garage(this));
     }
 
     /**
