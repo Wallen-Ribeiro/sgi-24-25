@@ -4,6 +4,9 @@ import * as THREE from 'three';
  * This class contains a 3D ballon
  */
 
+const STUN_TIMOUT = 3.00;
+const INVENCIBLE_TIMOUT = 1.50;
+
 class Ballon extends THREE.Object3D {
 
     /**
@@ -23,8 +26,21 @@ class Ballon extends THREE.Object3D {
         // animation 
         this.clock = new THREE.Clock();
 
+        // vouchers
+        this.vouchers = 0;
+        this.invencible = false;
+        this.invencibleTimout = 0.00;
+        this.stunned = false;
+        this.stunnedTimout = 0.00;
+
+        this.buildModel();
+        document.addEventListener('keydown', this.onDocumentKeyDown.bind(this))
+    }
+
+    buildModel() {
         const sphere = new THREE.SphereGeometry(10);
         const cube = new THREE.BoxGeometry(2, 2, 2);
+        const circle = new THREE.CircleGeometry(5);
 
         const ballonMaterial = new THREE.MeshToonMaterial(
             {
@@ -38,14 +54,21 @@ class Ballon extends THREE.Object3D {
                 emissive: "#000000"
             });
 
+        const shadowMaterial = new THREE.MeshBasicMaterial({
+            color: "#000000",
+            transparent: true,
+            opacity: 0.8
+        })
+
         const ballon = new THREE.Mesh(sphere, ballonMaterial);
         const casket = new THREE.Mesh(cube, casketMaterial);
+        this.shadow = new THREE.Mesh(circle, shadowMaterial);
         casket.position.y = -11;
+        this.shadow.position.y = -30;
+        this.shadow.rotateX(- Math.PI / 2);
 
         this.add(ballon);
         this.add(casket);
-
-        document.addEventListener('keydown', this.onDocumentKeyDown.bind(this))
     }
 
     onDocumentKeyDown(event) {
@@ -95,6 +118,25 @@ class Ballon extends THREE.Object3D {
 
     update() {
         const delta = this.clock.getDelta();
+        this.shadow.position.setX(this.position.x);
+        this.shadow.position.setZ(this.position.z);
+
+        if (this.stunned) {
+            this.stunnedTimout += delta;
+            if(this.stunnedTimout >= STUN_TIMOUT) {
+                this.stunned = false;
+            } else {
+                return;
+            }
+        }
+
+        if(this.invencible) {
+            this.invencibleTimout += delta;
+            if(this.invencibleTimout >= INVENCIBLE_TIMOUT) {
+                this.invencible = false;
+            }
+        }
+
         if (this.moving) {
             this.currentTime += delta;
             if (this.currentTime > this.currentDuration) {
@@ -103,6 +145,18 @@ class Ballon extends THREE.Object3D {
             this.position.y = this.currentEase(this.currentTime);
         }
         this.applyWind();
+    }
+
+    setStunned() {
+        this.stunned = true;
+        this.stunnedTimout = 0.00;
+        this.invencible = true;
+        this.invencibleTimout = 0.00;
+    }
+
+    setInvencible() {
+        this.invencible = true;
+        this.invencibleTimout = 0.00;
     }
 }
 
