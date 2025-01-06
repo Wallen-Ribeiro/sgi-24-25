@@ -7,8 +7,9 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
  */
 class Opponent extends THREE.Object3D {
 
-    constructor() {
-        super();        
+    constructor(modelpath) {
+        super();      
+        this.modelpath = modelpath;  
         this.boxMesh = null
         this.model = null
         this.boxMeshSize = 5.0
@@ -81,7 +82,7 @@ class Opponent extends THREE.Object3D {
 
     async initModel() {
         try {
-            this.model = await this.loadModel('./assets/air6.glb');
+            this.model = await this.loadModel(this.modelpath);
     
             this.model.position.set(4, 0, 0);
             this.model.scale.set(1, 1, 1);

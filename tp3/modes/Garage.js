@@ -10,6 +10,9 @@ class Garage extends Mode {
         super(contents);
         this.chosen1 = null;
         this.chosen2 = null;
+
+        this.chosen1_file = null;
+        this.chosen2_file = null;
         this.raycaster = new THREE.Raycaster();
         this.pointer = new THREE.Vector2();
         this.selectedBalloons = [];
@@ -93,37 +96,61 @@ class Garage extends Mode {
         console.log("Pointer down event detected");
         this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
         this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
-    
+
         this.raycaster.setFromCamera(this.pointer, this.contents.app.activeCamera);
-    
+
         const intersects = this.raycaster.intersectObjects(this.contents.app.scene.children);
         console.log("Intersects:", intersects);
-    
+
         if (intersects.length > 0) {
             const selectedObject = intersects[0].object;
-    
+
             if (selectedObject.name.startsWith("box_")) {
                 if (this.chosen1 === null) {
                     this.chosen1 = selectedObject;
+                    this.chosen1_file = this.getBalloonFile(selectedObject.name);
                     this.highlightBox(this.chosen1, 0xff0000); 
-                    console.log("First box chosen:", selectedObject.name);
+                    console.log("First box chosen:", this.chosen1_file);
                 } else if (this.chosen2 === null && selectedObject !== this.chosen1) {
                     this.chosen2 = selectedObject;
+                    this.chosen2_file = this.getBalloonFile(selectedObject.name);
                     this.highlightBox(this.chosen2, 0x0000ff); 
-                    console.log("Second box chosen:", selectedObject.name);
+                    console.log("Second box chosen:", this.chosen2_file);
                 }
 
                 if (this.chosen1 && this.chosen2 && !this.button) {
-                    const bg = new THREE.BoxGeometry(50, 20, 1); 
-                    const bmaterial = new THREE.MeshBasicMaterial({ color: 0xffffff }); 
+
+                    this.text1 = new TextRender("Start GAME", 5, 3);
+                    const bg = new THREE.BoxGeometry(20, 10, 1); 
+                    const bmaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 }); 
                     this.button = new THREE.Mesh(bg, bmaterial); 
+                    this.text1.position.set(-20, 20, 49);
                     this.button.position.set(0, 10, 49);
                     this.button.userData.isClickable = true;
                     this.contents.app.scene.add(this.button);
+                    this.contents.app.scene.add(this.text1);
                 }
             } else if (selectedObject.userData.isClickable && selectedObject === this.button) {
-                this.contents.switchMode(new Game(this.contents));
+                console.log("chosen 1:", this.chosen1_file);
+                console.log("chosen 2:", this.chosen2_file);
+                this.contents.switchMode(new Game(this.contents, this.chosen1_file, this.chosen2_file));
             }
+        }
+    }
+
+    getBalloonFile(boxName) {
+        console.log("Getting balloon file for box:", boxName);
+        switch (boxName) {
+            case "box_balloon_-15_-15":
+                return this.player_balloons[0];
+            case "box_balloon_15_-15":
+                return this.player_balloons[1];
+            case "box_balloon_-15_15":
+                return this.bot_balloons[0];
+            case "box_balloon_15_15":
+                return this.bot_balloons[1];
+            default:
+                return null;
         }
     }
     

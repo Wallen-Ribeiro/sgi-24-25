@@ -9,12 +9,14 @@ import * as THREE from 'three';
 import { FireworkBox } from '../models/FireworkBox.js';
 
 class Game extends Mode {
-    constructor(contents) {
+    constructor(contents, player1, player2) {
         super(contents);
         this.ballon = null;
         this.opponent = null;
         this.collidableObjects = [];
         this.track = null;
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
     getTrack() {
@@ -25,12 +27,12 @@ class Game extends Mode {
         console.log("Game mode initialized.");
         
 
-        this.ballon = new Ballon();
+        this.ballon = new Ballon(this.player1);
         this.contents.app.scene.add(this.ballon);
         this.contents.app.scene.add(this.ballon.shadow);
         this.ballon.position.set(0, 30, 0);
 
-        this.opponent = new Opponent();
+        this.opponent = new Opponent(this.player2);
         this.contents.app.scene.add(this.opponent);
 
         this.track = new Track(this.contents.trackWidth);
