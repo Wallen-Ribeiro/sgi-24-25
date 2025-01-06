@@ -47,11 +47,11 @@ class Game extends Mode {
         this.collidableObjects.push(powerUp);
         this.contents.app.scene.add(powerUp);
 
-        const spikeBall1 = new SpikeBall();
-        spikeBall1.position.set(40, 30, -70);
-        spikeBall1.scale.set(2.5, 2.5, 2.5);
-        this.collidableObjects.push(spikeBall1);
-        this.contents.app.scene.add(spikeBall1);
+        this.spikeBall1 = new SpikeBall();
+        this.spikeBall1.position.set(40, 30, -70);
+        this.spikeBall1.scale.set(2.5, 2.5, 2.5);
+        this.collidableObjects.push(this.spikeBall1);
+        this.contents.app.scene.add(this.spikeBall1);
 
         const spikeBall2 = new SpikeBall();
         spikeBall2.scale.set(2.5, 2.5, 2.5);
@@ -78,10 +78,14 @@ class Game extends Mode {
             return;
         }
 
-        // Handle Collisions
+        // Handle Collisions (and collidable updates)
         this.collidableObjects.forEach((collidable) => {
             const distance = this.ballon.position.distanceTo(collidable.position);
             const sumRadius = this.ballon.radius + collidable.radius;
+
+            if(collidable.update) {
+                collidable.update();
+            }
 
             if (distance < sumRadius) {
                 this.handleCollision(this.ballon, collidable);

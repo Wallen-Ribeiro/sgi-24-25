@@ -19,7 +19,6 @@ class FireworkBox extends THREE.Object3D {
             const firework = new Firework(app, scene, this.explodeTime);
             firework.position.set([x, y, z]);
             this.fireworks.push(firework);
-            this.add(firework);
         }
 
         this.buildModel()
