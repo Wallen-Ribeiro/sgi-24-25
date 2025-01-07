@@ -32,5 +32,13 @@
 ![scene screenshot far](/tp2/screenshots/amongus2.png)
 ----
 
-### [TP3 - ...](tp3)
+### [TP3 - Video Game](tp3)
+## Project information
+
+
+Our 3D game revolves around a competitive hot air balloon race where players navigate a predefined track against an autonomous opponent. Players control their balloon’s altitude using simple controls—raising or lowering it to adjust to different wind layers ```WS```, each influencing the direction of movement. Staying aligned with the track is crucial, with the balloon’s shadow serving as a guide. The track includes obstacles, power-ups, and a time limit, adding complexity and urgency to the gameplay. The game penalizes track departures or collisions with timeouts.
+By integrating tools like the YASF language and importing 3D models, we believe that our game allows for agile development while leaving room for creative customization.
+
+![scene screenshot](/tp3/screenshots/game.png)
+
 
